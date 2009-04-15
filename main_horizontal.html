@@ -1,0 +1,240 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Your HealthNet</title>
+<link href="Level1_Arial.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+var pressure_visible = new Boolean(1)
+var current_layer = 0
+
+var slide_in_layer = 0
+var slide_out_layer = 0
+<!--
+function MM_preloadImages() { //v3.0
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+}
+function MM_swapImgRestore() { //v3.0
+  var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
+}
+function MM_findObj(n, d) { //v4.01
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  if(!x && d.getElementById) x=d.getElementById(n); return x;
+}
+
+function MM_swapImage() { //v3.0
+  var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
+   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+}
+
+function set_layers_xy()
+{
+	//document.getElementById('temperature_section').style.position = document.getElementById('pressure_section').style.position
+	//var x = document.getElementById('pressure_section
+	//var y = document.getElementById('pressure_section').style.top
+	//document.getElementById('temperature_section').style.left = x
+	//document.getElementById('temperature_section').style.top = y
+	//var tmp = "X is " + x
+	//alert(tmp)
+}
+function hide_layer(layer_num)
+{
+	if (layer_num == 0) {
+	} else if (layer_num == 1) {
+		document.getElementById('pressure_section').style.visibility = 'hidden'
+	} else if (layer_num == 2) {
+		document.getElementById('temperature_section').style.visibility = 'hidden'
+	} else if (layer_num == 3) {
+		document.getElementById('glucose_section').style.visibility = 'hidden'
+	} else if (layer_num == 4) {
+		document.getElementById('pulse_rate_section').style.visibility = 'hidden'
+	} else if (layer_num == 5) {
+		document.getElementById('overall_feeling_section').style.visibility = 'hidden'
+	}
+}
+
+function show_layer(layer_num)
+{
+	if (layer_num == 1) {
+		document.getElementById('pressure_section').style.visibility = 'visible'
+	} else if (layer_num == 2) {
+		document.getElementById('temperature_section').style.visibility = 'visible'
+	} else if (layer_num == 3) {
+		document.getElementById('glucose_section').style.visibility = 'visible'
+	} else if (layer_num == 4) {
+		document.getElementById('pulse_rate_section').style.visibility = 'visible'
+	} else if (layer_num == 5) {
+		document.getElementById('overall_feeling_section').style.visibility = 'visible'
+	}
+}
+function switch_to(new_layer)
+{
+	//set_layers_xy()
+	if (new_layer == current_layer) {
+		//hide_layer(current_layer)
+
+		
+		slide_in_layer = current_layer
+		slide_in()
+		current_layer = 0	
+	} else {
+		//hide_layer(current_layer)
+		//show_layer(new_layer)
+		
+		slide_in_layer = current_layer
+		slide_in()
+		slide_out_layer = new_layer
+		slide_out()
+		current_layer = new_layer
+	}
+}
+
+function slide_out()
+{
+	var layer
+	switch (slide_out_layer) {
+	case 0:
+		return;
+		break;
+	case 1:
+		layer = document.getElementById('pressure_section1')
+		break;
+	case 2:
+		layer = document.getElementById('temperature_section1')
+		break;
+	case 3:
+		layer = document.getElementById('glucose_section1')
+		break;
+	case 4:
+		layer = document.getElementById('pulse_rate_section1')
+		break;
+	case 5:
+		layer = document.getElementById('overall_feeling_section1')
+		break;
+	}
+	var top = parseInt(layer.style.top, 10)
+	if (top < 10) {
+		layer.style.top = (top + 5) + "px";
+		setTimeout("slide_out()", 20)
+	}
+}
+function slide_in()
+{
+	var layer
+	switch (slide_in_layer) {
+	case 0:
+		return;
+		break;
+	case 1:
+		layer = document.getElementById('pressure_section1')
+		break;
+	case 2:
+		layer = document.getElementById('temperature_section1')
+		break;
+	case 3:
+		layer = document.getElementById('glucose_section1')
+		break;
+	case 4:
+		layer = document.getElementById('pulse_rate_section1')
+		break;
+	case 5:
+		layer = document.getElementById('overall_feeling_section1')
+		break;
+	}
+	var top = parseInt(layer.style.top, 10)
+	if (top > -70) {
+		layer.style.top = (top - 5) + "px";
+		setTimeout("slide_in()", 20)
+	}
+}
+
+function getValue(button) {
+   if (button==document.getElementById('pressure_ok')) {
+      window.alert(document.getElementById('pressure_input').value);
+      switch_to(1);
+   } else if (button==document.getElementById('temperature_ok')) {
+      window.alert(document.getElementById('temperature_input').value);
+      switch_to(2);
+   } else if (button==document.getElementById('glucose_ok')) {
+      window.alert(document.getElementById('glucose_input').value);
+      switch_to(3);
+   } else if (button==document.getElementById('pulse_rate_ok')) {
+      window.alert(document.getElementById('pulse_rate_input').value);
+      switch_to(4);
+   } else if (button==document.getElementById('overall_feeling_ok')) {
+      window.alert(document.getElementById('overall_feeling_input').value);
+      switch_to(5);
+   } 
+ 
+}
+
+//-->
+</script>
+</head>
+
+<body onload="javascript:MM_preloadImages('Clear Button.png'), set_layers_xy(,'pressure_dark.png')">
+<h1 align="center"><strong>Your HealthNet</strong></h1>
+<p align="center">&nbsp;</p>
+<ol>
+  <li>
+    <div align="left">Click on one of the buttons below.</div>
+  </li>
+  <li>
+    <div align="left">Enter the reading as it is on your device. </div>
+  </li>
+  <li>
+    <div align="left">When done, please click the &quot;OK&quot; button.</div>
+  </li>
+</ol>
+<form>
+<table width="900" border="0" align="center" cellpadding="5" cellspacing="15">
+  <tr>
+    <td>
+    <div align="center" style="filter:alpha(opacity=100); position:relative; top:11px; z-index:2 "><a onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('blood_pressure','','pressure_dark.png',1)" onmousedown="switch_to(1)"><img src="pressure.png" alt="" name="blood_pressure" width="158" height="142" border="0" id="blood_pressure" /></a></div>
+    <div align="center" id="pressure_section1" style="width:100%; position: relative; top:-70px; visibility:visible; z-index:1">
+      <label id="pressure_label">Blood pressure, in mmHg</label>
+        <input type="text" name="pressure_input" id="pressure_input" />
+        <input type="button" name="OK" id="pressure_ok" value="OK" onClick="getValue(this)"/>
+    </div>
+    </td>
+    <td><div align="center" style="position:relative; top:2px; z-index:2"><a onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('temperature','','temperature_dark.png',1)" onmousedown="switch_to(2)"><img src="temperature.png" alt="" name="temperature" width="158" height="142" border="0" id="temperature" /></a></div>
+    <div align="center" id="temperature_section1" style="width:100%; position:relative; top:-70px; visibility:visible; z-index:1">
+          <label id="temperature_label">Temperature, in &deg;F</label>
+          <input type="text" name="temperature_input" id="temperature_input" />
+          <input type="button" name="temperature_ok" id="temperature_ok" value="OK" onClick="getValue(this)"/>
+    </div></td>
+    <td><div align="center" style="position:relative; top:11px; z-index:2"><a onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Pressure22','','Clear Button.png',1)" onmousedown="switch_to(3)"><img src="Button.png" alt="" name="Pressure22" width="158" height="142" border="0" id="Pressure22" /></a></div>
+    <div align="center" id="glucose_section1" style="width:100%; position:relative; top:-70px; visibility:visible; z-index:1">
+      <label id="glucose_label">Glucose level, in mM (mmol/l)</label>
+        <input type="text" name="glucose_input" id="glucose_input" />
+        <input type="button" name="OK" id="glucose_ok" value="OK" onClick="getValue(this)"/>
+    </div></td>
+    <td><div align="center" style="position:relative; top:2px; z-index:2"><a onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Pressure23','','heart_dark.png',1)" onmousedown="switch_to(4)"><img src="heart.png" name="Pressure23" width="158" height="142" border="0" id="Pressure23" /></a></div>
+    <div align="center" id="pulse_rate_section1" style="width:100%; position: relative; top: -70px; visibility:visible; z-index:1">
+      <label id="pulse_rate_label">Heart rate, in bpm</label>
+        <input type="text" name="pulse_rate_input" id="pulse_rate_input" />
+        <input type="button" name="OK" id="pulse_rate_ok" value="OK" onClick="getValue(this)" />
+    </div></td>
+    <td><div align="center" style="position:relative; top:2px; z-index:2"><a onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Pressure24','','Clear Button.png',1)" onmousedown="switch_to(5)"><img src="Button.png" alt="" name="Pressure24" width="158" height="142" border="0" id="Pressure24" /></a></div>
+    <div align="center" id="overall_feeling_section1" style="width:100%; position: relative; top: -70px; visibility:visible; z-index:1">
+        <label id="overall_feeling_label">Pain level</label>
+        <input type="text" name="overall_feeling_input" id="overall_feeling_input" />
+        <input type="button" name="OK" id="overall_feeling_ok" value="OK"  onClick="getValue(this)" />
+    </div></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+</form>
+</body>
+</html>
