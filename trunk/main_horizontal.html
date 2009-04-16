@@ -147,7 +147,7 @@ function slide_in()
 		break;
 	}
 	var top = parseInt(layer.style.top, 10)
-	if (top > -70) {
+	if (top > -85) {
 		layer.style.top = (top - 5) + "px";
 		setTimeout("slide_in()", 20)
 	}
@@ -194,34 +194,41 @@ function getValue(button) {
 <form>
 <table width="900" border="0" align="center" cellpadding="5" cellspacing="15">
   <tr>
-    <td>
-    <div align="center" style="position:relative; top:2px; z-index:2 "><a onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('blood_pressure','','pressure_dark.png',1)" onmousedown="switch_to(1)"><img src="pressure.png" alt="" name="blood_pressure" width="158" height="142" border="0" id="blood_pressure" /></a></div>
-    <div align="center" id="pressure_section1" style="width:100%; position: relative; top:-70px; visibility:visible; z-index:1">
-      <label id="pressure_label">Blood pressure, in mmHg</label>
-        <input type="text" name="pressure_input" id="pressure_input" />
-        <input type="button" name="OK" id="pressure_ok" value="OK" onClick="getValue(this)"/>
-    </div>
+    <td align="center" valign="top">
+      	<h4><strong>Pressure</strong></h4>
+		<div align="center" style="position:relative; top:2px; z-index:2 "><a onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('blood_pressure','','pressure_dark.png',1)" onmousedown="switch_to(1)"><img src="pressure.png" alt="" name="blood_pressure" width="158" height="142" border="0" id="blood_pressure" /></a></div>
+		<div align="center" id="pressure_section1" style="width:100%; position: relative; top:-85px; visibility:visible; z-index:1">
+   		  <label id="pressure_label">Blood pressure, in mmHg</label>
+        	<input type="text" name="pressure_input" id="pressure_input" />
+       	  <input type="button" name="OK" id="pressure_ok" value="OK" onClick="getValue(this)"/>
+    	</div>
     </td>
-    <td><div align="center" style="position:relative; top:2px; z-index:2"><a onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('temperature','','temperature_dark.png',1)" onmousedown="switch_to(2)"><img src="temperature.png" alt="" name="temperature" width="158" height="142" border="0" id="temperature" /></a></div>
-    <div align="center" id="temperature_section1" style="width:100%; position:relative; top:-70px; visibility:visible; z-index:1">
-          <label id="temperature_label">Temperature, in &deg;F</label>
-          <input type="text" name="temperature_input" id="temperature_input" />
-          <input type="button" name="temperature_ok" id="temperature_ok" value="OK" onClick="getValue(this)"/>
-    </div></td>
-    <td><div align="center" style="position:relative; top:11px; z-index:2"><a onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Pressure22','','Clear Button.png',1)" onmousedown="switch_to(3)"><img src="Button.png" alt="" name="Pressure22" width="158" height="142" border="0" id="Pressure22" /></a></div>
-    <div align="center" id="glucose_section1" style="width:100%; position:relative; top:-70px; visibility:visible; z-index:1">
-      <label id="glucose_label">Glucose level, in mM (mmol/l)</label>
-        <input type="text" name="glucose_input" id="glucose_input" />
-        <input type="button" name="OK" id="glucose_ok" value="OK" onClick="getValue(this)"/>
-    </div></td>
-    <td><div align="center" style="position:relative; top:2px; z-index:2"><a onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Pressure23','','heart_dark.png',1)" onmousedown="switch_to(4)"><img src="heart.png" name="Pressure23" width="158" height="142" border="0" id="Pressure23" /></a></div>
-    <div align="center" id="pulse_rate_section1" style="width:100%; position: relative; top: -70px; visibility:visible; z-index:1">
+    <td align="center" valign="top">
+    	<h4><strong>Temperature</strong></h4>
+        <div align="center" style="position:relative; top:2px; z-index:2"><a onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('temperature','','temperature_dark.png',1)" onmousedown="switch_to(2)"><img src="temperature.png" alt="" name="temperature" width="158" height="142" border="0" id="temperature" /></a></div>
+    	<div align="center" id="temperature_section1" style="width:100%; position:relative; top:-85px; visibility:visible; z-index:1">
+			<label id="temperature_label">Temperature, in &deg;F</label>
+          	<input type="text" name="temperature_input" id="temperature_input" />
+          	<input type="button" name="temperature_ok" id="temperature_ok" value="OK" onClick="getValue(this)"/>
+    	</div>
+	</td>
+    <td align="center" valign="top">
+    	<h4><strong>Glucose Level</strong></h4>
+        <div align="center" style="position:relative; top:2px; z-index:2"><a onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Pressure22','','Clear Button.png',1)" onmousedown="switch_to(3)"><img src="Button.png" alt="" name="Pressure22" width="158" height="142" border="0" id="Pressure22" /></a></div>
+    	<div align="center" id="glucose_section1" style="width:100%; position:relative; top:-85px; visibility:visible; z-index:1">
+      		<label id="glucose_label">Glucose level, in mM (mmol/l)</label>
+        	<input type="text" name="glucose_input" id="glucose_input" />
+        	<input type="button" name="OK" id="glucose_ok" value="OK" onClick="getValue(this)"/>
+    	</div>
+	</td>
+    <td align="center" valign="top"><h4><strong>Heart Rate</strong></h4><div align="center" style="position:relative; top:2px; z-index:2"><a onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Pressure23','','heart_dark.png',1)" onmousedown="switch_to(4)"><img src="heart.png" name="Pressure23" width="158" height="142" border="0" id="Pressure23" /></a></div>
+    <div align="center" id="pulse_rate_section1" style="width:100%; position: relative; top: -85px; visibility:visible; z-index:1">
       <label id="pulse_rate_label">Heart rate, in bpm</label>
         <input type="text" name="pulse_rate_input" id="pulse_rate_input" />
         <input type="button" name="OK" id="pulse_rate_ok" value="OK" onClick="getValue(this)" />
     </div></td>
-    <td><div align="center" style="position:relative; top:2px; z-index:2"><a onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Pressure24','','Clear Button.png',1)" onmousedown="switch_to(5)"><img src="Button.png" alt="" name="Pressure24" width="158" height="142" border="0" id="Pressure24" /></a></div>
-    <div align="center" id="overall_feeling_section1" style="width:100%; position: relative; top: -70px; visibility:visible; z-index:1">
+    <td align="center" valign="top"><h4><strong>General Feeling</strong></h4><div align="center" style="position:relative; top:2px; z-index:2"><a onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Pressure24','','Clear Button.png',1)" onmousedown="switch_to(5)"><img src="Button.png" alt="" name="Pressure24" width="158" height="142" border="0" id="Pressure24" /></a></div>
+    <div align="center" id="overall_feeling_section1" style="width:100%; position: relative; top: -85px; visibility:visible; z-index:1">
         <label id="overall_feeling_label">Pain level</label>
         <input type="text" name="overall_feeling_input" id="overall_feeling_input" />
         <input type="button" name="OK" id="overall_feeling_ok" value="OK"  onClick="getValue(this)" />
