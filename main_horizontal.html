@@ -5,11 +5,20 @@
 <title>Your HealthNet</title>
 <link href="Level1_Arial.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript">
+
 var pressure_visible = new Boolean(1)
 var current_layer = 0
 
 var slide_in_layer = 0
 var slide_out_layer = 0
+var help_array=new Array();
+help_array[0]='';
+help_array[1]='Blood pressure help message';
+help_array[2]='Temperature help message';
+help_array[3]='Glucose level message';
+help_array[4]='Heart rate message';
+help_array[5]='General feeling message';
+
 <!--
 function MM_preloadImages() { //v3.0
   var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
@@ -77,10 +86,9 @@ function switch_to(new_layer)
 	//set_layers_xy()
 	if (new_layer == current_layer) {
 		//hide_layer(current_layer)
-
-		
 		slide_in_layer = current_layer
 		slide_in()
+		parent.bottomFrame.document.getElementById('help_message').innerHTML = ''
 		current_layer = 0	
 	} else {
 		//hide_layer(current_layer)
@@ -122,12 +130,14 @@ function slide_out()
 		layer.style.top = (top + 5) + "px";
 		setTimeout("slide_out()", 20)
 	}
+	parent.bottomFrame.document.getElementById('help_message').innerHTML = help_array[slide_out_layer]
 }
 function slide_in()
 {
 	var layer
 	switch (slide_in_layer) {
 	case 0:
+		
 		return;
 		break;
 	case 1:
