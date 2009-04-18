@@ -183,13 +183,111 @@ function getValue(button) {
  
 }
 
+function validate_pressure(button)
+{
+	str = document.getElementById('pressure_input').value
+	if (str == "") {
+		alert("No value has been entered for the pressure")
+		return false;
+	} else if (isNaN(str)) {
+		alert("Value entered for pressure is not a valid number")
+		return false;
+	} else if (parseInt(str,10) < 60) {
+		alert("Value entered for pressure seems a little too low")
+		return false;
+	} else {
+		// capture the number.
+		document.getElementById('pressure_input').value = ''
+		switch_to(1)
+		return true;
+	}
+}
+
+function validate_temperature(button)
+{
+	str = document.getElementById('temperature_input').value
+	if (str == "") {
+		alert("No value has been entered for the temperature")
+		return false;
+	} else if (isNaN(str)) {
+		alert("Value entered for temperature is not a valid number")
+		return false;
+	} else if (parseInt(str,10) < 80) {
+		alert("Value entered for temperature seems a little too low")
+		return false;
+	} else {
+		// capture the number.
+		document.getElementById('temperature_input').value = ''
+		switch_to(2)
+		return true;
+	}
+}
+
+function validate_glucose(button)
+{
+	str = document.getElementById('glucose_input').value
+	if (str == "") {
+		alert("No value has been entered for the glucose")
+		return false;
+	} else if (isNaN(str)) {
+		alert("Value entered for glucose is not a valid number")
+		return false;
+	} else if (parseInt(str,10) < 80) {
+		alert("Value entered for glucose seems a little too low")
+		return false;
+	} else {
+		// capture the number.
+		document.getElementById('glucose_input').value = ''
+		switch_to(3)
+		return true;
+	}
+}
+
+function validate_pulse(button)
+{
+	str = document.getElementById('pulse_rate_input').value
+	if (str == "") {
+		alert("No value has been entered for the pulse rate")
+		return false;
+	} else if (isNaN(str)) {
+		alert("Value entered for pulse rate is not a valid number")
+		return false;
+	} else if (parseInt(str,10) < 40) {
+		alert("Value entered for pulse rate seems a little too low")
+		return false;
+	} else {
+		// capture the number.
+		document.getElementById('pulse_rate_input').value = ''
+		switch_to(3)
+		return true;
+	}
+}
+
+function validate_feeling(button)
+{
+	str = document.getElementById('overall_feeling_input').value
+	if (str == "") {
+		alert("No value has been entered for the overall feeling")
+		return false;
+	} else if (isNaN(str)) {
+		alert("Value entered for overall feeling is not a valid number")
+		return false;
+	} else if (parseInt(str,10) < 40) {
+		alert("Value entered for overall feeling seems a little too low")
+		return false;
+	} else {
+		// capture the number.
+		document.getElementById('overall_feeling_input').value = ''
+		switch_to(3)
+		return true;
+	}
+}
 //-->
 </script>
 </head>
 
 <body onload="javascript:MM_preloadImages('Clear Button.png'), set_layers_xy(,'pressure_dark.png')">
 <h1 align="center"><strong>Your HealthNet</strong></h1>
-<p align="center">&nbsp;</p>
 <ol>
   <li>
     <div align="left">Click on one of the buttons below.</div>
@@ -210,7 +308,8 @@ function getValue(button) {
 		<div align="center" id="pressure_section1" style="width:100%; position: relative; top:-85px; visibility:visible; z-index:1">
    		  <label id="pressure_label">Blood pressure, in mmHg</label>
         	<input type="text" name="pressure_input" id="pressure_input" />
-       	  <input type="button" name="OK" id="pressure_ok" value="OK" onClick="getValue(this)"/>
+       	  <input type="button" name="OK" id="pressure_ok" value="OK" onClick="validate_pressure(this)"/>
+
     	</div>
     </td>
     <td align="center" valign="top">
@@ -219,29 +318,29 @@ function getValue(button) {
     	<div align="center" id="temperature_section1" style="width:100%; position:relative; top:-85px; visibility:visible; z-index:1">
 			<label id="temperature_label">Temperature, in &deg;F</label>
           	<input type="text" name="temperature_input" id="temperature_input" />
-          	<input type="button" name="temperature_ok" id="temperature_ok" value="OK" onClick="getValue(this)"/>
+          	<input type="button" name="temperature_ok" id="temperature_ok" value="OK" onClick="validate_temperature(this)"/>
     	</div>
 	</td>
     <td align="center" valign="top">
     	<h4><strong>Glucose Level</strong></h4>
         <div align="center" style="position:relative; top:2px; z-index:2"><a onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Pressure22','','Clear Button.png',1)" onmousedown="switch_to(3)"><img src="Button.png" alt="" name="Pressure22" width="158" height="142" border="0" id="Pressure22" /></a></div>
     	<div align="center" id="glucose_section1" style="width:100%; position:relative; top:-85px; visibility:visible; z-index:1">
-      		<label id="glucose_label">Glucose level, in mM (mmol/l)</label>
+            <label id="glucose_label">Glucose level, in mM (mmol/l)</label>
         	<input type="text" name="glucose_input" id="glucose_input" />
-        	<input type="button" name="OK" id="glucose_ok" value="OK" onClick="getValue(this)"/>
+        	<input type="button" name="OK" id="glucose_ok" value="OK" onClick="validate_glucose(this)"/>
     	</div>
 	</td>
     <td align="center" valign="top"><h4><strong>Heart Rate</strong></h4><div align="center" style="position:relative; top:2px; z-index:2"><a onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Pressure23','','heart_dark.png',1)" onmousedown="switch_to(4)"><img src="heart.png" name="Pressure23" width="158" height="142" border="0" id="Pressure23" /></a></div>
     <div align="center" id="pulse_rate_section1" style="width:100%; position: relative; top: -85px; visibility:visible; z-index:1">
-      <label id="pulse_rate_label">Heart rate, in bpm</label>
+      	<label id="pulse_rate_label">Heart rate, in bpm</label>
         <input type="text" name="pulse_rate_input" id="pulse_rate_input" />
-        <input type="button" name="OK" id="pulse_rate_ok" value="OK" onClick="getValue(this)" />
+        <input type="button" name="OK" id="pulse_rate_ok" value="OK" onClick="validate_pulse(this)" />
     </div></td>
     <td align="center" valign="top"><h4><strong>General Feeling</strong></h4><div align="center" style="position:relative; top:2px; z-index:2"><a onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Pressure24','','Clear Button.png',1)" onmousedown="switch_to(5)"><img src="Button.png" alt="" name="Pressure24" width="158" height="142" border="0" id="Pressure24" /></a></div>
     <div align="center" id="overall_feeling_section1" style="width:100%; position: relative; top: -85px; visibility:visible; z-index:1">
         <label id="overall_feeling_label">Pain level</label>
         <input type="text" name="overall_feeling_input" id="overall_feeling_input" />
-        <input type="button" name="OK" id="overall_feeling_ok" value="OK"  onClick="getValue(this)" />
+        <input type="button" name="OK" id="overall_feeling_ok" value="OK"  onClick="validate_feeling(this)" />
     </div></td>
   </tr>
   <tr>
