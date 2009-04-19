@@ -19,13 +19,6 @@ help_array[3]='Glucose level message';
 help_array[4]='Heart rate message';
 help_array[5]='General feeling message';
 
-var pressure_sys_value = -1
-var pressure_dia_value = -1
-var temperature_value  = -1
-var glucose_value      = -1
-var heart_rate_value   = -1
-var feeling_value      = -1
-
 <!--
 function MM_preloadImages() { //v3.0
   var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
@@ -88,6 +81,15 @@ function show_layer(layer_num)
 		document.getElementById('overall_feeling_section').style.visibility = 'visible'
 	}
 }
+
+function hide_elem(elem) {
+    elem.style.visibility='hidden';
+}
+function show_elem(elem) {
+    elem.style.visibility='visible';
+}
+
+
 function switch_to(new_layer)
 {
 	//set_layers_xy()
@@ -111,83 +113,82 @@ function switch_to(new_layer)
 
 function slide_out()
 {
-	var layer
+	var layer;
+    var display_label;
 	switch (slide_out_layer) {
 	case 0:
 		return;
 		break;
 	case 1:
-		layer = document.getElementById('pressure_section1')
+		layer = document.getElementById('pressure_section1');
+        display_label = document.getElementById('pressure_display');
 		break;
 	case 2:
-		layer = document.getElementById('temperature_section1')
-		break;
+		layer = document.getElementById('temperature_section1');
+		display_label = document.getElementById('temperature_display');
+        break;
 	case 3:
-		layer = document.getElementById('glucose_section1')
+		layer = document.getElementById('glucose_section1');
+        display_label = document.getElementById('glucose_display');
 		break;
 	case 4:
-		layer = document.getElementById('pulse_rate_section1')
-		break;
+		layer = document.getElementById('pulse_rate_section1');
+		display_label = document.getElementById('pulse_display');
+        break;
 	case 5:
-		layer = document.getElementById('overall_feeling_section1')
+		layer = document.getElementById('overall_feeling_section1');
+        display_label = document.getElementById('pain_display');
 		break;
 	}
 	var top = parseInt(layer.style.top, 10)
 	if (top < 10) {
 		layer.style.top = (top + 5) + "px";
-		setTimeout("slide_out()", 20)
+		setTimeout("slide_out()", 20);
 	}
-	parent.bottomFrame.document.getElementById('help_message').innerHTML = help_array[slide_out_layer]
+	parent.bottomFrame.document.getElementById('help_message').innerHTML = help_array[slide_out_layer];
+    hide_elem(display_label);
 }
 function slide_in()
 {
-	var layer
+	var layer;
+    var display_label;
 	switch (slide_in_layer) {
 	case 0:
-		
 		return;
 		break;
 	case 1:
-		layer = document.getElementById('pressure_section1')
-		if (pressure_value != -1) {
-			document.getElementById('pressure_input').value = pressure_value
-		}
+		layer = document.getElementById('pressure_section1');
+        display_label = document.getElementById('pressure_display');
 		break;
 	case 2:
-		layer = document.getElementById('temperature_section1')
-		if (temperature_value != -1) {
-			document.getElementById('temperature_input').value = temperature_value
-		}
-		break;
+		layer = document.getElementById('temperature_section1');
+		display_label = document.getElementById('temperature_display');
+        break;
 	case 3:
-		layer = document.getElementById('glucose_section1')
-		if (glucose_value != -1) {
-			document.getElementById('glucose_input').value = glucose_value
-		}
+		layer = document.getElementById('glucose_section1');
+        display_label = document.getElementById('glucose_display');
 		break;
 	case 4:
-		layer = document.getElementById('pulse_rate_section1')
-		if (heart_rate_value != -1) {
-			document.getElementById('pulse_rate_input').value = heart_rate_value
-		}
-		break;
+		layer = document.getElementById('pulse_rate_section1');
+		display_label = document.getElementById('pulse_display');
+        break;
 	case 5:
-		layer = document.getElementById('overall_feeling_section1')
-		if (feeling_value != -1) {
-			document.getElementById('overall_feeling_input').value = feeling_value
-		}
+		layer = document.getElementById('overall_feeling_section1');
+        display_label = document.getElementById('pain_display');
 		break;
 	}
-	var top = parseInt(layer.style.top, 10)
+	var top = parseInt(layer.style.top, 10);
 	if (top > -85) {
 		layer.style.top = (top - 5) + "px";
-		setTimeout("slide_in()", 20)
+		setTimeout("slide_in()", 20);
 	}
+    show_elem(display_label);
 }
 
 function getValue(button) {
    if (button==document.getElementById('pressure_ok')) {
-      window.alert(document.getElementById('pressure_input').value);
+      window.alert(document.getElementById('dyastolic_input').value+'/'+
+      document.getElementById('sistolic_input').value);
       switch_to(1);
    } else if (button==document.getElementById('temperature_ok')) {
       window.alert(document.getElementById('temperature_input').value);
@@ -205,138 +206,135 @@ function getValue(button) {
  
 }
 
-function validate_pressure(button)
+function validate_pressure()
 {
-	str = document.getElementById('pressure_input').value
-	if (str == "") {
-		pressure_value = -1
-		document.getElementById('pressure_value').innerHTML = ''
-		document.getElementById('pressure_display').style.visibility = 'hidden'
-		//alert("No value has been entered for the pressure")
-		switch_to(1)
-		return true;
-	} else if (isNaN(str)) {
-		alert("Value entered for pressure is not a valid number")
+    var systolic_input = document.getElementById('systolic_input');
+    var diastolic_input = document.getElementById('diastolic_input');
+    var pressure_display = document.getElementById('pressure_display');    
+	var systolic = systolic_input.value;
+    var diastolic = diastolic_input.value;
+	var systolic_int;
+    var diastolic_int;
+    
+    if (systolic == "" || isNaN(systolic) || (systolic_int = parseInt(systolic,10)) > 230 || systolic_int < 50) {
+		alert("Please enter a value between 50 and 230 for your systolic pressure");
+        systolic_input.focus();
+        systolic_input.select();
 		return false;
-	} else if (parseInt(str,10) < 60) {
-		alert("Value entered for pressure seems a little too low")
-		return false;
-	} else {
-		// capture the number.
-		pressure_value = str
-		document.getElementById('pressure_value').innerHTML = str
-		document.getElementById('pressure_display').style.visibility = 'visible'
-		document.getElementById('pressure_input').value = ''
-		switch_to(1)
-		return true;
 	}
+    
+    if (diastolic == "" || isNaN(diastolic) || (diastolic_int = parseInt(diastolic,10)) > 140 || diastolic_int < 35) {
+		alert("Please enter a value between 140 and 35 for your diastolic pressure");
+        diastolic_input.focus();
+        diastolic_input.select();
+		return false;
+	}
+    
+    if (systolic_int < diastolic_int) {
+        alert("Systolic pressure may not be smaller than diastolic pressure.");
+        systolic_input.focus();
+        systolic_input.select();
+        diastolic_input.focus();
+        diastolic_input.select();
+        return false;
+    }
+    
+	// capture the input
+    pressure_display.innerHTML=systolic+'/'+diastolic+' mm Hg';
+    switch_to(1);
+    show_elem(document.getElementById('submit'));
+    return true;
 }
 
-function validate_temperature(button)
+function validate_temperature()
 {
-	str = document.getElementById('temperature_input').value
-	if (str == "") {
-		//alert("No value has been entered for the temperature")
-		temperature_value = -1
-		document.getElementById('temperature_value').innerHTML = ''
-		document.getElementById('temperature_display').style.visibility = 'hidden'
-		switch_to(2)
-		return true;
-	} else if (isNaN(str)) {
-		alert("Value entered for temperature is not a valid number")
+	var temperature_input = document.getElementById('temperature_input');
+    var temperature_display = document.getElementById('temperature_display');
+    var temperature = temperature_input.value;
+    var temperature_int;
+     
+    if (temperature == "" || isNaN(temperature) || (temperature_int = parseInt(temperature,10)) > 110 || temperature_int < 90) {
+		alert("Please enter a value between 90 and 110 for your body temperature");
+        temperature_input.focus();
+        temperature_input.select();
 		return false;
-	} else if (parseInt(str,10) < 80) {
-		alert("Value entered for temperature seems a little too low")
-		return false;
-	} else {
-		// capture the number.
-		temperature_value = str
-		document.getElementById('temperature_value').innerHTML = str
-		document.getElementById('temperature_display').style.visibility = 'visible'
-		document.getElementById('temperature_input').value = ''
-		switch_to(2)
-		return true;
 	}
+    // capture the input
+    temperature_display.innerHTML= temperature+' &deg;F';
+    switch_to(2);
+    show_elem(document.getElementById('submit'));
+    return true;
 }
 
-function validate_glucose(button)
+function validate_glucose()
 {
-	str = document.getElementById('glucose_input').value
-	if (str == "") {
-		//alert("No value has been entered for the glucose")
-		glucose_value = -1
-		document.getElementById('glucose_value').innerHTML = ''
-		document.getElementById('glucose_display').style.visibility = 'hidden'
-		switch_to(3)
-		return true;
-	} else if (isNaN(str)) {
-		alert("Value entered for glucose is not a valid number")
+	var glucose_input = document.getElementById('glucose_input');
+    var glucose_display = document.getElementById('glucose_display');
+    var glucose = glucose_input.value;
+    var glucose_int;
+    
+    if (glucose == "" || isNaN(glucose) || (glucose_int = parseInt(glucose,10)) > 300 || glucose_int < 70) {
+		alert("Please enter a value between 70 and 300 for your blood sugar level");
+        glucose_input.focus();
+        glucose_input.select();
 		return false;
-	} else if (parseInt(str,10) < 80) {
-		alert("Value entered for glucose seems a little too low")
-		return false;
-	} else {
-		// capture the number.
-		glucose_value = str
-		document.getElementById('glucose_value').innerHTML = str
-		document.getElementById('glucose_display').style.visibility = 'visible'
-		document.getElementById('glucose_input').value = ''
-		switch_to(3)
-		return true;
 	}
+    // capture the input
+    glucose_display.innerHTML= glucose+' mg/dl';
+    switch_to(3);
+    show_elem(document.getElementById('submit'));
+    return true;
 }
 
-function validate_pulse(button)
+function validate_pulse()
 {
-	str = document.getElementById('pulse_rate_input').value
-	if (str == "") {
-		//alert("No value has been entered for the pulse rate")
-		heart_rate_value = -1
-		document.getElementById('heart_rate_value').innerHTML = ''
-		document.getElementById('heart_rate_display').style.visibility = 'hidden'
-		switch_to(4)
-		return true;
-	} else if (isNaN(str)) {
-		alert("Value entered for pulse rate is not a valid number")
+	var pulse_input = document.getElementById('pulse_rate_input');
+    var pulse_display = document.getElementById('pulse_display');
+    var pulse = pulse_input.value;
+    var pulse_int;
+    
+    if (pulse == "" || isNaN(pulse) || (pulse_int = parseInt(pulse,10)) > 300 || pulse_int < 70) {
+		alert("Please enter a value between 35 and 250 for your heart rate");
+        pulse_input.focus();
+        pulse_input.select();
 		return false;
-	} else if (parseInt(str,10) < 40) {
-		alert("Value entered for pulse rate seems a little too low")
-		return false;
-	} else {
-		// capture the number.
-		heart_rate_value = str
-		document.getElementById('heart_rate_value').innerHTML = str
-		document.getElementById('heart_rate_display').style.visibility = 'visible'
-		document.getElementById('pulse_rate_input').value = ''
-		switch_to(4)
-		return true;
 	}
+    // capture the input
+    pulse_display.innerHTML= pulse+' bpm';
+    switch_to(4);
+    show_elem(document.getElementById('submit'));
+    return true;
 }
 
-function validate_feeling(button)
+function validate_feeling()
 {
-	str = document.getElementById('overall_feeling_input').value
-	if (str == "") {
-		//alert("No value has been entered for the overall feeling")
-		feeling_value = -1
-		document.getElementById('feeling_value').innerHTML = ''
-		document.getElementById('feeling_display').style.visibility = 'hidden'
-		switch_to(5)
-		return true;
-	} else if (isNaN(str)) {
-		alert("Value entered for overall feeling is not a valid number")
+	var pain_input = document.getElementById('overall_feeling_input');
+    var pain_display = document.getElementById('pain_display');
+    pain = pain_input.options[pain_input.selectedIndex].value;
+    var pain_int = parseInt(pain,10);
+    
+    if (pain_int == 0) {
+		alert("Please rate your pain level on a scale from 1 to 10");
+        pain_input.focus();
+        pain_input.select();
 		return false;
-	} else if (parseInt(str,10) < 40) {
-		alert("Value entered for overall feeling seems a little too low")
-		return false;
-	} else {
-		// capture the number.
-		feeling_value = str
-		document.getElementById('feeling_value').innerHTML = str
-		document.getElementById('feeling_display').style.visibility = 'visible'
-		document.getElementById('overall_feeling_input').value = ''
-		switch_to(5)
-		return true;
+	}
+    // capture the input
+    pain_display.innerHTML= pain_int;
+    switch_to(5);
+    show_elem(document.getElementById('submit'));
+    return true;
+}
+function send_values() {
+    var message = 'Please confirm that you want to send the following values to the server: \n';
+    message += 'Blood Pressure: ' + document.getElementById('pressure_display').innerHTML + '\n';
+    message += 'Temperature: ' + document.getElementById('temperature_display').innerHTML + '\n';
+    message += 'Glucose Level: ' + document.getElementById('glucose_display').innerHTML + '\n';
+    message += 'Heart Rate: ' + document.getElementById('pulse_display').innerHTML + '\n';
+    message += 'Pain Level: ' + document.getElementById('pain_display').innerHTML + '\n';
+	var answer = confirm(message);
+	if (answer){
+		document.getElementById('main').innerHTML="Data successfully uploaded to the server.";
 	}
 }
 //-->
@@ -345,6 +343,7 @@ function validate_feeling(button)
 
 <body onload="javascript:MM_preloadImages('Clear Button.png'), set_layers_xy(,'pressure_dark.png')">
 <h1 align="center"><strong>Your HealthNet</strong></h1>
+<div id="main" style="text-align: center;">
 <ol>
   <li>
     <div align="left">Click on one of the buttons below.</div>
@@ -353,71 +352,86 @@ function validate_feeling(button)
     <div align="left">Enter the reading as it is on your device. </div>
   </li>
   <li>
-    <div align="left">When done, please click the &quot;OK&quot; button</div>
+    <div align="left">When done, please click the &quot;Submit&quot; button.</div>
   </li>
 </ol>
 <form>
 <table width="900" border="0" align="center" cellpadding="5" cellspacing="15">
   <tr>
     <td align="center" valign="top">
-      	<h4><strong>Pressure</strong></h4>
+      	<strong>Pressure</strong>
 		<div align="center" style="position:relative; top:2px; z-index:2 "><a onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('blood_pressure','','pressure_dark.png',1)" onmousedown="switch_to(1)"><img src="pressure.png" alt="" name="blood_pressure" width="158" height="142" border="0" id="blood_pressure" /></a></div>
-		<div align="center" id="pressure_section1" style="width:100%; position: relative; top:-85px; visibility:visible; z-index:1">
-   		  <label id="pressure_label">Blood pressure, in mmHg</label>
-        	<input type="text" name="pressure_input" id="pressure_input" />
-       	  <input type="button" name="OK" id="pressure_ok" value="OK" onClick="validate_pressure(this)"/>
-
+		<div align="center" id="pressure_section1" style="width:100%; position: relative; top:-105px; visibility:visible; z-index:1">
+          <div>
+            <label id="pressure_label">Systolic:</label>
+            <input type="text" name="systolic_input" id="systolic_input" size="3" maxlength="3"/>
+            <span class="small">mm&nbsp;Hg</span>
+          </div>
+          <div style="margin-top: 3px;">
+            <label id="pressure_label">Diastolic:</label>
+            <input type="text" name="diastolic_input" id="diastolic_input" size="3" maxlength="3"/>
+            <span class="small">mm&nbsp;Hg</span>
+          </div>
+       	  <input type="button" name="OK" id="pressure_ok" value="OK" onClick="validate_pressure()" style="margin-top: 3px;"/>
     	</div>
     </td>
     <td align="center" valign="top">
-    	<h4><strong>Temperature</strong></h4>
+    	<strong>Temperature</strong>
         <div align="center" style="position:relative; top:2px; z-index:2"><a onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('temperature','','temperature_dark.png',1)" onmousedown="switch_to(2)"><img src="temperature.png" alt="" name="temperature" width="158" height="142" border="0" id="temperature" /></a></div>
     	<div align="center" id="temperature_section1" style="width:100%; position:relative; top:-85px; visibility:visible; z-index:1">
-			<label id="temperature_label">Temperature, in &deg;F</label>
-          	<input type="text" name="temperature_input" id="temperature_input" />
-          	<input type="button" name="temperature_ok" id="temperature_ok" value="OK" onClick="validate_temperature(this)"/>
+            <input type="text" name="temperature_input" id="temperature_input" size="5" maxlength="5"/>
+            <span class="small">&deg;F</span>
+          	<input type="button" name="temperature_ok" id="temperature_ok" value="OK" onClick="validate_temperature()"/>
     	</div>
 	</td>
     <td align="center" valign="top">
-    	<h4><strong>Glucose Level</strong></h4>
+    	<strong>Glucose Level</strong>
         <div align="center" style="position:relative; top:2px; z-index:2"><a onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Pressure22','','Clear Button.png',1)" onmousedown="switch_to(3)"><img src="Button.png" alt="" name="Pressure22" width="158" height="142" border="0" id="Pressure22" /></a></div>
     	<div align="center" id="glucose_section1" style="width:100%; position:relative; top:-85px; visibility:visible; z-index:1">
-            <label id="glucose_label">Glucose level, in mM (mmol/l)</label>
-        	<input type="text" name="glucose_input" id="glucose_input" />
-        	<input type="button" name="OK" id="glucose_ok" value="OK" onClick="validate_glucose(this)"/>
+        	<input type="text" name="glucose_input" id="glucose_input" size="3" maxlength="3"/>
+            <span class="small">mg/dl</span>
+        	<input type="button" name="OK" id="glucose_ok" value="OK" onClick="validate_glucose()"/>
     	</div>
 	</td>
-    <td align="center" valign="top"><h4><strong>Heart Rate</strong></h4><div align="center" style="position:relative; top:2px; z-index:2"><a onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Pressure23','','heart_dark.png',1)" onmousedown="switch_to(4)"><img src="heart.png" name="Pressure23" width="158" height="142" border="0" id="Pressure23" /></a></div>
+    <td align="center" valign="top">
+        <strong>Heart Rate</strong>
+        <div align="center" style="position:relative; top:2px; z-index:2"><a onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Pressure23','','heart_dark.png',1)" onmousedown="switch_to(4)"><img src="heart.png" name="Pressure23" width="158" height="142" border="0" id="Pressure23" /></a></div>
     <div align="center" id="pulse_rate_section1" style="width:100%; position: relative; top: -85px; visibility:visible; z-index:1">
-      	<label id="pulse_rate_label">Heart rate, in bpm</label>
-        <input type="text" name="pulse_rate_input" id="pulse_rate_input" />
-        <input type="button" name="OK" id="pulse_rate_ok" value="OK" onClick="validate_pulse(this)" />
+        <input type="text" name="pulse_rate_input" id="pulse_rate_input" size="3" maxlength="3"/>
+        <span class="small">bpm</span>
+        <input type="button" name="OK" id="pulse_rate_ok" value="OK" onClick="validate_pulse()" />
     </div></td>
-    <td align="center" valign="top"><h4><strong>General Feeling</strong></h4><div align="center" style="position:relative; top:2px; z-index:2"><a onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Pressure24','','Clear Button.png',1)" onmousedown="switch_to(5)"><img src="Button.png" alt="" name="Pressure24" width="158" height="142" border="0" id="Pressure24" /></a></div>
+    <td align="center" valign="top">
+    <strong>Pain Level</strong>
+    <div align="center" style="position:relative; top:2px; z-index:2"><a onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Pressure24','','Clear Button.png',1)" onmousedown="switch_to(5)"><img src="Button.png" alt="" name="Pressure24" width="158" height="142" border="0" id="Pressure24" /></a></div>
     <div align="center" id="overall_feeling_section1" style="width:100%; position: relative; top: -85px; visibility:visible; z-index:1">
-        <label id="overall_feeling_label">Pain level</label>
-        <input type="text" name="overall_feeling_input" id="overall_feeling_input" />
-        <input type="button" name="OK" id="overall_feeling_ok" value="OK"  onClick="validate_feeling(this)" />
+        <select name ="overall_feeling_input" id="overall_feeling_input" >
+           <option value="0">Rate your pain level</option>
+           <option value="1">1 (no pain)</option>
+           <option value="2">2</option>
+           <option value="3">3</option>
+           <option value="4">4</option>
+           <option value="5">5</option>
+           <option value="6">6</option>
+           <option value="7">7</option>
+           <option value="8">8</option>
+           <option value="9">9</option>
+           <option value="10">10 (worst pain)</option>           
+        </select>
+        <input type="button" name="OK" id="overall_feeling_ok" value="OK"  onClick="validate_feeling()" />
     </div></td>
   </tr>
   <tr>
-    <td align="center" valign="top" ><div id="pressure_display" style="background:#FFF; visibility:hidden; position:relative; top:-25px; border-color:#009">
-      <h2 id="pressure_value">225 - 450</h2>
-    </div></td>
-    <td align="center" valign="top"><div id="temperature_display" style="background:#FFF; visibility:hidden; position:relative; top:-25px; border-color:#009">
-      <h2 id="temperature_value">225</h2>
-    </div></td>
-    <td align="center" valign="top"><div id="glucose_display" style="background:#FFF; visibility:hidden; position:relative; top:-25px; border-color:#009">
-      <h2 id="glucose_value">225</h2>
-    </div></td>
-    <td align="center" valign="top"><div id="heart_rate_display" style="background:#FFF; visibility:hidden; position:relative; top:-25px; border-color:#009">
-      <h2 id="heart_rate_value">225</h2>
-    </div></td>
-    <td align="center" valign="top"><div id="feeling_display" style="background:#FFF; visibility:hidden; position:relative; top:-25px; border-color:#009">
-      <h2 id="feeling_value">225</h2>
-    </div></td>
+    <td align="center" valign="middle"><div id="pressure_display" class="input_display"></div></td>
+    <td align="center" valign="middle"><div id="temperature_display" class="input_display"></div></td>
+    <td align="center" valign="middle"><div id="glucose_display" class="input_display"></div></td>
+    <td align="center" valign="middle"><div id="pulse_display" class="input_display"></div></td>
+    <td align="center" valign="middle"><div id="pain_display" class="input_display"></div></td>
   </tr>
+  <tr>
+    <td align="center" valign="middle" colspan="5"><input type="button" name="submit" value="Submit" id="submit" onClick="send_values()" style="visibility: hidden; position:relative; top:-90px;"></input></td>
+  </tr>  
 </table>
 </form>
-</body>
+</div>
 </html>
