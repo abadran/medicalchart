@@ -19,6 +19,13 @@ help_array[3]='Glucose level message';
 help_array[4]='Heart rate message';
 help_array[5]='General feeling message';
 
+var pressure_sys_value = -1
+var pressure_dia_value = -1
+var temperature_value  = -1
+var glucose_value      = -1
+var heart_rate_value   = -1
+var feeling_value      = -1
+
 <!--
 function MM_preloadImages() { //v3.0
   var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
@@ -197,6 +204,9 @@ function validate_pressure(button)
 		return false;
 	} else {
 		// capture the number.
+		pressure_value = str
+		document.getElementById('pressure_value').innerHTML = str
+		document.getElementById('pressure_display').style.visibility = 'visible'
 		document.getElementById('pressure_input').value = ''
 		switch_to(1)
 		return true;
@@ -217,6 +227,9 @@ function validate_temperature(button)
 		return false;
 	} else {
 		// capture the number.
+		temperature_value = str
+		document.getElementById('temperature_value').innerHTML = str
+		document.getElementById('temperature_display').style.visibility = 'visible'
 		document.getElementById('temperature_input').value = ''
 		switch_to(2)
 		return true;
@@ -237,6 +250,9 @@ function validate_glucose(button)
 		return false;
 	} else {
 		// capture the number.
+		glucose_value = str
+		document.getElementById('glucose_value').innerHTML = str
+		document.getElementById('glucose_display').style.visibility = 'visible'
 		document.getElementById('glucose_input').value = ''
 		switch_to(3)
 		return true;
@@ -257,8 +273,11 @@ function validate_pulse(button)
 		return false;
 	} else {
 		// capture the number.
+		heart_rate_value = str
+		document.getElementById('heart_rate_value').innerHTML = str
+		document.getElementById('heart_rate_display').style.visibility = 'visible'
 		document.getElementById('pulse_rate_input').value = ''
-		switch_to(3)
+		switch_to(4)
 		return true;
 	}
 }
@@ -277,8 +296,11 @@ function validate_feeling(button)
 		return false;
 	} else {
 		// capture the number.
+		feeling_value = str
+		document.getElementById('feeling_value').innerHTML = str
+		document.getElementById('feeling_display').style.visibility = 'visible'
 		document.getElementById('overall_feeling_input').value = ''
-		switch_to(3)
+		switch_to(5)
 		return true;
 	}
 }
@@ -296,7 +318,7 @@ function validate_feeling(button)
     <div align="left">Enter the reading as it is on your device. </div>
   </li>
   <li>
-    <div align="left">When done, please click the &quot;OK&quot; button.</div>
+    <div align="left">When done, please click the &quot;OK&quot; button</div>
   </li>
 </ol>
 <form>
@@ -344,11 +366,21 @@ function validate_feeling(button)
     </div></td>
   </tr>
   <tr>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
+    <td align="center" valign="top" ><div id="pressure_display" style="background:#FFF; visibility:hidden; position:relative; top:-25px; border-color:#009">
+      <h2 id="pressure_value">225 - 450</h2>
+    </div></td>
+    <td align="center" valign="top"><div id="temperature_display" style="background:#FFF; visibility:hidden; position:relative; top:-25px; border-color:#009">
+      <h2 id="temperature_value">225</h2>
+    </div></td>
+    <td align="center" valign="top"><div id="glucose_display" style="background:#FFF; visibility:hidden; position:relative; top:-25px; border-color:#009">
+      <h2 id="glucose_value">225</h2>
+    </div></td>
+    <td align="center" valign="top"><div id="heart_rate_display" style="background:#FFF; visibility:hidden; position:relative; top:-25px; border-color:#009">
+      <h2 id="heart_rate_value">225</h2>
+    </div></td>
+    <td align="center" valign="top"><div id="feeling_display" style="background:#FFF; visibility:hidden; position:relative; top:-25px; border-color:#009">
+      <h2 id="feeling_value">225</h2>
+    </div></td>
   </tr>
 </table>
 </form>
