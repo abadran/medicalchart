@@ -13,7 +13,7 @@ var slide_in_layer = 0
 var slide_out_layer = 0
 var help_array=new Array();
 help_array[0]='';
-help_array[1]='Blood pressure help message';
+help_array[1]='<ul><li></li></ul>';
 help_array[2]='Temperature help message';
 help_array[3]='Glucose level message';
 help_array[4]='Heart rate message';
@@ -87,6 +87,22 @@ function hide_elem(elem) {
 }
 function show_elem(elem) {
     elem.style.visibility='visible';
+}
+function maybe_show_submit_button() {
+    var button = document.getElementById('submit');
+    var len = 0;
+    
+    len += document.getElementById('pressure_display').innerHTML.length;
+    len += document.getElementById('temperature_display').innerHTML.length;
+    len += document.getElementById('glucose_display').innerHTML.length;
+    len += document.getElementById('pulse_display').innerHTML.length;
+    len += document.getElementById('pain_display').innerHTML.length;
+    
+    if (len > 0) {
+        button.style.visibility='visible';
+    } else {
+        button.style.visibility='hidden';
+    }
 }
 
 
@@ -216,33 +232,43 @@ function validate_pressure()
 	var systolic_int;
     var diastolic_int;
     
-    if (systolic == "" || isNaN(systolic) || (systolic_int = parseInt(systolic,10)) > 230 || systolic_int < 50) {
-		alert("Please enter a value between 50 and 230 for your systolic pressure");
-        systolic_input.focus();
-        systolic_input.select();
-		return false;
-	}
     
-    if (diastolic == "" || isNaN(diastolic) || (diastolic_int = parseInt(diastolic,10)) > 140 || diastolic_int < 35) {
-		alert("Please enter a value between 140 and 35 for your diastolic pressure");
-        diastolic_input.focus();
-        diastolic_input.select();
-		return false;
-	}
-    
-    if (systolic_int < diastolic_int) {
-        alert("Systolic pressure may not be smaller than diastolic pressure.");
-        systolic_input.focus();
-        systolic_input.select();
-        diastolic_input.focus();
-        diastolic_input.select();
+    if ((systolic=="" && diastolic!="") || (systolic!="" && diastolic=="")) {
+        alert("You must enter values for both systolic and diastolic pressure. If you don't want to enter your blood pressure, do not fill in any value in either box.");
         return false;
     }
     
-	// capture the input
-    pressure_display.innerHTML=systolic+'/'+diastolic+' mm Hg';
-    switch_to(1);
-    show_elem(document.getElementById('submit'));
+    if (systolic!="" && diastolic!="") {
+        if (isNaN(systolic) || (systolic_int = parseInt(systolic,10)) > 230 || systolic_int < 50) {
+            alert("Please enter a value between 50 and 230 for your systolic pressure");
+            systolic_input.focus();
+            systolic_input.select();
+            return false;
+        }
+    
+        if (isNaN(diastolic) || (diastolic_int = parseInt(diastolic,10)) > 140 || diastolic_int < 35) {
+            alert("Please enter a value between 30 and 140 for your diastolic pressure");
+            diastolic_input.focus();
+            diastolic_input.select();
+            return false;
+        }
+    
+        if (systolic_int < diastolic_int) {
+            alert("Systolic pressure may not be smaller than diastolic pressure.");
+            systolic_input.focus();
+            systolic_input.select();
+            diastolic_input.focus();
+            diastolic_input.select();
+            return false;
+        }
+    
+        // capture the input
+        pressure_display.innerHTML=systolic+'/'+diastolic+' mm Hg';
+    } else {
+        pressure_display.innerHTML='';
+    }
+    switch_to(2);
+    maybe_show_submit_button();
     return true;
 }
 
@@ -252,17 +278,21 @@ function validate_temperature()
     var temperature_display = document.getElementById('temperature_display');
     var temperature = temperature_input.value;
     var temperature_int;
-     
-    if (temperature == "" || isNaN(temperature) || (temperature_int = parseInt(temperature,10)) > 110 || temperature_int < 90) {
-		alert("Please enter a value between 90 and 110 for your body temperature");
-        temperature_input.focus();
-        temperature_input.select();
-		return false;
-	}
-    // capture the input
-    temperature_display.innerHTML= temperature+' &deg;F';
-    switch_to(2);
-    show_elem(document.getElementById('submit'));
+    
+    if (temperature == "") {
+        temperature_display.innerHTML='';
+    } else {
+        if (isNaN(temperature) || (temperature_int = parseInt(temperature,10)) > 110 || temperature_int < 90) {
+            alert("Please enter a value between 90 and 110 for your body temperature");
+            temperature_input.focus();
+            temperature_input.select();
+            return false;
+        }
+        // capture the input
+        temperature_display.innerHTML= temperature+' &deg;F';
+    }
+    switch_to(3);
+    maybe_show_submit_button();
     return true;
 }
 
@@ -273,16 +303,21 @@ function validate_glucose()
     var glucose = glucose_input.value;
     var glucose_int;
     
-    if (glucose == "" || isNaN(glucose) || (glucose_int = parseInt(glucose,10)) > 300 || glucose_int < 70) {
-		alert("Please enter a value between 70 and 300 for your blood sugar level");
-        glucose_input.focus();
-        glucose_input.select();
-		return false;
-	}
-    // capture the input
-    glucose_display.innerHTML= glucose+' mg/dl';
-    switch_to(3);
-    show_elem(document.getElementById('submit'));
+    if (glucose == "") {
+        glucose_display.innerHTML='';
+    } else {
+        if (isNaN(glucose) || (glucose_int = parseInt(glucose,10)) > 300 || glucose_int < 70) {
+            alert("Please enter a value between 70 and 300 for your blood sugar level");
+            glucose_input.focus();
+            glucose_input.select();
+            return false;
+        }
+        // capture the input
+        glucose_display.innerHTML= glucose+' mg/dl';
+    }
+    
+    switch_to(4);
+    maybe_show_submit_button();
     return true;
 }
 
@@ -293,16 +328,21 @@ function validate_pulse()
     var pulse = pulse_input.value;
     var pulse_int;
     
-    if (pulse == "" || isNaN(pulse) || (pulse_int = parseInt(pulse,10)) > 300 || pulse_int < 70) {
-		alert("Please enter a value between 35 and 250 for your heart rate");
-        pulse_input.focus();
-        pulse_input.select();
-		return false;
-	}
-    // capture the input
-    pulse_display.innerHTML= pulse+' bpm';
-    switch_to(4);
-    show_elem(document.getElementById('submit'));
+    if (pulse == "") {
+        pulse_display.innerHTML='';
+    } else {
+        if (isNaN(pulse) || (pulse_int = parseInt(pulse,10)) > 300 || pulse_int < 70) {
+            alert("Please enter a value between 35 and 250 for your heart rate");
+            pulse_input.focus();
+            pulse_input.select();
+            return false;
+        }
+        // capture the input
+        pulse_display.innerHTML= pulse+' bpm';
+    }
+    
+    switch_to(5);
+    maybe_show_submit_button();
     return true;
 }
 
@@ -314,15 +354,13 @@ function validate_feeling()
     var pain_int = parseInt(pain,10);
     
     if (pain_int == 0) {
-		alert("Please rate your pain level on a scale from 1 to 10");
-        pain_input.focus();
-        pain_input.select();
-		return false;
-	}
-    // capture the input
-    pain_display.innerHTML= pain_int;
+        pain_display.innerHTML='';
+	} else {
+        // capture the input
+        pain_display.innerHTML= pain_int;
+    }
     switch_to(5);
-    show_elem(document.getElementById('submit'));
+    maybe_show_submit_button();
     return true;
 }
 function send_values() {
@@ -363,7 +401,7 @@ function send_values() {
 		<div align="center" style="position:relative; top:2px; z-index:2 "><a onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('blood_pressure','','pressure_dark.png',1)" onmousedown="switch_to(1)"><img src="pressure.png" alt="" name="blood_pressure" width="158" height="142" border="0" id="blood_pressure" /></a></div>
 		<div align="center" id="pressure_section1" style="width:100%; position: relative; top:-105px; visibility:visible; z-index:1">
           <div>
-            <label id="pressure_label">Systolic:</label>
+            <label id="pressure_label">&nbsp;Systolic:</label>
             <input type="text" name="systolic_input" id="systolic_input" size="3" maxlength="3"/>
             <span class="small">mm&nbsp;Hg</span>
           </div>
