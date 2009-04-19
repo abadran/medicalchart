@@ -149,18 +149,33 @@ function slide_in()
 		break;
 	case 1:
 		layer = document.getElementById('pressure_section1')
+		if (pressure_value != -1) {
+			document.getElementById('pressure_input').value = pressure_value
+		}
 		break;
 	case 2:
 		layer = document.getElementById('temperature_section1')
+		if (temperature_value != -1) {
+			document.getElementById('temperature_input').value = temperature_value
+		}
 		break;
 	case 3:
 		layer = document.getElementById('glucose_section1')
+		if (glucose_value != -1) {
+			document.getElementById('glucose_input').value = glucose_value
+		}
 		break;
 	case 4:
 		layer = document.getElementById('pulse_rate_section1')
+		if (heart_rate_value != -1) {
+			document.getElementById('pulse_rate_input').value = heart_rate_value
+		}
 		break;
 	case 5:
 		layer = document.getElementById('overall_feeling_section1')
+		if (feeling_value != -1) {
+			document.getElementById('overall_feeling_input').value = feeling_value
+		}
 		break;
 	}
 	var top = parseInt(layer.style.top, 10)
@@ -194,8 +209,12 @@ function validate_pressure(button)
 {
 	str = document.getElementById('pressure_input').value
 	if (str == "") {
-		alert("No value has been entered for the pressure")
-		return false;
+		pressure_value = -1
+		document.getElementById('pressure_value').innerHTML = ''
+		document.getElementById('pressure_display').style.visibility = 'hidden'
+		//alert("No value has been entered for the pressure")
+		switch_to(1)
+		return true;
 	} else if (isNaN(str)) {
 		alert("Value entered for pressure is not a valid number")
 		return false;
@@ -217,8 +236,12 @@ function validate_temperature(button)
 {
 	str = document.getElementById('temperature_input').value
 	if (str == "") {
-		alert("No value has been entered for the temperature")
-		return false;
+		//alert("No value has been entered for the temperature")
+		temperature_value = -1
+		document.getElementById('temperature_value').innerHTML = ''
+		document.getElementById('temperature_display').style.visibility = 'hidden'
+		switch_to(2)
+		return true;
 	} else if (isNaN(str)) {
 		alert("Value entered for temperature is not a valid number")
 		return false;
@@ -240,8 +263,12 @@ function validate_glucose(button)
 {
 	str = document.getElementById('glucose_input').value
 	if (str == "") {
-		alert("No value has been entered for the glucose")
-		return false;
+		//alert("No value has been entered for the glucose")
+		glucose_value = -1
+		document.getElementById('glucose_value').innerHTML = ''
+		document.getElementById('glucose_display').style.visibility = 'hidden'
+		switch_to(3)
+		return true;
 	} else if (isNaN(str)) {
 		alert("Value entered for glucose is not a valid number")
 		return false;
@@ -263,8 +290,12 @@ function validate_pulse(button)
 {
 	str = document.getElementById('pulse_rate_input').value
 	if (str == "") {
-		alert("No value has been entered for the pulse rate")
-		return false;
+		//alert("No value has been entered for the pulse rate")
+		heart_rate_value = -1
+		document.getElementById('heart_rate_value').innerHTML = ''
+		document.getElementById('heart_rate_display').style.visibility = 'hidden'
+		switch_to(4)
+		return true;
 	} else if (isNaN(str)) {
 		alert("Value entered for pulse rate is not a valid number")
 		return false;
@@ -286,8 +317,12 @@ function validate_feeling(button)
 {
 	str = document.getElementById('overall_feeling_input').value
 	if (str == "") {
-		alert("No value has been entered for the overall feeling")
-		return false;
+		//alert("No value has been entered for the overall feeling")
+		feeling_value = -1
+		document.getElementById('feeling_value').innerHTML = ''
+		document.getElementById('feeling_display').style.visibility = 'hidden'
+		switch_to(5)
+		return true;
 	} else if (isNaN(str)) {
 		alert("Value entered for overall feeling is not a valid number")
 		return false;
