@@ -127,6 +127,7 @@ function switch_to(new_layer)
 	}
 }
 
+
 function slide_out()
 {
 	var layer;
@@ -267,7 +268,11 @@ function validate_pressure()
     } else {
         pressure_display.innerHTML='';
     }
-    switch_to(2);
+    if (document.getElementById('temperature_display').innerHTML.length > 0) {
+        switch_to(1);
+    } else {
+        switch_to(2);
+    }
     maybe_show_submit_button();
     return true;
 }
@@ -291,7 +296,11 @@ function validate_temperature()
         // capture the input
         temperature_display.innerHTML= temperature+' &deg;F';
     }
-    switch_to(3);
+    if (document.getElementById('glucose_display').innerHTML.length > 0) {
+        switch_to(2);
+    } else {
+        switch_to(3);
+    }
     maybe_show_submit_button();
     return true;
 }
@@ -316,7 +325,11 @@ function validate_glucose()
         glucose_display.innerHTML= glucose+' mg/dl';
     }
     
-    switch_to(4);
+    if (document.getElementById('pulse_display').innerHTML.length > 0) {
+        switch_to(3);
+    } else {
+        switch_to(4);
+    }
     maybe_show_submit_button();
     return true;
 }
@@ -341,7 +354,11 @@ function validate_pulse()
         pulse_display.innerHTML= pulse+' bpm';
     }
     
-    switch_to(5);
+    if (document.getElementById('pain_display').innerHTML.length > 0) {
+        switch_to(4);
+    } else {
+        switch_to(5);
+    }
     maybe_show_submit_button();
     return true;
 }
@@ -359,7 +376,11 @@ function validate_feeling()
         // capture the input
         pain_display.innerHTML= pain_int;
     }
-    switch_to(5);
+    if (document.getElementById('pressure_display').innerHTML.length > 0) {
+        switch_to(5);
+    } else {
+        switch_to(1);
+    }
     maybe_show_submit_button();
     return true;
 }
@@ -372,7 +393,7 @@ function send_values() {
     message += 'Pain Level: ' + document.getElementById('pain_display').innerHTML + '\n';
 	var answer = confirm(message);
 	if (answer){
-		document.getElementById('main').innerHTML="Data successfully uploaded to the server.";
+		document.getElementById('main').innerHTML="Your medical information has been sent to your doctor's office";
 	}
 }
 //-->
