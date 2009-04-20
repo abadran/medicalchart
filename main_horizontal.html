@@ -13,11 +13,11 @@ var slide_in_layer = 0
 var slide_out_layer = 0
 var help_array=new Array();
 help_array[0]='';
-help_array[1]='<ul><li></li></ul>';
-help_array[2]='Temperature help message';
-help_array[3]='Glucose level message';
-help_array[4]='Heart rate message';
-help_array[5]='General feeling message';
+help_array[1]='<p>Blood pressure (BP) is the pressure exerted by circulating blood on the walls of blood vessels, and constitutes one of the principal vital signs. For each heartbeat, blood pressure varies between systolic and diastolic pressures. Systolic pressure is peak pressure in the arteries, which occurs near the beginning of the cardiac cycle when the ventricles are contracting. Diastolic pressure is minimum pressure in the arteries, which occurs near the end of the cardiac cycle when the ventricles are filled with blood. (courtesy Wikipedia)</p>';
+help_array[2]='<p>Body temperature is a measure of the body&#146;s ability to generate and get rid of heat. The body is very good at keeping its temperature within a narrow, safe range in spite of large variations in temperatures outside the body. Most people think of a "normal" body temperature as an oral temperature of 98.6F. This is an average of normal body temperatures. Your temperature may actually be 1°F (0.6°C) or more above or below 98.6F (courtesy Webmd)</p>';
+help_array[3]='<p>Blood sugar concentration, or glucose level, refers to the amount of glucose present in a mammal&#146;s blood. Normally, the blood glucose level is maintained at a reference range between about 4 and 6 mM (mmol/l). It is tightly regulated in the human body as a part of metabolic homeostasis. Normal blood glucose levels are about 90mg/100ml, equivalent to 5mM (mmol/l). Glucose levels rise after meals for an hour or two by a few grams and are usually lowest in the morning, before the first meal of the day. (courtesy Webmd)</p>';
+help_array[4]='<p>Heart rate (HR) is a measure of the number of heart beats per minute (bpm). The average resting human heart rate is about 70 bpm for adult males and 75 bpm for adult females. Heart rate varies significantly between individuals based on fitness, age and genetics. Endurance athletes often have very low resting heart rates. (courtesy Wikipedia)</p>';
+help_array[5]='<p>Tell your doctor about how you are feeling in general. How are you feeling compared to the last time you sent your information to him. It is always advisable that you report any pain or discomfort you have been experiencing over a period of time to your doctor(s) immediately - do not wait and expect it to go away on its own. This will allow them to take appropriate actions at the right time</p>';
 
 <!--
 function MM_preloadImages() { //v3.0
@@ -247,7 +247,7 @@ function validate_pressure()
             return false;
         }
     
-        if (isNaN(diastolic) || (diastolic_int = parseInt(diastolic,10)) > 140 || diastolic_int < 35) {
+        if (isNaN(diastolic) || (diastolic_int = parseInt(diastolic,10)) > 140 || diastolic_int < 30) {
             alert("Please enter a value between 30 and 140 for your diastolic pressure");
             diastolic_input.focus();
             diastolic_input.select();
@@ -344,7 +344,7 @@ function validate_pulse()
     if (pulse == "") {
         pulse_display.innerHTML='';
     } else {
-        if (isNaN(pulse) || (pulse_int = parseInt(pulse,10)) > 300 || pulse_int < 70) {
+        if (isNaN(pulse) || (pulse_int = parseInt(pulse,10)) > 250 || pulse_int < 35) {
             alert("Please enter a value between 35 and 250 for your heart rate");
             pulse_input.focus();
             pulse_input.select();
@@ -385,15 +385,38 @@ function validate_feeling()
     return true;
 }
 function send_values() {
-    var message = 'Please confirm that you want to send the following values to the server: \n';
-    message += 'Blood Pressure: ' + document.getElementById('pressure_display').innerHTML + '\n';
-    message += 'Temperature: ' + document.getElementById('temperature_display').innerHTML + '\n';
-    message += 'Glucose Level: ' + document.getElementById('glucose_display').innerHTML + '\n';
-    message += 'Heart Rate: ' + document.getElementById('pulse_display').innerHTML + '\n';
-    message += 'Pain Level: ' + document.getElementById('pain_display').innerHTML + '\n';
+    var message = 'Please confirm that you want to send the following values to your doctor: \n\n';
+	if (document.getElementById('pressure_display').innerHTML != '') {
+		message += 'Blood Pressure: ' + document.getElementById('pressure_display').innerHTML + '\n';
+	} else {
+		message += 'Blood Pressure: (value has not been entered)\n'
+	}
+    if (document.getElementById('temperature_display').innerHTML != '') {
+    	message += 'Temperature: ' + document.getElementById('temperature_display').innerHTML + '\n';
+	} else {
+		message += 'Temperature: (value has not been entered)\n' 
+	}
+	if (document.getElementById('glucose_display').innerHTML != '') {
+		message += 'Glucose Level: ' + document.getElementById('glucose_display').innerHTML + '\n';
+	} else {
+		message += 'Glucose Level: (value has not been entered)\n'
+	}
+    if (document.getElementById('pulse_display').innerHTML != '') {
+		message += 'Heart Rate: ' + document.getElementById('pulse_display').innerHTML + '\n';
+	} else {
+		message += 'Heart Rate: (value has not been entered)\n'
+	}
+    
+    if (document.getElementById('pain_display').innerHTML != '') {
+		message += 'Pain Level: ' + document.getElementById('pain_display').innerHTML + '\n';
+	} else {
+		message += 'Pain Level: (value has not been entered)\n'
+	}
+	
 	var answer = confirm(message);
 	if (answer){
-		document.getElementById('main').innerHTML="Your medical information has been sent to your doctor's office";
+		parent.bottomFrame.document.getElementById('help_message').innerHTML = ''
+		document.getElementById('main').innerHTML="<br/><br/><br/><br/><br/><br/><strong>Your medical information has been sent to your doctor's office</strong><br/><br/><br/><br/>Thank you for using Your HealthNet.<br/><br/><br/>We value you as our customer and would like to hear any <br/>concerns or questions you may have at <a href=&#8221;mailto:some-fake-support@yourhealthnet.com&#8220;>some-fake-support@yourhealthnet.com</a>"
 	}
 }
 //-->
@@ -408,10 +431,10 @@ function send_values() {
     <div align="left">Click on one of the buttons below.</div>
   </li>
   <li>
-    <div align="left">Enter the reading as it is on your device. </div>
+    <div align="left">Enter the reading as it is on your device then click the &quot;OK&quot; button.</div>
   </li>
   <li>
-    <div align="left">When done, please click the &quot;Submit&quot; button.</div>
+    <div align="left">When you have entered at least one reading a &quot;Submit&quot; button will be displayed. Click on it to send the readings to your doctor.</div>
   </li>
 </ol>
 <form>
@@ -475,7 +498,7 @@ function send_values() {
            <option value="7">7</option>
            <option value="8">8</option>
            <option value="9">9</option>
-           <option value="10">10 (worst pain)</option>           
+           <option value="10">10 (unbearable pain)</option>           
         </select>
         <input type="button" name="OK" id="overall_feeling_ok" value="OK"  onClick="validate_feeling()" />
     </div></td>
