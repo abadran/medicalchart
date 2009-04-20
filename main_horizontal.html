@@ -444,18 +444,30 @@ function send_values() {
       	<strong>Pressure</strong>
 		<div align="center" style="position:relative; top:2px; z-index:2 "><a onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('blood_pressure','','pressure_dark.png',1)" onmousedown="switch_to(1)"><img src="pressure.png" alt="" name="blood_pressure" width="158" height="142" border="0" id="blood_pressure" /></a></div>
 		<div align="center" id="pressure_section1" style="width:100%; position: relative; top:-105px; visibility:visible; z-index:1">
-          <div>
-            <label id="pressure_label">&nbsp;Systolic:</label>
-            <input type="text" name="systolic_input" id="systolic_input" size="3" maxlength="3"/>
-            <span class="small">mm&nbsp;Hg</span>
-          </div>
-          <div style="margin-top: 3px;">
-            <label id="pressure_label">Diastolic:</label>
-            <input type="text" name="diastolic_input" id="diastolic_input" size="3" maxlength="3"/>
-            <span class="small">mm&nbsp;Hg</span>
-          </div>
-       	  <input type="button" name="OK" id="pressure_ok" value="OK" onClick="validate_pressure()" style="margin-top: 3px;"/>
-    	</div>
+		  <table>
+		    <tr>
+			<td align="right">
+			  <label id="pressure_label">Systolic:</label>
+			</td>
+			<td align="left">
+		          <input type="text" name="systolic_input" id="systolic_input" size="3" maxlength="3"/><span class="small">mm&nbsp;Hg</span>
+			</td>
+		    </tr>
+		    <tr>
+			<td align="right">
+			   <label id="pressure_label">Diastolic:</label>
+			</td>
+			<td align="left">
+			   <input type="text" name="diastolic_input" id="diastolic_input" size="3" maxlength="3"/><span class="small">mm&nbsp;Hg</span>
+			</td>
+		    </tr>
+		    <tr>
+			<td colspan="2" align="center">
+			   <input type="button" name="OK" id="pressure_ok" value="OK" onClick="validate_pressure()" style="margin-top: 3px;"/>
+			</td>
+		    </tr>
+		  </table>
+	    	</div>
     </td>
     <td align="center" valign="top">
     	<strong>Temperature</strong>
