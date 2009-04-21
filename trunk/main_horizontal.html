@@ -399,6 +399,7 @@ function send_values() {
 	var answer = confirm(message);
 	if (answer){
 		parent.bottomFrame.document.getElementById('help_message').innerHTML = ''
+		parent.bottomFrame.document.getElementById('bottom_frame_heading').innerHTML = '<strong>Thank you</strong>'
 		document.getElementById('main').innerHTML="<br/><br/><br/><br/><br/><br/><strong>Your medical information has been sent to your doctor's office</strong><br/><br/><br/><br/>Thank you for using Your HealthNet.<br/><br/><br/>We value you as our customer and would like to hear any <br/>concerns or questions you may have at <a href=&#8221;mailto:some-fake-support@yourhealthnet.com&#8220;>some-fake-support@yourhealthnet.com</a>"
 	}
 }
