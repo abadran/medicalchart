@@ -159,6 +159,7 @@ function slide_out()
 	}
 	var top = parseInt(layer.style.top, 10)
 	if (top < 10) {
+        show_elem(layer);
 		layer.style.top = (top + 5) + "px";
 		setTimeout("slide_out()", 20);
 	}
@@ -198,7 +199,9 @@ function slide_in()
 	if (top > -85) {
 		layer.style.top = (top - 5) + "px";
 		setTimeout("slide_in()", 20);
-	}
+	} else {
+        hide_elem(layer);
+    }
     show_elem(display_label);
 }
 
@@ -268,11 +271,7 @@ function validate_pressure()
     } else {
         pressure_display.innerHTML='';
     }
-    if (document.getElementById('temperature_display').innerHTML.length > 0) {
-        switch_to(1);
-    } else {
-        switch_to(2);
-    }
+    switch_to(1);
     maybe_show_submit_button();
     return true;
 }
@@ -296,11 +295,7 @@ function validate_temperature()
         // capture the input
         temperature_display.innerHTML= temperature+' &deg;F';
     }
-    if (document.getElementById('glucose_display').innerHTML.length > 0) {
-        switch_to(2);
-    } else {
-        switch_to(3);
-    }
+    switch_to(2);
     maybe_show_submit_button();
     return true;
 }
@@ -325,11 +320,7 @@ function validate_glucose()
         glucose_display.innerHTML= glucose+' mg/dl';
     }
     
-    if (document.getElementById('pulse_display').innerHTML.length > 0) {
-        switch_to(3);
-    } else {
-        switch_to(4);
-    }
+    switch_to(3);
     maybe_show_submit_button();
     return true;
 }
@@ -354,11 +345,7 @@ function validate_pulse()
         pulse_display.innerHTML= pulse+' bpm';
     }
     
-    if (document.getElementById('pain_display').innerHTML.length > 0) {
-        switch_to(4);
-    } else {
-        switch_to(5);
-    }
+    switch_to(4);
     maybe_show_submit_button();
     return true;
 }
@@ -376,11 +363,7 @@ function validate_feeling()
         // capture the input
         pain_display.innerHTML= pain_int;
     }
-    if (document.getElementById('pressure_display').innerHTML.length > 0) {
-        switch_to(5);
-    } else {
-        switch_to(1);
-    }
+    switch_to(5);
     maybe_show_submit_button();
     return true;
 }
