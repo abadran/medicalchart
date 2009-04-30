@@ -1,0 +1,23 @@
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	color: #009;
+	background-color: #F7F7F7;
+}
+
+td {
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+th {
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+.small {
+    font-size: small;
+}
+
+.input_display {
+    position: relative;
+    top: -100px;
+    background-color: #bbffbb;
+}

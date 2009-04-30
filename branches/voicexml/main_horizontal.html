@@ -1,0 +1,515 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Your HealthNet</title>
+<link href="Level1_Arial.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+
+var pressure_visible = new Boolean(1)
+var current_layer = 0
+
+var slide_in_layer = 0
+var slide_out_layer = 0
+var help_array=new Array();
+help_array[0]='';
+help_array[1]='Blood pressure (BP) is the pressure exerted by circulating blood on the walls of blood vessels, and constitutes one of the principal vital signs. For each heartbeat, blood pressure varies between systolic and diastolic pressures. Systolic pressure is peak pressure in the arteries, which occurs near the beginning of the cardiac cycle when the ventricles are contracting. Diastolic pressure is minimum pressure in the arteries, which occurs near the end of the cardiac cycle when the ventricles are filled with blood. (courtesy Wikipedia)';
+help_array[2]='Body temperature is a measure of the body&#146;s ability to generate and get rid of heat. The body is very good at keeping its temperature within a narrow, safe range in spite of large variations in temperatures outside the body. Most people think of a "normal" body temperature as an oral temperature of 98.6F. This is an average of normal body temperatures. Your temperature may actually be 1°F (0.6°C) or more above or below 98.6F (courtesy Webmd)';
+help_array[3]='Blood sugar concentration, or glucose level, refers to the amount of glucose present in a mammal&#146;s blood. Normally, the blood glucose level is maintained at a reference range between about 4 and 6 mM (mmol/l). It is tightly regulated in the human body as a part of metabolic homeostasis. Normal blood glucose levels are about 90mg/100ml, equivalent to 5mM (mmol/l). Glucose levels rise after meals for an hour or two by a few grams and are usually lowest in the morning, before the first meal of the day. (courtesy Wikipedia)';
+help_array[4]='Heart rate (HR) is a measure of the number of heart beats per minute (bpm). The average resting human heart rate is about 70 bpm for adult males and 75 bpm for adult females. Heart rate varies significantly between individuals based on fitness, age and genetics. Endurance athletes often have very low resting heart rates. (courtesy Wikipedia)';
+help_array[5]='Tell your doctor about how you are feeling in general. How are you feeling compared to the last time you sent your information to him. It is always advisable that you report any pain or discomfort you have been experiencing over a period of time to your doctor(s) immediately - do not wait and expect it to go away on its own. This will allow them to take appropriate actions at the right time';
+
+<!--
+function MM_preloadImages() { //v3.0
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+}
+function MM_swapImgRestore() { //v3.0
+  var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
+}
+function MM_findObj(n, d) { //v4.01
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  if(!x && d.getElementById) x=d.getElementById(n); return x;
+}
+
+function MM_swapImage() { //v3.0
+  var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
+   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+}
+
+function set_layers_xy()
+{
+	//document.getElementById('temperature_section').style.position = document.getElementById('pressure_section').style.position
+	//var x = document.getElementById('pressure_section
+	//var y = document.getElementById('pressure_section').style.top
+	//document.getElementById('temperature_section').style.left = x
+	//document.getElementById('temperature_section').style.top = y
+	//var tmp = "X is " + x
+	//alert(tmp)
+}
+function hide_layer(layer_num)
+{
+	if (layer_num == 0) {
+	} else if (layer_num == 1) {
+		document.getElementById('pressure_section').style.visibility = 'hidden'
+	} else if (layer_num == 2) {
+		document.getElementById('temperature_section').style.visibility = 'hidden'
+	} else if (layer_num == 3) {
+		document.getElementById('glucose_section').style.visibility = 'hidden'
+	} else if (layer_num == 4) {
+		document.getElementById('pulse_rate_section').style.visibility = 'hidden'
+	} else if (layer_num == 5) {
+		document.getElementById('overall_feeling_section').style.visibility = 'hidden'
+	}
+}
+
+function show_layer(layer_num)
+{
+	if (layer_num == 1) {
+		document.getElementById('pressure_section').style.visibility = 'visible'
+	} else if (layer_num == 2) {
+		document.getElementById('temperature_section').style.visibility = 'visible'
+	} else if (layer_num == 3) {
+		document.getElementById('glucose_section').style.visibility = 'visible'
+	} else if (layer_num == 4) {
+		document.getElementById('pulse_rate_section').style.visibility = 'visible'
+	} else if (layer_num == 5) {
+		document.getElementById('overall_feeling_section').style.visibility = 'visible'
+	}
+}
+
+function hide_elem(elem) {
+    elem.style.visibility='hidden';
+}
+function show_elem(elem) {
+    elem.style.visibility='visible';
+}
+function maybe_show_submit_button() {
+    var button = document.getElementById('submit');
+    var len = 0;
+    
+    len += document.getElementById('pressure_display').innerHTML.length;
+    len += document.getElementById('temperature_display').innerHTML.length;
+    len += document.getElementById('glucose_display').innerHTML.length;
+    len += document.getElementById('pulse_display').innerHTML.length;
+    len += document.getElementById('pain_display').innerHTML.length;
+    
+    if (len > 0) {
+        button.style.visibility='visible';
+    } else {
+        button.style.visibility='hidden';
+    }
+}
+
+
+function switch_to(new_layer)
+{
+	//set_layers_xy()
+	if (new_layer == current_layer) {
+		//hide_layer(current_layer)
+		slide_in_layer = current_layer
+		slide_in()
+		parent.bottomFrame.document.getElementById('help_message').innerHTML = ''
+		current_layer = 0	
+	} else {
+		//hide_layer(current_layer)
+		//show_layer(new_layer)
+		
+		slide_in_layer = current_layer
+		slide_in()
+		slide_out_layer = new_layer
+		slide_out()
+		current_layer = new_layer
+	}
+}
+
+
+function slide_out()
+{
+	var layer;
+    var display_label;
+	switch (slide_out_layer) {
+	case 0:
+		return;
+		break;
+	case 1:
+		layer = document.getElementById('pressure_section1');
+        display_label = document.getElementById('pressure_display');
+		break;
+	case 2:
+		layer = document.getElementById('temperature_section1');
+		display_label = document.getElementById('temperature_display');
+        break;
+	case 3:
+		layer = document.getElementById('glucose_section1');
+        display_label = document.getElementById('glucose_display');
+		break;
+	case 4:
+		layer = document.getElementById('pulse_rate_section1');
+		display_label = document.getElementById('pulse_display');
+        break;
+	case 5:
+		layer = document.getElementById('overall_feeling_section1');
+        display_label = document.getElementById('pain_display');
+		break;
+	}
+	var top = parseInt(layer.style.top, 10)
+	if (top < 10) {
+        show_elem(layer);
+		layer.style.top = (top + 5) + "px";
+		setTimeout("slide_out()", 20);
+	}
+	parent.bottomFrame.document.getElementById('help_message').innerHTML = help_array[slide_out_layer];
+    hide_elem(display_label);
+}
+function slide_in()
+{
+	var layer;
+    var display_label;
+	switch (slide_in_layer) {
+	case 0:
+		return;
+		break;
+	case 1:
+		layer = document.getElementById('pressure_section1');
+        display_label = document.getElementById('pressure_display');
+		break;
+	case 2:
+		layer = document.getElementById('temperature_section1');
+		display_label = document.getElementById('temperature_display');
+        break;
+	case 3:
+		layer = document.getElementById('glucose_section1');
+        display_label = document.getElementById('glucose_display');
+		break;
+	case 4:
+		layer = document.getElementById('pulse_rate_section1');
+		display_label = document.getElementById('pulse_display');
+        break;
+	case 5:
+		layer = document.getElementById('overall_feeling_section1');
+        display_label = document.getElementById('pain_display');
+		break;
+	}
+	var top = parseInt(layer.style.top, 10);
+	if (top > -85) {
+		layer.style.top = (top - 5) + "px";
+		setTimeout("slide_in()", 20);
+	} else {
+        hide_elem(layer);
+    }
+    show_elem(display_label);
+}
+
+function getValue(button) {
+   if (button==document.getElementById('pressure_ok')) {
+      window.alert(document.getElementById('dyastolic_input').value+'/'+
+      document.getElementById('sistolic_input').value);
+      switch_to(1);
+   } else if (button==document.getElementById('temperature_ok')) {
+      window.alert(document.getElementById('temperature_input').value);
+      switch_to(2);
+   } else if (button==document.getElementById('glucose_ok')) {
+      window.alert(document.getElementById('glucose_input').value);
+      switch_to(3);
+   } else if (button==document.getElementById('pulse_rate_ok')) {
+      window.alert(document.getElementById('pulse_rate_input').value);
+      switch_to(4);
+   } else if (button==document.getElementById('overall_feeling_ok')) {
+      window.alert(document.getElementById('overall_feeling_input').value);
+      switch_to(5);
+   } 
+ 
+}
+
+function validate_pressure()
+{
+    var systolic_input = document.getElementById('systolic_input');
+    var diastolic_input = document.getElementById('diastolic_input');
+    var pressure_display = document.getElementById('pressure_display');    
+	var systolic = systolic_input.value;
+    var diastolic = diastolic_input.value;
+	var systolic_int;
+    var diastolic_int;
+    
+    
+    if ((systolic=="" && diastolic!="") || (systolic!="" && diastolic=="")) {
+        alert("You must enter values for both systolic and diastolic pressure. If you don't want to enter your blood pressure, do not fill in any value in either box.");
+        return false;
+    }
+    
+    if (systolic!="" && diastolic!="") {
+        if (isNaN(systolic) || (systolic_int = parseInt(systolic,10)) > 230 || systolic_int < 50) {
+            alert("Please enter a value between 50 and 230 for your systolic pressure");
+            systolic_input.focus();
+            systolic_input.select();
+            return false;
+        }
+    
+        if (isNaN(diastolic) || (diastolic_int = parseInt(diastolic,10)) > 140 || diastolic_int < 30) {
+            alert("Please enter a value between 30 and 140 for your diastolic pressure");
+            diastolic_input.focus();
+            diastolic_input.select();
+            return false;
+        }
+    
+        if (systolic_int < diastolic_int) {
+            alert("Systolic pressure may not be smaller than diastolic pressure.");
+            systolic_input.focus();
+            systolic_input.select();
+            diastolic_input.focus();
+            diastolic_input.select();
+            return false;
+        }
+    
+        // capture the input
+        pressure_display.innerHTML=systolic+'/'+diastolic+' mm Hg';
+    } else {
+        pressure_display.innerHTML='';
+    }
+    switch_to(1);
+    maybe_show_submit_button();
+    return true;
+}
+
+function validate_temperature()
+{
+	var temperature_input = document.getElementById('temperature_input');
+    var temperature_display = document.getElementById('temperature_display');
+    var temperature = temperature_input.value;
+    var temperature_int;
+    
+    if (temperature == "") {
+        temperature_display.innerHTML='';
+    } else {
+        if (isNaN(temperature) || (temperature_int = parseInt(temperature,10)) > 110 || temperature_int < 90) {
+            alert("Please enter a value between 90 and 110 for your body temperature");
+            temperature_input.focus();
+            temperature_input.select();
+            return false;
+        }
+        // capture the input
+        temperature_display.innerHTML= temperature+' &deg;F';
+    }
+    switch_to(2);
+    maybe_show_submit_button();
+    return true;
+}
+
+function validate_glucose()
+{
+	var glucose_input = document.getElementById('glucose_input');
+    var glucose_display = document.getElementById('glucose_display');
+    var glucose = glucose_input.value;
+    var glucose_int;
+    
+    if (glucose == "") {
+        glucose_display.innerHTML='';
+    } else {
+        if (isNaN(glucose) || (glucose_int = parseInt(glucose,10)) > 300 || glucose_int < 70) {
+            alert("Please enter a value between 70 and 300 for your blood sugar level");
+            glucose_input.focus();
+            glucose_input.select();
+            return false;
+        }
+        // capture the input
+        glucose_display.innerHTML= glucose+' mg/dl';
+    }
+    
+    switch_to(3);
+    maybe_show_submit_button();
+    return true;
+}
+
+function validate_pulse()
+{
+	var pulse_input = document.getElementById('pulse_rate_input');
+    var pulse_display = document.getElementById('pulse_display');
+    var pulse = pulse_input.value;
+    var pulse_int;
+    
+    if (pulse == "") {
+        pulse_display.innerHTML='';
+    } else {
+        if (isNaN(pulse) || (pulse_int = parseInt(pulse,10)) > 250 || pulse_int < 35) {
+            alert("Please enter a value between 35 and 250 for your heart rate");
+            pulse_input.focus();
+            pulse_input.select();
+            return false;
+        }
+        // capture the input
+        pulse_display.innerHTML= pulse+' bpm';
+    }
+    
+    switch_to(4);
+    maybe_show_submit_button();
+    return true;
+}
+
+function validate_feeling()
+{
+	var pain_input = document.getElementById('overall_feeling_input');
+    var pain_display = document.getElementById('pain_display');
+    pain = pain_input.options[pain_input.selectedIndex].value;
+    var pain_int = parseInt(pain,10);
+    
+    if (pain_int == 0) {
+        pain_display.innerHTML='';
+	} else {
+        // capture the input
+        pain_display.innerHTML= pain_int;
+    }
+    switch_to(5);
+    maybe_show_submit_button();
+    return true;
+}
+function send_values() {
+    var message = 'Please confirm that you want to send the following values to your doctor: \n\n';
+	if (document.getElementById('pressure_display').innerHTML != '') {
+		message += 'Blood Pressure: ' + document.getElementById('pressure_display').innerHTML + '\n';
+	} else {
+		message += 'Blood Pressure: (value has not been entered)\n'
+	}
+    if (document.getElementById('temperature_display').innerHTML != '') {
+    	message += 'Temperature: ' + document.getElementById('temperature_display').innerHTML + '\n';
+	} else {
+		message += 'Temperature: (value has not been entered)\n' 
+	}
+	if (document.getElementById('glucose_display').innerHTML != '') {
+		message += 'Glucose Level: ' + document.getElementById('glucose_display').innerHTML + '\n';
+	} else {
+		message += 'Glucose Level: (value has not been entered)\n'
+	}
+    if (document.getElementById('pulse_display').innerHTML != '') {
+		message += 'Heart Rate: ' + document.getElementById('pulse_display').innerHTML + '\n';
+	} else {
+		message += 'Heart Rate: (value has not been entered)\n'
+	}
+    
+    if (document.getElementById('pain_display').innerHTML != '') {
+		message += 'Pain Level: ' + document.getElementById('pain_display').innerHTML + '\n';
+	} else {
+		message += 'Pain Level: (value has not been entered)\n'
+	}
+	
+	var answer = confirm(message);
+	if (answer){
+		parent.bottomFrame.document.getElementById('help_message').innerHTML = ''
+		parent.bottomFrame.document.getElementById('bottom_frame_heading').innerHTML = '<strong>Thank you</strong>'
+		document.getElementById('main').innerHTML="<br/><br/><br/><br/><br/><br/><strong>Your medical information has been sent to your doctor's office</strong><br/><br/><br/><br/>Thank you for using Your HealthNet.<br/><br/><br/>We value you as our customer and would like to hear any <br/>concerns or questions you may have at <a href=mailto:\"some-fake-support@yourhealthnet.com\">some-fake-support@yourhealthnet.com</a>"
+	}
+}
+//-->
+</script>
+</head>
+
+<body onload="javascript:MM_preloadImages('Clear Button.png')">
+<h1 align="center"><strong>Your HealthNet</strong></h1>
+<div id="main" style="text-align: center;">
+<ol>
+  <li>
+    <div align="left">Click on one of the buttons below.</div>
+  </li>
+  <li>
+    <div align="left">Enter the reading as it is on your device then click the &quot;OK&quot; button.</div>
+  </li>
+  <li>
+    <div align="left">When you have entered at least one reading a &quot;Submit&quot; button will be displayed. Click on it to send the readings to your doctor.</div>
+  </li>
+</ol>
+<form>
+<table width="900" border="0" align="center" cellpadding="5" cellspacing="15">
+  <tr>
+    <td align="center" valign="top">
+      	<strong>Pressure</strong>
+		<div align="center" style="position:relative; top:2px; z-index:2 "><a onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('blood_pressure','','pressure_dark.png',1)" onmousedown="switch_to(1)"><img src="pressure.png" alt="Pressure image" name="blood_pressure" width="158" height="142" border="0" id="blood_pressure" /></a></div>
+		<div align="center" id="pressure_section1" style="width:100%; position: relative; top:-105px; visibility:hidden; z-index:1">
+		  <table>
+		    <tr>
+			<td align="right">
+			  <label id="pressure_label">Systolic:</label>
+			</td>
+			<td align="left">
+		          <input type="text" name="systolic_input" id="systolic_input" size="3" maxlength="3"/><span class="small">mm&nbsp;Hg</span>
+			</td>
+		    </tr>
+		    <tr>
+			<td align="right">
+			   <label id="pressure_label">Diastolic:</label>
+			</td>
+			<td align="left">
+			   <input type="text" name="diastolic_input" id="diastolic_input" size="3" maxlength="3"/><span class="small">mm&nbsp;Hg</span>
+			</td>
+		    </tr>
+		    <tr>
+			<td colspan="2" align="center">
+			   <input type="button" name="OK" id="pressure_ok" value="OK" onClick="validate_pressure()" style="margin-top: 3px;"/>
+			</td>
+		    </tr>
+		  </table>
+	    	</div>
+    </td>
+    <td align="center" valign="top">
+    	<strong>Temperature</strong>
+        <div align="center" style="position:relative; top:2px; z-index:2"><a onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('temperature','','temperature_dark.png',1)" onmousedown="switch_to(2)"><img src="temperature.png" alt="Temperature image" name="temperature" width="158" height="142" border="0" id="temperature" /></a></div>
+    	<div align="center" id="temperature_section1" style="width:100%; position:relative; top:-85px; visibility:hidden; z-index:1">
+            <input type="text" name="temperature_input" id="temperature_input" size="5" maxlength="5"/>
+            <span class="small">&deg;F</span>
+          	<input type="button" name="temperature_ok" id="temperature_ok" value="OK" onClick="validate_temperature()"/>
+    	</div>
+	</td>
+    <td align="center" valign="top">
+    	<strong>Glucose Level</strong>
+        <div align="center" style="position:relative; top:2px; z-index:2"><a onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Pressure22','','glucose_dark.png',1)" onmousedown="switch_to(3)"><img src="glucose.png" alt="Glucose Level image" name="Pressure22" width="158" height="142" border="0" id="Pressure22" /></a></div>
+    	<div align="center" id="glucose_section1" style="width:100%; position:relative; top:-85px; visibility:hidden; z-index:1">
+        	<input type="text" name="glucose_input" id="glucose_input" size="3" maxlength="3"/>
+            <span class="small">mg/dl</span>
+        	<input type="button" name="OK" id="glucose_ok" value="OK" onClick="validate_glucose()"/>
+    	</div>
+	</td>
+    <td align="center" valign="top">
+        <strong>Heart Rate</strong>
+        <div align="center" style="position:relative; top:2px; z-index:2"><a onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Pressure23','','heart_dark.png',1)" onmousedown="switch_to(4)"><img src="heart.png" alt="Heart Rate image" name="Pressure23" width="158" height="142" border="0" id="Pressure23" /></a></div>
+    <div align="center" id="pulse_rate_section1" style="width:100%; position: relative; top: -85px; visibility:hidden; z-index:1">
+        <input type="text" name="pulse_rate_input" id="pulse_rate_input" size="3" maxlength="3"/>
+        <span class="small">bpm</span>
+        <input type="button" name="OK" id="pulse_rate_ok" value="OK" onClick="validate_pulse()" />
+    </div></td>
+    <td align="center" valign="top">
+    <strong>Pain Level</strong>
+    <div align="center" style="position:relative; top:2px; z-index:2"><a onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Pressure24','','pain_dark.png',1)" onmousedown="switch_to(5)"><img src="pain.png" alt="Pain Level image" name="Pressure24" width="158" height="142" border="0" id="Pressure24" /></a></div>
+    <div align="center" id="overall_feeling_section1" style="width:100%; position: relative; top: -85px; visibility:hidden; z-index:1">
+        <select name ="overall_feeling_input" id="overall_feeling_input" >
+           <option value="0">Rate your pain level</option>
+           <option value="1">1 (no pain)</option>
+           <option value="2">2</option>
+           <option value="3">3</option>
+           <option value="4">4</option>
+           <option value="5">5</option>
+           <option value="6">6</option>
+           <option value="7">7</option>
+           <option value="8">8</option>
+           <option value="9">9</option>
+           <option value="10">10 (unbearable pain)</option>           
+        </select>
+        <input type="button" name="OK" id="overall_feeling_ok" value="OK"  onClick="validate_feeling()" />
+    </div></td>
+  </tr>
+  <tr>
+    <td align="center" valign="middle"><div id="pressure_display" class="input_display"></div></td>
+    <td align="center" valign="middle"><div id="temperature_display" class="input_display"></div></td>
+    <td align="center" valign="middle"><div id="glucose_display" class="input_display"></div></td>
+    <td align="center" valign="middle"><div id="pulse_display" class="input_display"></div></td>
+    <td align="center" valign="middle"><div id="pain_display" class="input_display"></div></td>
+  </tr>
+  <tr>
+    <td align="center" valign="middle" colspan="5"><input type="button" name="submit" value="Submit" id="submit" onClick="send_values()" style="visibility: hidden; position:relative; top:-90px;"></input></td>
+  </tr>  
+</table>
+</form>
+</div>
+</html>
