@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vxml version = "2.1">
+  <meta name="maintainer" content="ahmed.badran@gmail.com"/>
+  <form>
+    <block>
+	<prompt>
+      Welcome to Your HealthNet<break/>
+		Which reading would you like to enter? <break/>The options are<break/>
+		<emphasis>pressure</emphasis>,<emphasis>temperature</emphasis>,<emphasis>Glucose</emphasis>,
+		<emphasis>Heart Rate</emphasis>,<emphasis>Pain level</emphasis>
+	</prompt>
+  <grammar type = "application/grammar+xml" root="selection" mode="voice">
+  	<rule id="selection">
+		<one-of>
+			<item>Pressure</item>
+        	<item>Temperature</item>
+        	<item>Glucose</item>
+        	<item>Heart Rate</item>
+        	<item>Pain Level</item>
+		</one-of>
+	</rule>
+   </grammar>
+    </block>
+  </form>
+</vxml>
+
