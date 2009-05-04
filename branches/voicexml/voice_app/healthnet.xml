@@ -212,11 +212,28 @@
             <emphasis>Overall Feeling,</emphasis><break/>
         </prompt>
     </block>
-    <block>
-        <prompt>
+    <field name="choice">
+	<prompt>
             <emphasis>Submit</emphasis> the data or <emphasis>add more</emphasis>?
         </prompt>
-    </block>
+	<grammar type="application/grammar-xml" mode="voice" root="choice_rule">
+		<rule id="choice_rule">
+			<one-of>
+				<item>submit  <tag><![CDATA[  <choice "submit">  ]]>  </tag>   </item>
+				<item>add more<tag><![CDATA[  <choice "add more">  ]]>  </tag>   </item>
+			</one-of>
+		</rule>
+	</grammar>
+	<filled>
+		<if     cond="choice=='submit'">
+			<goto next="#submit"/>
+		<elseif cond="choice=='add more'"/>
+			<goto next="#mainMenu"/>
+		<else/>
+			<prompt>Selection is unknown at this point</prompt>
+		</if>
+	</filled>
+    </field>
 </form>
 
 <menu id="mainMenu">
