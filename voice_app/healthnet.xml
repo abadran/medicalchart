@@ -269,6 +269,15 @@
     <choice next="#pain"                         >overall feeling</choice>
     <choice next="#review"                       >review</choice>
     <choice next="#submit"                       >submit</choice>
+    <noinput count="1">
+	    <prompt>I'm sorry, no selection has been made, please select a reading like <emphasis>temperature</emphasis></prompt>
+    </noinput>
+    <noinput count="2">
+	    <prompt>Please select a reading. For example, to select <emphasis>pressure</emphasis>, say <emphasis>pressure</emphasis>. You can also say help at any time for help, or press 0 to be connected to an operator.</prompt>
+    </noinput>
+    <noinput count="3">
+	    <prompt>I'm sorry, I will connect you to a customer service representative who will be able to assist you.</prompt>
+    </noinput>
 </menu>
 
 </vxml>
