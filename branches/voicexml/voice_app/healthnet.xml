@@ -67,10 +67,10 @@
         <prompt cond="null!=temperature">
             We have your temperature as <value expr="temperature"/>
             <sub alias="degrees Fahrenheit">F</sub>.
-            You can say a new value or go back. 
+            You can say a new value or go back.
         </prompt>
         <filled>
-          <assign name="temperature" expr="Number(t)"/>  
+          <assign name="temperature" expr="Number(t)"/>
           <prompt><value expr="temperature"/>, ok.</prompt>
           <goto next="#mainMenu"/>
         </filled>
@@ -83,10 +83,10 @@
         <prompt cond="null!=pulse">
             We have your heart rate as <value expr="pulse"/>
             <sub alias="beats per minute">bpm</sub>.
-            You can say a new value or go back. 
+            You can say a new value or go back.
         </prompt>
         <filled>
-          <assign name="pulse" expr="Number(p)"/>  
+          <assign name="pulse" expr="Number(p)"/>
           <prompt><value expr="pulse"/>, ok.</prompt>
           <goto next="#mainMenu"/>
         </filled>
@@ -102,7 +102,7 @@
     </field>
     <filled mode="all">
       <assign name="systolic" expr="Number(s)"/>
-      <assign name="diastolic" expr="Number(d)"/>  
+      <assign name="diastolic" expr="Number(d)"/>
       <prompt><value expr="systolic"/> <sub alias="over">/</sub> <value expr="diastolic"/>, ok.</prompt>
       <goto next="#mainMenu"/>
     </filled>
@@ -114,10 +114,10 @@
         <prompt cond="null!=glucose">
             We have your glucose level as <value expr="glucose"/>
             <sub alias="miligrams per decalitre">mg/dl</sub>.
-            You can say a new value or go back. 
-        </prompt>        
+            You can say a new value or go back.
+        </prompt>
         <filled>
-          <assign name="glucose" expr="Number(g)"/>  
+          <assign name="glucose" expr="Number(g)"/>
           <prompt><value expr="glucose"/>, ok.</prompt>
           <goto next="#mainMenu"/>
         </filled>
@@ -129,10 +129,10 @@
         <prompt cond="null==pain">Overall Feeling?</prompt>
         <prompt cond="null!=pain">
             We have your overall feeling as <value expr="pain"/>.
-            You can say a new value or go back. 
-        </prompt>        
+            You can say a new value or go back.
+        </prompt>
         <filled>
-          <assign name="pain" expr="Number(p)"/>  
+          <assign name="pain" expr="Number(p)"/>
           <prompt><value expr="pain"/>, ok.</prompt>
           <goto next="#mainMenu"/>
         </filled>
@@ -169,28 +169,28 @@
         <prompt cond="null!=temperature">
             <emphasis>Temperature:</emphasis><break/>
             <value expr="temperature"/>
-            <sub alias="degrees Fahrenheit">F</sub>
+	    <sub alias="degrees Fahrenheit">F</sub><break/>
         </prompt>
         <prompt cond="null!=pulse">
             <emphasis>Heart Rate:</emphasis><break/>
             <value expr="pulse"/>
-            <sub alias="beats per minute">bpm</sub>
+	    <sub alias="beats per minute">bpm</sub><break/>
         </prompt>
         <prompt cond="null!=systolic">
             <emphasis>Blood Pressure:</emphasis><break/>
-            <value expr="systolic"/> 
-            <sub alias="over">/</sub> 
-            <value expr="diastolic"/>
+            <value expr="systolic"/>
+            <sub alias="over">/</sub>
+	    <value expr="diastolic"/><break/>
         </prompt>
-        <prompt cond="null!=glucose">    
+        <prompt cond="null!=glucose">
             <emphasis>Glucose Level:</emphasis><break/>
             <value expr="glucose"/>
-            <sub alias="miligrams per decalitre">mg/dl</sub>
+	    <sub alias="miligrams per decalitre">mg/dl</sub><break/>
         </prompt>
         <prompt cond="null!=pain">
             <emphasis>Overall Feeling:</emphasis><break/>
             <value expr="pain"/>
-        </prompt>        
+        </prompt>
     </block>
     <block cond="null==temperature||null==pulse||null==systolic||null==glucose||null==pain">
         <prompt>
@@ -205,12 +205,12 @@
         <prompt cond="null==systolic">
             <emphasis>Blood Pressure,</emphasis><break/>
         </prompt>
-        <prompt cond="null==glucose">    
+        <prompt cond="null==glucose">
             <emphasis>Glucose Level,</emphasis><break/>
         </prompt>
         <prompt cond="null==pain">
             <emphasis>Overall Feeling,</emphasis><break/>
-        </prompt>                
+        </prompt>
     </block>
     <block>
         <prompt>
@@ -225,7 +225,7 @@
     </prompt>
     <prompt cond="null!=temperature &amp;&amp; null!=pulse &amp;&amp; null!=systolic &amp;&amp; null!=glucose &amp;&amp; null!=pain">
         Do you want to <emphasis>review</emphasis> your data or <emphasis>submit</emphasis>?
-    </prompt>    
+    </prompt>
     <prompt cond="null==temperature">
         <emphasis>Temperature?</emphasis><break/>
     </prompt>
@@ -235,23 +235,23 @@
     <prompt cond="null==systolic">
         <emphasis>Blood Pressure?</emphasis><break/>
     </prompt>
-    <prompt cond="null==glucose">    
+    <prompt cond="null==glucose">
         <emphasis>Glucose Level?</emphasis><break/>
     </prompt>
-    <prompt cond="null==pain">    
+    <prompt cond="null==pain">
         <emphasis level="reduced">or</emphasis><break/>
         <emphasis>Overall Feeling?</emphasis><break/>
     </prompt>
-    <choice next="#temperature">temperature</choice>
-    <choice next="#pulse">heart rate</choice>
-    <choice next="#pulse">pulse</choice>    
-    <choice next="#pressure">blood pressure</choice>
-    <choice next="#glucose">glucose</choice>
-    <choice next="#glucose">sugar</choice>
-    <choice next="#pain">pain level</choice>
-    <choice next="#pain">overall feeling</choice>
-    <choice next="#review">review</choice>
-    <choice next="#submit">submit</choice>
+    <choice next="#temperature"                  >temperature</choice>
+    <choice next="#pulse"    accept="approximate">heart</choice>
+    <choice next="#pulse"    accept="approximate">pulse</choice>
+    <choice next="#pressure" accept="approximate">blood pressure</choice>
+    <choice next="#glucose"  accept="approximate">glucose</choice>
+    <choice next="#glucose"  accept="approximate">sugar</choice>
+    <choice next="#pain"     accept="approximate">pain</choice>
+    <choice next="#pain"                         >overall feeling</choice>
+    <choice next="#review"                       >review</choice>
+    <choice next="#submit"                       >submit</choice>
 </menu>
 
 </vxml>
