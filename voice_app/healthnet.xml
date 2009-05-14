@@ -63,15 +63,12 @@
 
 <form id="temperature">
     <field name="t" type="number">
-	<noinput count="1">
-		<prompt>Please say your temperature.</prompt>
-	</noinput>
-	<noinput count="2">
-		<prompt>Please say your temperature as it appears on your device. For example, say <emphasis>98.6</emphasis>. You can also say help, or press 0 at any time to be connected to an operator.</prompt>
-	</noinput>
-	<noinput count="3">
-		<prompt>I'm sorry, I will connect you to a customer service representative who will be able to assist you.</prompt>
-	</noinput>
+	<noinput count="1"><prompt>Please say your temperature.</prompt></noinput>
+	<noinput count="2"><prompt>Please say your temperature as it appears on your device. For example, say <emphasis>98.6</emphasis>. You can also say help, or press 0 at any time to be connected to an operator.</prompt></noinput>
+	<noinput count="3"><prompt>I'm sorry, I will connect you to a customer service representative who will be able to assist you.</prompt></noinput>
+	<nomatch count="1"><prompt>I'm sorry, I did not get that. Please say your temperature.</prompt></nomatch>
+	<nomatch count="2"><prompt>I am sorry, I am still unable to get your temperature. For example, say <emphasis>98.6</emphasis></prompt></nomatch>
+	<nomatch count="3"><prompt>I'm sorry,  I will connect you to a customer service representative who will be able to assist you.</prompt></nomatch>
 	<prompt cond="null==temperature">Temperature</prompt>
         <prompt cond="null!=temperature">
             We have your temperature as <value expr="temperature"/>
@@ -88,15 +85,12 @@
 
 <form id="pulse">
     <field name="p" type="number">
-       	<noinput count="1">
-		<prompt>Please say your heart rate</prompt>
-	</noinput>
-	<noinput count="2">
-		<prompt>Please say your heart rate as it appears on your device. For example, say <emphasis>75</emphasis>. You can also say help, or press 0 at any time to be connected to an operator.</prompt>
-	</noinput>
-	<noinput count="3">
-		<prompt>I'm sorry, I will connect you to a customer service representative who will be able to assist you.</prompt>
-	</noinput>
+       	<noinput count="1"><prompt>Please say your heart rate</prompt></noinput>
+	<noinput count="2"><prompt>Please say your heart rate as it appears on your device. For example, say <emphasis>75</emphasis>. You can also say help, or press 0 at any time to be connected to an operator.</prompt></noinput>
+	<noinput count="3"><prompt>I'm sorry, I will connect you to a customer service representative who will be able to assist you.</prompt></noinput>
+	<nomatch count="1"><prompt>I'm sorry, I did not get that. Please say your heart rate.</prompt></nomatch>
+	<nomatch count="2"><prompt>I am sorry, I am still unable to get your heart rate. For example, say <emphasis>75</emphasis></prompt></nomatch>
+	<nomatch count="3"><prompt>I'm sorry,  I will connect you to a customer service representative who will be able to assist you.</prompt></nomatch>
 	<prompt cond="null==pulse">Heart rate</prompt>
         <prompt cond="null!=pulse">
             We have your heart rate as <value expr="pulse"/>
@@ -128,16 +122,14 @@
 
 <form id="glucose">
     <field name="g" type="number">
-       	<noinput count="1">
-		<prompt>Please say your glucose level.</prompt>
-	</noinput>
-	<noinput count="2">
-		<!-- TODO: Fix the range for the glucose level -->
+       	<noinput count="1"><prompt>Please say your glucose level.</prompt></noinput>
+	<noinput count="2"><!-- TODO: Fix the range for the glucose level -->
 		<prompt>Please say your glucose level as it appears on your device. For example, say <emphasis>75</emphasis>. You can also say help, or press 0 at any time to be connected to an operator.</prompt>
 	</noinput>
-	<noinput count="3">
-		<prompt>I'm sorry, I will connect you to a customer service representative who will be able to assist you.</prompt>
-	</noinput>        
+	<noinput count="3"><prompt>I'm sorry, I will connect you to a customer service representative who will be able to assist you.</prompt></noinput>
+	<nomatch count="1"><prompt>I'm sorry, I did not get that. Please say your glucose level.</prompt></nomatch>
+	<nomatch count="2"><prompt>I am sorry, I am still unable to get your glucose level. For example, say <emphasis>75</emphasis></prompt></nomatch>
+	<nomatch count="3"><prompt>I'm sorry,  I will connect you to a customer service representative who will be able to assist you.</prompt></nomatch>
 	<prompt cond="null==glucose">Glucose?</prompt>
         <prompt cond="null!=glucose">
             We have your glucose level as <value expr="glucose"/>
@@ -154,16 +146,13 @@
 
 <form id="pain">
     <field name="p" type="number">
-       	<noinput count="1">
-		<prompt>Please say your overall feeling.</prompt>
-	</noinput>
-	<noinput count="2">
-		<!-- TODO: Fix the range for the glucose level -->
-		<prompt>Please say your overall feeling between 1 and 10, 1 is no pain, 10 is unbearable pain. You can also say help, or press 0 at any time to be connected to an operator.</prompt>
-	</noinput>
-	<noinput count="3">
-		<prompt>I'm sorry, I will connect you to a customer service representative who will be able to assist you.</prompt>
-	</noinput>         <prompt cond="null==pain">Overall Feeling?</prompt>
+       	<noinput count="1"><prompt>Please say your overall feeling.</prompt></noinput>
+	<noinput count="2"><prompt>Please say your overall feeling between 1 and 10, 1 is no pain, 10 is unbearable pain. You can also say help, or press 0 at any time to be connected to an operator.</prompt></noinput>
+	<noinput count="3"><prompt>I'm sorry, I will connect you to a customer service representative who will be able to assist you.</prompt></noinput>
+	<nomatch count="1"><prompt>I'm sorry, I did not get that. Please say your overall feeling.</prompt></nomatch>
+	<nomatch count="2"><prompt>I am sorry, I am still unable to get your overall feeling. Please state your overall feeling between 1 and 10, 1 is no pain, 10 is unbearable pain</prompt></nomatch>
+	<nomatch count="3"><prompt>I'm sorry,  I will connect you to a customer service representative who will be able to assist you.</prompt></nomatch>
+	<prompt cond="null==pain">Overall Feeling?</prompt>
         <prompt cond="null!=pain">
             We have your overall feeling as <value expr="pain"/>.
             You can say a new value or go back.
@@ -306,15 +295,12 @@
     <choice next="#pain"                         >overall feeling</choice>
     <choice next="#review"                       >review</choice>
     <choice next="#submit"                       >submit</choice>
-    <noinput count="1">
-	    <prompt>I'm sorry, no selection has been made, please select a reading like <emphasis>temperature</emphasis></prompt>
-    </noinput>
-    <noinput count="2">
-	    <prompt>Please select a reading. For example, to select <emphasis>pressure</emphasis>, say <emphasis>pressure</emphasis>. You can also say help, at any time for help, or press 0 to be connected to an operator.</prompt>
-    </noinput>
-    <noinput count="3">
-	    <prompt>I'm sorry, I will connect you to a customer service representative who will be able to assist you.</prompt>
-    </noinput>
+    <noinput count="1"><prompt>I'm sorry, no selection has been made, please select a reading like <emphasis>temperature</emphasis></prompt></noinput>
+    <noinput count="2"><prompt>Please select a reading. For example, to select <emphasis>pressure</emphasis>, say <emphasis>pressure</emphasis>. You can also say help, at any time for help, or press 0 to be connected to an operator.</prompt></noinput>
+    <noinput count="3"><prompt>I'm sorry, I will connect you to a customer service representative who will be able to assist you.</prompt></noinput>
+    <nomatch count="1"><prompt>I'm sorry, I did not get that. Please make a selection.</prompt></nomatch>
+    <nomatch count="2"><prompt>I am sorry, I am still unable to get your selection. For example, to select <emphasis>pressure</emphasis>, say <emphasis>pressure</emphasis>.</prompt></nomatch>
+    <nomatch count="3"><prompt>I'm sorry,  I will connect you to a customer service representative who will be able to assist you.</prompt></nomatch>
 </menu>
 
 </vxml>
