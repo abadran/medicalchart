@@ -106,18 +106,35 @@
 </form>
 
 <form id="pressure">
-    <field name="s" type="number" >
-        <prompt>Systolic?</prompt>
-    </field>
-    <field name="d" type="number" >
-        <prompt>Diastolic?</prompt>
-    </field>
-    <filled mode="all">
-      <assign name="systolic" expr="Number(s)"/>
-      <assign name="diastolic" expr="Number(d)"/>
-      <prompt><value expr="systolic"/> <sub alias="over">/</sub> <value expr="diastolic"/>, ok.</prompt>
-      <goto next="#mainMenu"/>
-    </filled>
+	<block><prompt>Pressure<break/></prompt></block>
+	<field name="s" type="number" >
+		<prompt bargein="true">What's your systolic blood pressure?</prompt>
+		<noinput count="1"><prompt>Please say your systolic blood pressure.</prompt></noinput>
+		<!-- TODO: check the pressure ranges -->
+		<noinput count="2"><prompt>I'm sorry I did not hear that. Please say you systolic blood pressure.For example, say <emphasis>150</emphasis>.</prompt></noinput>
+		<noinput count="3"><prompt>I'm sorry,  I will connect you to a customer service representative who will be able to assist you.</prompt></noinput>
+		<nomatch count="1"><prompt>I'm sorry, I didn't get that. Please say your systolic blood pressure.</prompt></nomatch>
+		<nomatch count="2"><prompt>I'm sorry, I'm still unable to get your systolic blood pressure. pressure.</prompt></nomatch>
+		<nomatch count="2"><prompt>I'm sorry I'm still unable to get your systolic blood pressure. Please say you systolic blood pressure. For example, say <emphasis>150</emphasis>.</prompt></nomatch>
+		<nomatch count="3"><prompt>I'm sorry,  I will connect you to a customer service representative who will be able to assist you.</prompt></nomatch>
+	</field>
+	<field name="d" type="number" >
+		<prompt bargein="true">What's your diastolic blood pressure?</prompt>
+		<noinput count="1"><prompt>Please say your diastolic blood pressure.</prompt></noinput>
+		<!-- TODO: check the pressure ranges -->
+		<noinput count="2"><prompt>I'm sorry, I did not hear that. Please say you diastolic blood pressure.For example, say <emphasis>150</emphasis>.</prompt></noinput>
+		<noinput count="3"><prompt>I'm sorry, I will connect you to a customer service representative who will be able to assist you.</prompt></noinput>
+		<nomatch count="1"><prompt>I'm sorry, I didn't get that. Please say your diastolic blood pressure.</prompt></nomatch>
+		<nomatch count="2"><prompt>I'm sorry, I'm still unable to get your diastolic blood pressure. pressure.</prompt></nomatch>
+		<nomatch count="2"><prompt>I'm sorry I'm still unable to get your diastolic blood pressure. Please say you diastolic blood pressure. For example, say <emphasis>150</emphasis>.</prompt></nomatch>
+		<nomatch count="3"><prompt>I'm sorry,  I will connect you to a customer service representative who will be able to assist you.</prompt></nomatch>
+	</field>
+	<filled mode="all">
+		<assign name="systolic" expr="Number(s)"/>
+		<assign name="diastolic" expr="Number(d)"/>
+		<prompt><value expr="systolic"/> <sub alias="over">/</sub> <value expr="diastolic"/>, ok.</prompt>
+		<goto next="#mainMenu"/>
+	</filled>
 </form>
 
 <form id="glucose">
