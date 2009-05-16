@@ -162,7 +162,8 @@
 </form>
 
 <form id="pain">
-    <field name="p" type="number">
+    <field name="p">
+	    <grammar src="grammar/grammar.xml" type="application/grammar-xml"/>
 	    <prompt bargein="true" cond="null==pain">Pain Level<break strength="medium"/>What's your pain level? 0 is no pain, 10 is unbearable pain</prompt>
        	<noinput count="1"><prompt>Please say your pain level.</prompt></noinput>
 	<noinput count="2"><prompt>Please say your pain level between 0 and 10, 0 is no pain, 10 is unbearable pain. You can also say help, or press 0 at any time to be connected to an operator.</prompt></noinput>
