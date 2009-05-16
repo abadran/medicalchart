@@ -163,12 +163,12 @@
 
 <form id="pain">
     <field name="p" type="number">
-	    <prompt bargein="true" cond="null==pain">Pain Level<break strength="medium"/>What's your pain level? 1 is no pain, 10 is unbearable pain</prompt>
+	    <prompt bargein="true" cond="null==pain">Pain Level<break strength="medium"/>What's your pain level? 0 is no pain, 10 is unbearable pain</prompt>
        	<noinput count="1"><prompt>Please say your pain level.</prompt></noinput>
-	<noinput count="2"><prompt>Please say your pain level between 1 and 10, 1 is no pain, 10 is unbearable pain. You can also say help, or press 0 at any time to be connected to an operator.</prompt></noinput>
+	<noinput count="2"><prompt>Please say your pain level between 0 and 10, 0 is no pain, 10 is unbearable pain. You can also say help, or press 0 at any time to be connected to an operator.</prompt></noinput>
 	<noinput count="3"><prompt>I'm sorry, I will connect you to a customer service representative who will be able to assist you.</prompt></noinput>
 	<nomatch count="1"><prompt>I'm sorry, I did not get that. Please say your pain level.</prompt></nomatch>
-	<nomatch count="2"><prompt>I am sorry, I am still unable to get your pain level. Please state your pain level between 1 and 10, 1 is no pain, 10 is unbearable pain</prompt></nomatch>
+	<nomatch count="2"><prompt>I am sorry, I am still unable to get your pain level. Please state your pain level between 0 and 10, 1 is no pain, 10 is unbearable pain</prompt></nomatch>
 	<nomatch count="3"><prompt>I'm sorry,  I will connect you to a customer service representative who will be able to assist you.</prompt></nomatch>
         <prompt cond="null!=pain">
             We have your pain level as <value expr="pain"/>.
