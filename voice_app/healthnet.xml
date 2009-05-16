@@ -62,47 +62,47 @@
 </form>
 
 <form id="temperature">
-    <field name="t" type="number">
-	<noinput count="1"><prompt>Please say your temperature.</prompt></noinput>
-	<noinput count="2"><prompt>Please say your temperature as it appears on your device. For example, say <emphasis>98.6</emphasis>. You can also say help, or press 0 at any time to be connected to an operator.</prompt></noinput>
-	<noinput count="3"><prompt>I'm sorry, I will connect you to a customer service representative who will be able to assist you.</prompt></noinput>
-	<nomatch count="1"><prompt>I'm sorry, I did not get that. Please say your temperature.</prompt></nomatch>
-	<nomatch count="2"><prompt>I am sorry, I am still unable to get your temperature. For example, say <emphasis>98.6</emphasis></prompt></nomatch>
-	<nomatch count="3"><prompt>I'm sorry,  I will connect you to a customer service representative who will be able to assist you.</prompt></nomatch>
-	<prompt cond="null==temperature">Temperature</prompt>
-        <prompt cond="null!=temperature">
-            We have your temperature as <value expr="temperature"/>
-            <sub alias="degrees Fahrenheit">F</sub>.
-            You can say a new value or go back.
-        </prompt>
-        <filled>
-          <assign name="temperature" expr="Number(t)"/>
-          <prompt><value expr="temperature"/>, ok.</prompt>
-          <goto next="#mainMenu"/>
-        </filled>
-    </field>
+	<field name="t" type="number">
+		<prompt bargein="true" cond="null==temperature">Temperature<break strength="medium"/>What's your temperature?</prompt>
+		<noinput count="1"><prompt>Please say your temperature.</prompt></noinput>
+		<noinput count="2"><prompt>Please say your temperature as it appears on your device. For example, say <emphasis>98.6</emphasis>. You can also say help, or press 0 at any time to be connected to an operator.</prompt></noinput>
+		<noinput count="3"><prompt>I'm sorry, I will connect you to a customer service representative who will be able to assist you.</prompt></noinput>
+		<nomatch count="1"><prompt>I'm sorry, I did not get that. Please say your temperature.</prompt></nomatch>
+		<nomatch count="2"><prompt>I am sorry, I am still unable to get your temperature. For example, say <emphasis>98.6</emphasis></prompt></nomatch>
+		<nomatch count="3"><prompt>I'm sorry,  I will connect you to a customer service representative who will be able to assist you.</prompt></nomatch>
+		<prompt cond="null!=temperature">
+			We have your temperature as <value expr="temperature"/>
+			<sub alias="degrees Fahrenheit">F</sub>.
+			You can say a new value or go back.
+		</prompt>
+		<filled>
+			<assign name="temperature" expr="Number(t)"/>
+			<prompt><value expr="temperature"/>, ok.</prompt>
+			<goto next="#mainMenu"/>
+		</filled>
+	</field>
 </form>
 
 <form id="pulse">
-    <field name="p" type="number">
-       	<noinput count="1"><prompt>Please say your heart rate</prompt></noinput>
-	<noinput count="2"><prompt>Please say your heart rate as it appears on your device. For example, say <emphasis>75</emphasis>. You can also say help, or press 0 at any time to be connected to an operator.</prompt></noinput>
-	<noinput count="3"><prompt>I'm sorry, I will connect you to a customer service representative who will be able to assist you.</prompt></noinput>
-	<nomatch count="1"><prompt>I'm sorry, I did not get that. Please say your heart rate.</prompt></nomatch>
-	<nomatch count="2"><prompt>I am sorry, I am still unable to get your heart rate. For example, say <emphasis>75</emphasis></prompt></nomatch>
-	<nomatch count="3"><prompt>I'm sorry,  I will connect you to a customer service representative who will be able to assist you.</prompt></nomatch>
-	<prompt cond="null==pulse">Heart rate</prompt>
-        <prompt cond="null!=pulse">
-            We have your heart rate as <value expr="pulse"/>
-            <sub alias="beats per minute">bpm</sub>.
-            You can say a new value or go back.
-        </prompt>
-        <filled>
-          <assign name="pulse" expr="Number(p)"/>
-          <prompt><value expr="pulse"/>, ok.</prompt>
-          <goto next="#mainMenu"/>
-        </filled>
-    </field>
+	<field name="p" type="number">
+		<prompt bargein="true" cond="null==pulse">Heart rate<break strength="medium"/>What's your heart rate?</prompt>
+		<noinput count="1"><prompt>Please say your heart rate</prompt></noinput>
+		<noinput count="2"><prompt>Please say your heart rate as it appears on your device. For example, say <emphasis>75</emphasis>. You can also say help, or press 0 at any time to be connected to an operator.</prompt></noinput>
+		<noinput count="3"><prompt>I'm sorry, I will connect you to a customer service representative who will be able to assist you.</prompt></noinput>
+		<nomatch count="1"><prompt>I'm sorry, I did not get that. Please say your heart rate.</prompt></nomatch>
+		<nomatch count="2"><prompt>I am sorry, I am still unable to get your heart rate. For example, say <emphasis>75</emphasis></prompt></nomatch>
+		<nomatch count="3"><prompt>I'm sorry,  I will connect you to a customer service representative who will be able to assist you.</prompt></nomatch>
+		<prompt cond="null!=pulse">
+			We have your heart rate as <value expr="pulse"/>
+			<sub alias="beats per minute">bpm</sub>.
+			You can say a new value or go back.
+		</prompt>
+		<filled>
+			<assign name="pulse" expr="Number(p)"/>
+			<prompt><value expr="pulse"/>, ok.</prompt>
+			<goto next="#mainMenu"/>
+		</filled>
+	</field>
 </form>
 
 <form id="pressure">
@@ -139,6 +139,7 @@
 
 <form id="glucose">
     <field name="g" type="number">
+	    <prompt bargein="true" cond="null==glucose">Glucose<break strength="medium"/>What's your glucose level?</prompt>
        	<noinput count="1"><prompt>Please say your glucose level.</prompt></noinput>
 	<noinput count="2"><!-- TODO: Fix the range for the glucose level -->
 		<prompt>Please say your glucose level as it appears on your device. For example, say <emphasis>75</emphasis>. You can also say help, or press 0 at any time to be connected to an operator.</prompt>
@@ -147,7 +148,6 @@
 	<nomatch count="1"><prompt>I'm sorry, I did not get that. Please say your glucose level.</prompt></nomatch>
 	<nomatch count="2"><prompt>I am sorry, I am still unable to get your glucose level. For example, say <emphasis>75</emphasis></prompt></nomatch>
 	<nomatch count="3"><prompt>I'm sorry,  I will connect you to a customer service representative who will be able to assist you.</prompt></nomatch>
-	<prompt cond="null==glucose">Glucose?</prompt>
         <prompt cond="null!=glucose">
             We have your glucose level as <value expr="glucose"/>
             <sub alias="miligrams per decalitre">mg/dl</sub>.
@@ -163,15 +163,15 @@
 
 <form id="pain">
     <field name="p" type="number">
-       	<noinput count="1"><prompt>Please say your overall feeling.</prompt></noinput>
-	<noinput count="2"><prompt>Please say your overall feeling between 1 and 10, 1 is no pain, 10 is unbearable pain. You can also say help, or press 0 at any time to be connected to an operator.</prompt></noinput>
+	    <prompt bargein="true" cond="null==pain">Pain Level<break strength="medium"/>What's your pain level? 1 is no pain, 10 is unbearable pain</prompt>
+       	<noinput count="1"><prompt>Please say your pain level.</prompt></noinput>
+	<noinput count="2"><prompt>Please say your pain level between 1 and 10, 1 is no pain, 10 is unbearable pain. You can also say help, or press 0 at any time to be connected to an operator.</prompt></noinput>
 	<noinput count="3"><prompt>I'm sorry, I will connect you to a customer service representative who will be able to assist you.</prompt></noinput>
-	<nomatch count="1"><prompt>I'm sorry, I did not get that. Please say your overall feeling.</prompt></nomatch>
-	<nomatch count="2"><prompt>I am sorry, I am still unable to get your overall feeling. Please state your overall feeling between 1 and 10, 1 is no pain, 10 is unbearable pain</prompt></nomatch>
+	<nomatch count="1"><prompt>I'm sorry, I did not get that. Please say your pain level.</prompt></nomatch>
+	<nomatch count="2"><prompt>I am sorry, I am still unable to get your pain level. Please state your pain level between 1 and 10, 1 is no pain, 10 is unbearable pain</prompt></nomatch>
 	<nomatch count="3"><prompt>I'm sorry,  I will connect you to a customer service representative who will be able to assist you.</prompt></nomatch>
-	<prompt cond="null==pain">Overall Feeling?</prompt>
         <prompt cond="null!=pain">
-            We have your overall feeling as <value expr="pain"/>.
+            We have your pain level as <value expr="pain"/>.
             You can say a new value or go back.
         </prompt>
         <filled>
@@ -231,7 +231,7 @@
 	    <sub alias="miligrams per decalitre">mg/dl</sub><break/>
         </prompt>
         <prompt cond="null!=pain">
-            <emphasis>Overall Feeling:</emphasis><break/>
+            <emphasis>Pain Level:</emphasis><break/>
             <value expr="pain"/>
         </prompt>
     </block>
@@ -252,7 +252,7 @@
             <emphasis>Glucose Level,</emphasis><break/>
         </prompt>
         <prompt cond="null==pain">
-            <emphasis>Overall Feeling,</emphasis><break/>
+            <emphasis>Pain Level,</emphasis><break/>
         </prompt>
     </block>
     <field name="choice">
@@ -300,7 +300,7 @@
     </prompt>
     <prompt cond="null==pain">
         <emphasis level="reduced">or</emphasis><break/>
-        <emphasis>Overall Feeling?</emphasis><break/>
+        <emphasis>Pain Level?</emphasis><break/>
     </prompt>
     <choice next="#temperature"                  >temperature</choice>
     <choice next="#pulse"    accept="approximate">heart</choice>
@@ -309,7 +309,6 @@
     <choice next="#glucose"  accept="approximate">glucose</choice>
     <choice next="#glucose"  accept="approximate">sugar</choice>
     <choice next="#pain"     accept="approximate">pain</choice>
-    <choice next="#pain"                         >overall feeling</choice>
     <choice next="#review"                       >review</choice>
     <choice next="#submit"                       >submit</choice>
     <noinput count="1"><prompt>I'm sorry, no selection has been made, please select a reading like <emphasis>temperature</emphasis></prompt></noinput>
