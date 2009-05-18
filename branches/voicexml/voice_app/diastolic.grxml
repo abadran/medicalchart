@@ -1,0 +1,907 @@
+<?xml version="1.0" ?>
+<grammar xmlns="http://www.w3.org/2001/06/grammar" root="diastolic">
+	<rule id="diastolic">
+		<one-of>
+			<item>
+				thirty
+				<tag> <![CDATA[  <d 30> ]]>
+				</tag>
+			</item>
+			<item>
+				thirty one
+				<tag> <![CDATA[  <d 31> ]]>
+				</tag>
+			</item>
+			<item>
+				thirty two
+				<tag> <![CDATA[  <d 32> ]]>
+				</tag>
+			</item>
+			<item>
+				thirty three
+				<tag> <![CDATA[  <d 33> ]]>
+				</tag>
+			</item>
+			<item>
+				thirty four
+				<tag> <![CDATA[  <d 34> ]]>
+				</tag>
+			</item>
+			<item>
+				thirty five
+				<tag> <![CDATA[  <d 35> ]]>
+				</tag>
+			</item>
+			<item>
+				thirty six
+				<tag> <![CDATA[  <d 36> ]]>
+				</tag>
+			</item>
+			<item>
+				thirty seven
+				<tag> <![CDATA[  <d 37> ]]>
+				</tag>
+			</item>
+			<item>
+				thirty eight
+				<tag> <![CDATA[  <d 38> ]]>
+				</tag>
+			</item>
+			<item>
+				thirty nine
+				<tag> <![CDATA[  <d 39> ]]>
+				</tag>
+			</item>
+			<item>
+				forty
+				<tag> <![CDATA[  <d 40> ]]>
+				</tag>
+			</item>
+			<item>
+				forty one
+				<tag> <![CDATA[  <d 41> ]]>
+				</tag>
+			</item>
+			<item>
+				forty two
+				<tag> <![CDATA[  <d 42> ]]>
+				</tag>
+			</item>
+			<item>
+				forty three
+				<tag> <![CDATA[  <d 43> ]]>
+				</tag>
+			</item>
+			<item>
+				forty four
+				<tag> <![CDATA[  <d 44> ]]>
+				</tag>
+			</item>
+			<item>
+				forty five
+				<tag> <![CDATA[  <d 45> ]]>
+				</tag>
+			</item>
+			<item>
+				forty six
+				<tag> <![CDATA[  <d 46> ]]>
+				</tag>
+			</item>
+			<item>
+				forty seven
+				<tag> <![CDATA[  <d 47> ]]>
+				</tag>
+			</item>
+			<item>
+				forty eight
+				<tag> <![CDATA[  <d 48> ]]>
+				</tag>
+			</item>
+			<item>
+				forty nine
+				<tag> <![CDATA[  <d 49> ]]>
+				</tag>
+			</item>
+			<item>
+				fifty
+				<tag> <![CDATA[  <d 50> ]]>
+				</tag>
+			</item>
+			<item>
+				fifty one
+				<tag> <![CDATA[  <d 51> ]]>
+				</tag>
+			</item>
+			<item>
+				fifty two
+				<tag> <![CDATA[  <d 52> ]]>
+				</tag>
+			</item>
+			<item>
+				fifty three
+				<tag> <![CDATA[  <d 53> ]]>
+				</tag>
+			</item>
+			<item>
+				fifty four
+				<tag> <![CDATA[  <d 54> ]]>
+				</tag>
+			</item>
+			<item>
+				fifty five
+				<tag> <![CDATA[  <d 55> ]]>
+				</tag>
+			</item>
+			<item>
+				fifty six
+				<tag> <![CDATA[  <d 56> ]]>
+				</tag>
+			</item>
+			<item>
+				fifty seven
+				<tag> <![CDATA[  <d 57> ]]>
+				</tag>
+			</item>
+			<item>
+				fifty eight
+				<tag> <![CDATA[  <d 58> ]]>
+				</tag>
+			</item>
+			<item>
+				fifty nine
+				<tag> <![CDATA[  <d 59> ]]>
+				</tag>
+			</item>
+			<item>
+				sixty
+				<tag> <![CDATA[  <d 60> ]]>
+				</tag>
+			</item>
+			<item>
+				sixty one
+				<tag> <![CDATA[  <d 61> ]]>
+				</tag>
+			</item>
+			<item>
+				sixty two
+				<tag> <![CDATA[  <d 62> ]]>
+				</tag>
+			</item>
+			<item>
+				sixty three
+				<tag> <![CDATA[  <d 63> ]]>
+				</tag>
+			</item>
+			<item>
+				sixty four
+				<tag> <![CDATA[  <d 64> ]]>
+				</tag>
+			</item>
+			<item>
+				sixty five
+				<tag> <![CDATA[  <d 65> ]]>
+				</tag>
+			</item>
+			<item>
+				sixty six
+				<tag> <![CDATA[  <d 66> ]]>
+				</tag>
+			</item>
+			<item>
+				sixty seven
+				<tag> <![CDATA[  <d 67> ]]>
+				</tag>
+			</item>
+			<item>
+				sixty eight
+				<tag> <![CDATA[  <d 68> ]]>
+				</tag>
+			</item>
+			<item>
+				sixty nine
+				<tag> <![CDATA[  <d 69> ]]>
+				</tag>
+			</item>
+			<item>
+				seventy
+				<tag> <![CDATA[  <d 70> ]]>
+				</tag>
+			</item>
+			<item>
+				seventy one
+				<tag> <![CDATA[  <d 71> ]]>
+				</tag>
+			</item>
+			<item>
+				seventy two
+				<tag> <![CDATA[  <d 72> ]]>
+				</tag>
+			</item>
+			<item>
+				seventy three
+				<tag> <![CDATA[  <d 73> ]]>
+				</tag>
+			</item>
+			<item>
+				seventy four
+				<tag> <![CDATA[  <d 74> ]]>
+				</tag>
+			</item>
+			<item>
+				seventy five
+				<tag> <![CDATA[  <d 75> ]]>
+				</tag>
+			</item>
+			<item>
+				seventy six
+				<tag> <![CDATA[  <d 76> ]]>
+				</tag>
+			</item>
+			<item>
+				seventy seven
+				<tag> <![CDATA[  <d 77> ]]>
+				</tag>
+			</item>
+			<item>
+				seventy eight
+				<tag> <![CDATA[  <d 78> ]]>
+				</tag>
+			</item>
+			<item>
+				seventy nine
+				<tag> <![CDATA[  <d 79> ]]>
+				</tag>
+			</item>
+			<item>
+				eighty
+				<tag> <![CDATA[  <d 80> ]]>
+				</tag>
+			</item>
+			<item>
+				eighty one
+				<tag> <![CDATA[  <d 81> ]]>
+				</tag>
+			</item>
+			<item>
+				eighty two
+				<tag> <![CDATA[  <d 82> ]]>
+				</tag>
+			</item>
+			<item>
+				eighty three
+				<tag> <![CDATA[  <d 83> ]]>
+				</tag>
+			</item>
+			<item>
+				eighty four
+				<tag> <![CDATA[  <d 84> ]]>
+				</tag>
+			</item>
+			<item>
+				eighty five
+				<tag> <![CDATA[  <d 85> ]]>
+				</tag>
+			</item>
+			<item>
+				eighty six
+				<tag> <![CDATA[  <d 86> ]]>
+				</tag>
+			</item>
+			<item>
+				eighty seven
+				<tag> <![CDATA[  <d 87> ]]>
+				</tag>
+			</item>
+			<item>
+				eighty eight
+				<tag> <![CDATA[  <d 88> ]]>
+				</tag>
+			</item>
+			<item>
+				eighty nine
+				<tag> <![CDATA[  <d 89> ]]>
+				</tag>
+			</item>
+			<item>
+				ninety
+				<tag> <![CDATA[  <d 90> ]]>
+				</tag>
+			</item>
+			<item>
+				ninety one
+				<tag> <![CDATA[  <d 91> ]]>
+				</tag>
+			</item>
+			<item>
+				ninety two
+				<tag> <![CDATA[  <d 92> ]]>
+				</tag>
+			</item>
+			<item>
+				ninety three
+				<tag> <![CDATA[  <d 93> ]]>
+				</tag>
+			</item>
+			<item>
+				ninety four
+				<tag> <![CDATA[  <d 94> ]]>
+				</tag>
+			</item>
+			<item>
+				ninety five
+				<tag> <![CDATA[  <d 95> ]]>
+				</tag>
+			</item>
+			<item>
+				ninety six
+				<tag> <![CDATA[  <d 96> ]]>
+				</tag>
+			</item>
+			<item>
+				ninety seven
+				<tag> <![CDATA[  <d 97> ]]>
+				</tag>
+			</item>
+			<item>
+				ninety eight
+				<tag> <![CDATA[  <d 98> ]]>
+				</tag>
+			</item>
+			<item>
+				ninety nine
+				<tag> <![CDATA[  <d 99> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred
+				<tag> <![CDATA[  <d 100> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred
+				<tag> <![CDATA[  <d 100> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and one
+				<tag> <![CDATA[  <d 101> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and one
+				<tag> <![CDATA[  <d 101> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and two
+				<tag> <![CDATA[  <d 102> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and two
+				<tag> <![CDATA[  <d 102> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and three
+				<tag> <![CDATA[  <d 103> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and three
+				<tag> <![CDATA[  <d 103> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and four
+				<tag> <![CDATA[  <d 104> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and four
+				<tag> <![CDATA[  <d 104> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and five
+				<tag> <![CDATA[  <d 105> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and five
+				<tag> <![CDATA[  <d 105> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and six
+				<tag> <![CDATA[  <d 106> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and six
+				<tag> <![CDATA[  <d 106> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and seven
+				<tag> <![CDATA[  <d 107> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and seven
+				<tag> <![CDATA[  <d 107> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and eight
+				<tag> <![CDATA[  <d 108> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and eight
+				<tag> <![CDATA[  <d 108> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and nine
+				<tag> <![CDATA[  <d 109> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and nine
+				<tag> <![CDATA[  <d 109> ]]>
+				</tag>
+			</item>
+			<item>
+				one ten
+				<tag> <![CDATA[  <d 110> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and ten
+				<tag> <![CDATA[  <d 110> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and ten
+				<tag> <![CDATA[  <d 110> ]]>
+				</tag>
+			</item>
+			<item>
+				one eleven
+				<tag> <![CDATA[  <d 111> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and eleven
+				<tag> <![CDATA[  <d 111> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and eleven
+				<tag> <![CDATA[  <d 111> ]]>
+				</tag>
+			</item>
+			<item>
+				one twelve
+				<tag> <![CDATA[  <d 112> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and twelve
+				<tag> <![CDATA[  <d 112> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and twelve
+				<tag> <![CDATA[  <d 112> ]]>
+				</tag>
+			</item>
+			<item>
+				one thirteen
+				<tag> <![CDATA[  <d 113> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and thirteen
+				<tag> <![CDATA[  <d 113> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and thirteen
+				<tag> <![CDATA[  <d 113> ]]>
+				</tag>
+			</item>
+			<item>
+				one fourteen
+				<tag> <![CDATA[  <d 114> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and fourteen
+				<tag> <![CDATA[  <d 114> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and fourteen
+				<tag> <![CDATA[  <d 114> ]]>
+				</tag>
+			</item>
+			<item>
+				one fifteen
+				<tag> <![CDATA[  <d 115> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and fifteen
+				<tag> <![CDATA[  <d 115> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and fifteen
+				<tag> <![CDATA[  <d 115> ]]>
+				</tag>
+			</item>
+			<item>
+				one sixteen
+				<tag> <![CDATA[  <d 116> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and sixteen
+				<tag> <![CDATA[  <d 116> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and sixteen
+				<tag> <![CDATA[  <d 116> ]]>
+				</tag>
+			</item>
+			<item>
+				one seventeen
+				<tag> <![CDATA[  <d 117> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and seventeen
+				<tag> <![CDATA[  <d 117> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and seventeen
+				<tag> <![CDATA[  <d 117> ]]>
+				</tag>
+			</item>
+			<item>
+				one eighteen
+				<tag> <![CDATA[  <d 118> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and eighteen
+				<tag> <![CDATA[  <d 118> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and eighteen
+				<tag> <![CDATA[  <d 118> ]]>
+				</tag>
+			</item>
+			<item>
+				one nineteen
+				<tag> <![CDATA[  <d 119> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and nineteen
+				<tag> <![CDATA[  <d 119> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and nineteen
+				<tag> <![CDATA[  <d 119> ]]>
+				</tag>
+			</item>
+			<item>
+				one twenty
+				<tag> <![CDATA[  <d 120> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and twenty
+				<tag> <![CDATA[  <d 120> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and twenty
+				<tag> <![CDATA[  <d 120> ]]>
+				</tag>
+			</item>
+			<item>
+				one twenty one
+				<tag> <![CDATA[  <d 121> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and twenty one
+				<tag> <![CDATA[  <d 121> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and twenty one
+				<tag> <![CDATA[  <d 121> ]]>
+				</tag>
+			</item>
+			<item>
+				one twenty two
+				<tag> <![CDATA[  <d 122> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and twenty two
+				<tag> <![CDATA[  <d 122> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and twenty two
+				<tag> <![CDATA[  <d 122> ]]>
+				</tag>
+			</item>
+			<item>
+				one twenty three
+				<tag> <![CDATA[  <d 123> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and twenty three
+				<tag> <![CDATA[  <d 123> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and twenty three
+				<tag> <![CDATA[  <d 123> ]]>
+				</tag>
+			</item>
+			<item>
+				one twenty four
+				<tag> <![CDATA[  <d 124> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and twenty four
+				<tag> <![CDATA[  <d 124> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and twenty four
+				<tag> <![CDATA[  <d 124> ]]>
+				</tag>
+			</item>
+			<item>
+				one twenty five
+				<tag> <![CDATA[  <d 125> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and twenty five
+				<tag> <![CDATA[  <d 125> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and twenty five
+				<tag> <![CDATA[  <d 125> ]]>
+				</tag>
+			</item>
+			<item>
+				one twenty six
+				<tag> <![CDATA[  <d 126> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and twenty six
+				<tag> <![CDATA[  <d 126> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and twenty six
+				<tag> <![CDATA[  <d 126> ]]>
+				</tag>
+			</item>
+			<item>
+				one twenty seven
+				<tag> <![CDATA[  <d 127> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and twenty seven
+				<tag> <![CDATA[  <d 127> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and twenty seven
+				<tag> <![CDATA[  <d 127> ]]>
+				</tag>
+			</item>
+			<item>
+				one twenty eight
+				<tag> <![CDATA[  <d 128> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and twenty eight
+				<tag> <![CDATA[  <d 128> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and twenty eight
+				<tag> <![CDATA[  <d 128> ]]>
+				</tag>
+			</item>
+			<item>
+				one twenty nine
+				<tag> <![CDATA[  <d 129> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and twenty nine
+				<tag> <![CDATA[  <d 129> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and twenty nine
+				<tag> <![CDATA[  <d 129> ]]>
+				</tag>
+			</item>
+			<item>
+				one thirty
+				<tag> <![CDATA[  <d 130> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and thirty
+				<tag> <![CDATA[  <d 130> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and thirty
+				<tag> <![CDATA[  <d 130> ]]>
+				</tag>
+			</item>
+			<item>
+				one thirty one
+				<tag> <![CDATA[  <d 131> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and thirty one
+				<tag> <![CDATA[  <d 131> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and thirty one
+				<tag> <![CDATA[  <d 131> ]]>
+				</tag>
+			</item>
+			<item>
+				one thirty two
+				<tag> <![CDATA[  <d 132> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and thirty two
+				<tag> <![CDATA[  <d 132> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and thirty two
+				<tag> <![CDATA[  <d 132> ]]>
+				</tag>
+			</item>
+			<item>
+				one thirty three
+				<tag> <![CDATA[  <d 133> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and thirty three
+				<tag> <![CDATA[  <d 133> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and thirty three
+				<tag> <![CDATA[  <d 133> ]]>
+				</tag>
+			</item>
+			<item>
+				one thirty four
+				<tag> <![CDATA[  <d 134> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and thirty four
+				<tag> <![CDATA[  <d 134> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and thirty four
+				<tag> <![CDATA[  <d 134> ]]>
+				</tag>
+			</item>
+			<item>
+				one thirty five
+				<tag> <![CDATA[  <d 135> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and thirty five
+				<tag> <![CDATA[  <d 135> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and thirty five
+				<tag> <![CDATA[  <d 135> ]]>
+				</tag>
+			</item>
+			<item>
+				one thirty six
+				<tag> <![CDATA[  <d 136> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and thirty six
+				<tag> <![CDATA[  <d 136> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and thirty six
+				<tag> <![CDATA[  <d 136> ]]>
+				</tag>
+			</item>
+			<item>
+				one thirty seven
+				<tag> <![CDATA[  <d 137> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and thirty seven
+				<tag> <![CDATA[  <d 137> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and thirty seven
+				<tag> <![CDATA[  <d 137> ]]>
+				</tag>
+			</item>
+			<item>
+				one thirty eight
+				<tag> <![CDATA[  <d 138> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and thirty eight
+				<tag> <![CDATA[  <d 138> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and thirty eight
+				<tag> <![CDATA[  <d 138> ]]>
+				</tag>
+			</item>
+			<item>
+				one thirty nine
+				<tag> <![CDATA[  <d 139> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and thirty nine
+				<tag> <![CDATA[  <d 139> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and thirty nine
+				<tag> <![CDATA[  <d 139> ]]>
+				</tag>
+			</item>
+		</one-of>
+	</rule>
+</grammar>
