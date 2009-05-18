@@ -256,7 +256,7 @@
         </prompt>
         <prompt cond="null!=pain">
             <emphasis>Pain Level:</emphasis><break/>
-            <value expr="pain"/>
+	    <value expr="pain"/><break/>
         </prompt>
     </block>
     <block cond="null==temperature||null==pulse||null==systolic||null==glucose||null==pain">
