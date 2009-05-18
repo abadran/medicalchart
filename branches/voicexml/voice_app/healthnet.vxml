@@ -1,11 +1,6 @@
 <?xml version="1.0" ?>
 <vxml version="2.1">
 
-<!-- *************************************************************** -->
-<!-- * Turn on all universal grammars. The predefined universal    * -->
-<!-- * grammars are help, exit, cancel, and goback.                * -->
-<!-- *************************************************************** -->
-
 <property name="universals" value="all" />
 
 <help>I'm sorry. There's no help available here.</help>
@@ -33,6 +28,10 @@
             <item>main menu</item>
             <item>add more</item>
             <item>more</item>
+            <item>back</item>
+            <item>go back</item>
+            <item>next</item>
+            <item>next measurement</item>
         </one-of>
     </rule>
   </grammar>
@@ -137,6 +136,10 @@
 		<nomatch count="2"><prompt>I'm sorry I'm still unable to get your diastolic blood pressure. Please say you diastolic blood pressure. For example, say <emphasis>150</emphasis>.</prompt></nomatch>
 		<nomatch count="3"><prompt>I will connect you to a customer service representative who will be able to assist you.</prompt></nomatch>
 	</field>
+	<prompt cond="null!=systolic &amp;&amp; null!=diastolic">
+		We have your blood pressure as <value expr="systolic"/> <sub alias="over">/</sub> <value expr="diastolic"/>.
+		You can say a new value or go back.
+	</prompt>	
 	<filled mode="all">
 		<if cond="Number(s) &lt; Number(d)">
 			<clear namelist="pressure" />
