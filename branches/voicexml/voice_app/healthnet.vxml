@@ -342,9 +342,9 @@
     <choice next="#pulse"    accept="approximate">heart</choice>
     <choice next="#pulse"    accept="approximate">pulse</choice>
     <choice next="#pressure" accept="approximate">blood pressure</choice>
-    <choice next="#glucose"  accept="approximate">glucose</choice>
+    <choice next="#glucose"                      >glucose level</choice>
     <choice next="#glucose"  accept="approximate">sugar</choice>
-    <choice next="#pain"     accept="approximate">pain</choice>
+    <choice next="#pain"                         >pain level</choice>
     <choice next="#review"                       >review</choice>
     <choice next="#submit"                       >submit</choice>
     <noinput count="1"><prompt>I'm sorry, I didn't hear anything. Please say a reading, like <emphasis>temperature</emphasis> or <emphasis>heart rate</emphasis></prompt></noinput>
