@@ -304,116 +304,1110 @@
 				<tag> <![CDATA[  <t 99.9> ]]> </tag> 
 			</item>
 			<item>
-				a hundred <tag> <![CDATA[  <t 100> ]]> </tag>
+				a hundred
+				<tag> <![CDATA[  <t 100> ]]>
+				</tag>
 			</item>
 			<item>
-				one hundred <tag> <![CDATA[  <t 100> ]]> </tag>
+				a hundred point one
+				<tag> <![CDATA[  <t 100.1> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred point two
+				<tag> <![CDATA[  <t 100.2> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred point three
+				<tag> <![CDATA[  <t 100.3> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred point four
+				<tag> <![CDATA[  <t 100.4> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred point five
+				<tag> <![CDATA[  <t 100.5> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred point six
+				<tag> <![CDATA[  <t 100.6> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred point seven
+				<tag> <![CDATA[  <t 100.7> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred point eight
+				<tag> <![CDATA[  <t 100.8> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred point nine
+				<tag> <![CDATA[  <t 100.9> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred
+				<tag> <![CDATA[  <t 100> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred point one
+				<tag> <![CDATA[  <t 100.1> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred point two
+				<tag> <![CDATA[  <t 100.2> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred point three
+				<tag> <![CDATA[  <t 100.3> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred point four
+				<tag> <![CDATA[  <t 100.4> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred point five
+				<tag> <![CDATA[  <t 100.5> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred point six
+				<tag> <![CDATA[  <t 100.6> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred point seven
+				<tag> <![CDATA[  <t 100.7> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred point eight
+				<tag> <![CDATA[  <t 100.8> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred point nine
+				<tag> <![CDATA[  <t 100.9> ]]>
+				</tag>
 			</item>
 			<item>
 				a hundred and one
-				<tag> <![CDATA[  <g 101> ]]>
+				<tag> <![CDATA[  <t 101> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and one point one
+				<tag> <![CDATA[  <t 101.1> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and one point two
+				<tag> <![CDATA[  <t 101.2> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and one point three
+				<tag> <![CDATA[  <t 101.3> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and one point four
+				<tag> <![CDATA[  <t 101.4> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and one point five
+				<tag> <![CDATA[  <t 101.5> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and one point six
+				<tag> <![CDATA[  <t 101.6> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and one point seven
+				<tag> <![CDATA[  <t 101.7> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and one point eight
+				<tag> <![CDATA[  <t 101.8> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and one point nine
+				<tag> <![CDATA[  <t 101.9> ]]>
 				</tag>
 			</item>
 			<item>
 				one hundred and one
-				<tag> <![CDATA[  <g 101> ]]>
+				<tag> <![CDATA[  <t 101> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and one point one
+				<tag> <![CDATA[  <t 101.1> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and one point two
+				<tag> <![CDATA[  <t 101.2> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and one point three
+				<tag> <![CDATA[  <t 101.3> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and one point four
+				<tag> <![CDATA[  <t 101.4> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and one point five
+				<tag> <![CDATA[  <t 101.5> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and one point six
+				<tag> <![CDATA[  <t 101.6> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and one point seven
+				<tag> <![CDATA[  <t 101.7> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and one point eight
+				<tag> <![CDATA[  <t 101.8> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and one point nine
+				<tag> <![CDATA[  <t 101.9> ]]>
 				</tag>
 			</item>
 			<item>
 				a hundred and two
-				<tag> <![CDATA[  <g 102> ]]>
+				<tag> <![CDATA[  <t 102> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and two point one
+				<tag> <![CDATA[  <t 102.1> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and two point two
+				<tag> <![CDATA[  <t 102.2> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and two point three
+				<tag> <![CDATA[  <t 102.3> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and two point four
+				<tag> <![CDATA[  <t 102.4> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and two point five
+				<tag> <![CDATA[  <t 102.5> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and two point six
+				<tag> <![CDATA[  <t 102.6> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and two point seven
+				<tag> <![CDATA[  <t 102.7> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and two point eight
+				<tag> <![CDATA[  <t 102.8> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and two point nine
+				<tag> <![CDATA[  <t 102.9> ]]>
 				</tag>
 			</item>
 			<item>
 				one hundred and two
-				<tag> <![CDATA[  <g 102> ]]>
+				<tag> <![CDATA[  <t 102> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and two point one
+				<tag> <![CDATA[  <t 102.1> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and two point two
+				<tag> <![CDATA[  <t 102.2> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and two point three
+				<tag> <![CDATA[  <t 102.3> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and two point four
+				<tag> <![CDATA[  <t 102.4> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and two point five
+				<tag> <![CDATA[  <t 102.5> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and two point six
+				<tag> <![CDATA[  <t 102.6> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and two point seven
+				<tag> <![CDATA[  <t 102.7> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and two point eight
+				<tag> <![CDATA[  <t 102.8> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and two point nine
+				<tag> <![CDATA[  <t 102.9> ]]>
 				</tag>
 			</item>
 			<item>
 				a hundred and three
-				<tag> <![CDATA[  <g 103> ]]>
+				<tag> <![CDATA[  <t 103> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and three point one
+				<tag> <![CDATA[  <t 103.1> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and three point two
+				<tag> <![CDATA[  <t 103.2> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and three point three
+				<tag> <![CDATA[  <t 103.3> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and three point four
+				<tag> <![CDATA[  <t 103.4> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and three point five
+				<tag> <![CDATA[  <t 103.5> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and three point six
+				<tag> <![CDATA[  <t 103.6> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and three point seven
+				<tag> <![CDATA[  <t 103.7> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and three point eight
+				<tag> <![CDATA[  <t 103.8> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and three point nine
+				<tag> <![CDATA[  <t 103.9> ]]>
 				</tag>
 			</item>
 			<item>
 				one hundred and three
-				<tag> <![CDATA[  <g 103> ]]>
+				<tag> <![CDATA[  <t 103> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and three point one
+				<tag> <![CDATA[  <t 103.1> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and three point two
+				<tag> <![CDATA[  <t 103.2> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and three point three
+				<tag> <![CDATA[  <t 103.3> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and three point four
+				<tag> <![CDATA[  <t 103.4> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and three point five
+				<tag> <![CDATA[  <t 103.5> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and three point six
+				<tag> <![CDATA[  <t 103.6> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and three point seven
+				<tag> <![CDATA[  <t 103.7> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and three point eight
+				<tag> <![CDATA[  <t 103.8> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and three point nine
+				<tag> <![CDATA[  <t 103.9> ]]>
 				</tag>
 			</item>
 			<item>
 				a hundred and four
-				<tag> <![CDATA[  <g 104> ]]>
+				<tag> <![CDATA[  <t 104> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and four point one
+				<tag> <![CDATA[  <t 104.1> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and four point two
+				<tag> <![CDATA[  <t 104.2> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and four point three
+				<tag> <![CDATA[  <t 104.3> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and four point four
+				<tag> <![CDATA[  <t 104.4> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and four point five
+				<tag> <![CDATA[  <t 104.5> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and four point six
+				<tag> <![CDATA[  <t 104.6> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and four point seven
+				<tag> <![CDATA[  <t 104.7> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and four point eight
+				<tag> <![CDATA[  <t 104.8> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and four point nine
+				<tag> <![CDATA[  <t 104.9> ]]>
 				</tag>
 			</item>
 			<item>
 				one hundred and four
-				<tag> <![CDATA[  <g 104> ]]>
+				<tag> <![CDATA[  <t 104> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and four point one
+				<tag> <![CDATA[  <t 104.1> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and four point two
+				<tag> <![CDATA[  <t 104.2> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and four point three
+				<tag> <![CDATA[  <t 104.3> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and four point four
+				<tag> <![CDATA[  <t 104.4> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and four point five
+				<tag> <![CDATA[  <t 104.5> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and four point six
+				<tag> <![CDATA[  <t 104.6> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and four point seven
+				<tag> <![CDATA[  <t 104.7> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and four point eight
+				<tag> <![CDATA[  <t 104.8> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and four point nine
+				<tag> <![CDATA[  <t 104.9> ]]>
 				</tag>
 			</item>
 			<item>
 				a hundred and five
-				<tag> <![CDATA[  <g 105> ]]>
+				<tag> <![CDATA[  <t 105> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and five point one
+				<tag> <![CDATA[  <t 105.1> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and five point two
+				<tag> <![CDATA[  <t 105.2> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and five point three
+				<tag> <![CDATA[  <t 105.3> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and five point four
+				<tag> <![CDATA[  <t 105.4> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and five point five
+				<tag> <![CDATA[  <t 105.5> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and five point six
+				<tag> <![CDATA[  <t 105.6> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and five point seven
+				<tag> <![CDATA[  <t 105.7> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and five point eight
+				<tag> <![CDATA[  <t 105.8> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and five point nine
+				<tag> <![CDATA[  <t 105.9> ]]>
 				</tag>
 			</item>
 			<item>
 				one hundred and five
-				<tag> <![CDATA[  <g 105> ]]>
+				<tag> <![CDATA[  <t 105> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and five point one
+				<tag> <![CDATA[  <t 105.1> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and five point two
+				<tag> <![CDATA[  <t 105.2> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and five point three
+				<tag> <![CDATA[  <t 105.3> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and five point four
+				<tag> <![CDATA[  <t 105.4> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and five point five
+				<tag> <![CDATA[  <t 105.5> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and five point six
+				<tag> <![CDATA[  <t 105.6> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and five point seven
+				<tag> <![CDATA[  <t 105.7> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and five point eight
+				<tag> <![CDATA[  <t 105.8> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and five point nine
+				<tag> <![CDATA[  <t 105.9> ]]>
 				</tag>
 			</item>
 			<item>
 				a hundred and six
-				<tag> <![CDATA[  <g 106> ]]>
+				<tag> <![CDATA[  <t 106> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and six point one
+				<tag> <![CDATA[  <t 106.1> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and six point two
+				<tag> <![CDATA[  <t 106.2> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and six point three
+				<tag> <![CDATA[  <t 106.3> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and six point four
+				<tag> <![CDATA[  <t 106.4> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and six point five
+				<tag> <![CDATA[  <t 106.5> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and six point six
+				<tag> <![CDATA[  <t 106.6> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and six point seven
+				<tag> <![CDATA[  <t 106.7> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and six point eight
+				<tag> <![CDATA[  <t 106.8> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and six point nine
+				<tag> <![CDATA[  <t 106.9> ]]>
 				</tag>
 			</item>
 			<item>
 				one hundred and six
-				<tag> <![CDATA[  <g 106> ]]>
+				<tag> <![CDATA[  <t 106> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and six point one
+				<tag> <![CDATA[  <t 106.1> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and six point two
+				<tag> <![CDATA[  <t 106.2> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and six point three
+				<tag> <![CDATA[  <t 106.3> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and six point four
+				<tag> <![CDATA[  <t 106.4> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and six point five
+				<tag> <![CDATA[  <t 106.5> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and six point six
+				<tag> <![CDATA[  <t 106.6> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and six point seven
+				<tag> <![CDATA[  <t 106.7> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and six point eight
+				<tag> <![CDATA[  <t 106.8> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and six point nine
+				<tag> <![CDATA[  <t 106.9> ]]>
 				</tag>
 			</item>
 			<item>
 				a hundred and seven
-				<tag> <![CDATA[  <g 107> ]]>
+				<tag> <![CDATA[  <t 107> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and seven point one
+				<tag> <![CDATA[  <t 107.1> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and seven point two
+				<tag> <![CDATA[  <t 107.2> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and seven point three
+				<tag> <![CDATA[  <t 107.3> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and seven point four
+				<tag> <![CDATA[  <t 107.4> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and seven point five
+				<tag> <![CDATA[  <t 107.5> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and seven point six
+				<tag> <![CDATA[  <t 107.6> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and seven point seven
+				<tag> <![CDATA[  <t 107.7> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and seven point eight
+				<tag> <![CDATA[  <t 107.8> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and seven point nine
+				<tag> <![CDATA[  <t 107.9> ]]>
 				</tag>
 			</item>
 			<item>
 				one hundred and seven
-				<tag> <![CDATA[  <g 107> ]]>
+				<tag> <![CDATA[  <t 107> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and seven point one
+				<tag> <![CDATA[  <t 107.1> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and seven point two
+				<tag> <![CDATA[  <t 107.2> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and seven point three
+				<tag> <![CDATA[  <t 107.3> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and seven point four
+				<tag> <![CDATA[  <t 107.4> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and seven point five
+				<tag> <![CDATA[  <t 107.5> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and seven point six
+				<tag> <![CDATA[  <t 107.6> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and seven point seven
+				<tag> <![CDATA[  <t 107.7> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and seven point eight
+				<tag> <![CDATA[  <t 107.8> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and seven point nine
+				<tag> <![CDATA[  <t 107.9> ]]>
 				</tag>
 			</item>
 			<item>
 				a hundred and eight
-				<tag> <![CDATA[  <g 108> ]]>
+				<tag> <![CDATA[  <t 108> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and eight point one
+				<tag> <![CDATA[  <t 108.1> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and eight point two
+				<tag> <![CDATA[  <t 108.2> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and eight point three
+				<tag> <![CDATA[  <t 108.3> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and eight point four
+				<tag> <![CDATA[  <t 108.4> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and eight point five
+				<tag> <![CDATA[  <t 108.5> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and eight point six
+				<tag> <![CDATA[  <t 108.6> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and eight point seven
+				<tag> <![CDATA[  <t 108.7> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and eight point eight
+				<tag> <![CDATA[  <t 108.8> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and eight point nine
+				<tag> <![CDATA[  <t 108.9> ]]>
 				</tag>
 			</item>
 			<item>
 				one hundred and eight
-				<tag> <![CDATA[  <g 108> ]]>
+				<tag> <![CDATA[  <t 108> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and eight point one
+				<tag> <![CDATA[  <t 108.1> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and eight point two
+				<tag> <![CDATA[  <t 108.2> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and eight point three
+				<tag> <![CDATA[  <t 108.3> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and eight point four
+				<tag> <![CDATA[  <t 108.4> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and eight point five
+				<tag> <![CDATA[  <t 108.5> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and eight point six
+				<tag> <![CDATA[  <t 108.6> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and eight point seven
+				<tag> <![CDATA[  <t 108.7> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and eight point eight
+				<tag> <![CDATA[  <t 108.8> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and eight point nine
+				<tag> <![CDATA[  <t 108.9> ]]>
 				</tag>
 			</item>
 			<item>
 				a hundred and nine
-				<tag> <![CDATA[  <g 109> ]]>
+				<tag> <![CDATA[  <t 109> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and nine point one
+				<tag> <![CDATA[  <t 109.1> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and nine point two
+				<tag> <![CDATA[  <t 109.2> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and nine point three
+				<tag> <![CDATA[  <t 109.3> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and nine point four
+				<tag> <![CDATA[  <t 109.4> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and nine point five
+				<tag> <![CDATA[  <t 109.5> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and nine point six
+				<tag> <![CDATA[  <t 109.6> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and nine point seven
+				<tag> <![CDATA[  <t 109.7> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and nine point eight
+				<tag> <![CDATA[  <t 109.8> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and nine point nine
+				<tag> <![CDATA[  <t 109.9> ]]>
 				</tag>
 			</item>
 			<item>
 				one hundred and nine
-				<tag> <![CDATA[  <g 109> ]]>
+				<tag> <![CDATA[  <t 109> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and nine point one
+				<tag> <![CDATA[  <t 109.1> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and nine point two
+				<tag> <![CDATA[  <t 109.2> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and nine point three
+				<tag> <![CDATA[  <t 109.3> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and nine point four
+				<tag> <![CDATA[  <t 109.4> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and nine point five
+				<tag> <![CDATA[  <t 109.5> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and nine point six
+				<tag> <![CDATA[  <t 109.6> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and nine point seven
+				<tag> <![CDATA[  <t 109.7> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and nine point eight
+				<tag> <![CDATA[  <t 109.8> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and nine point nine
+				<tag> <![CDATA[  <t 109.9> ]]>
 				</tag>
 			</item>
 			<item>
 				one ten
-				<tag> <![CDATA[  <g 110> ]]>
+				<tag> <![CDATA[  <t 110> ]]>
 				</tag>
 			</item>
 			<item>
 				a hundred and ten
-				<tag> <![CDATA[  <g 110> ]]>
+				<tag> <![CDATA[  <t 110> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and ten point one
+				<tag> <![CDATA[  <t 110.1> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and ten point two
+				<tag> <![CDATA[  <t 110.2> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and ten point three
+				<tag> <![CDATA[  <t 110.3> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and ten point four
+				<tag> <![CDATA[  <t 110.4> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and ten point five
+				<tag> <![CDATA[  <t 110.5> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and ten point six
+				<tag> <![CDATA[  <t 110.6> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and ten point seven
+				<tag> <![CDATA[  <t 110.7> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and ten point eight
+				<tag> <![CDATA[  <t 110.8> ]]>
+				</tag>
+			</item>
+			<item>
+				a hundred and ten point nine
+				<tag> <![CDATA[  <t 110.9> ]]>
 				</tag>
 			</item>
 			<item>
 				one hundred and ten
-				<tag> <![CDATA[  <g 110> ]]>
+				<tag> <![CDATA[  <t 110> ]]>
 				</tag>
-			</item>			
+			</item>
+			<item>
+				one hundred and ten point one
+				<tag> <![CDATA[  <t 110.1> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and ten point two
+				<tag> <![CDATA[  <t 110.2> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and ten point three
+				<tag> <![CDATA[  <t 110.3> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and ten point four
+				<tag> <![CDATA[  <t 110.4> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and ten point five
+				<tag> <![CDATA[  <t 110.5> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and ten point six
+				<tag> <![CDATA[  <t 110.6> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and ten point seven
+				<tag> <![CDATA[  <t 110.7> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and ten point eight
+				<tag> <![CDATA[  <t 110.8> ]]>
+				</tag>
+			</item>
+			<item>
+				one hundred and ten point nine
+				<tag> <![CDATA[  <t 110.9> ]]>
+				</tag>
+			</item>
 		</one-of>
 	</rule>
 </grammar>
