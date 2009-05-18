@@ -158,7 +158,7 @@
 <form id="glucose">
     <field name="g">
     <grammar src="grammar/glucose.grxml" type="application/grammar-xml"/>
-	<prompt bargein="true" cond="null==glucose">Glucose<break strength="medium"/>What's your glucose level?</prompt>
+	<prompt bargein="true" cond="null==glucose">Glucose Level<break strength="medium"/>What's your glucose level?</prompt>
 	<noinput count="1"><prompt>Please say your glucose level.</prompt></noinput>
 	<noinput count="2"><prompt>Please say your glucose level as it appears on your device. For example, say <emphasis>75</emphasis>. You can also say help, or press 0 at any time to be connected to an operator.</prompt></noinput>
 	<noinput count="3"><prompt>I'm sorry, I will connect you to a customer service representative who will be able to assist you.</prompt></noinput>
