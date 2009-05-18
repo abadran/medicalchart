@@ -143,13 +143,14 @@
 	<filled mode="all">
 		<if cond="Number(s) &lt; Number(d)">
 			<clear namelist="pressure" />
-			<prompt>I'm sorry, the systolic pressure may not be smaller than the diastolic pressure. Redirecting to main menu.</prompt>
+			<prompt>I'm sorry, the systolic pressure may not be smaller than the diastolic pressure. Let's try that again.</prompt>
+		<goto next="#pressure"/>
 		<else/>
 			<assign name="systolic" expr="Number(s)"/>
 			<assign name="diastolic" expr="Number(d)"/>
 			<prompt><value expr="systolic"/> <sub alias="over">/</sub> <value expr="diastolic"/>, ok.</prompt>
-		</if>
 		<goto next="#mainMenu"/>
+		</if>
 	</filled>
 </form>
 
