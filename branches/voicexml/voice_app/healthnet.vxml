@@ -339,7 +339,6 @@
         <emphasis>glucose level</emphasis><break/>
     </prompt>
     <prompt cond="null==pain">
-        <emphasis level="reduced">or</emphasis><break/>
         <emphasis>pain level</emphasis><break/>
     </prompt>
     <!-- When some fields have been entered by not all of them -->
