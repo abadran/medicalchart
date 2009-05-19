@@ -52,8 +52,8 @@
 <!-- GREETING -->
 <form id="greeting">
     <block>
-        <prompt>
-            Welcome to your Health Net! Please make sure you have your vital statistics handy before we continue. For help at any time, say <emphasis>help</emphasis>.
+	    <prompt><break/>
+		    Welcome to your Health Net! <break/>Please make sure you have your vital statistics handy before we continue. For help at any time, say <emphasis>help</emphasis>.
             <break strength="weak"/>
         </prompt>
         <goto next="#mainMenu" />
@@ -115,7 +115,7 @@
 
 <!-- BLOOD PRESSURE FORM -->
 <form id="pressure">
-	<block><prompt>Pressure<break/></prompt></block>
+	<block><prompt>Blood Pressure<break/></prompt></block>
 	<field name="s">
 		<grammar src="grammar/systolic.grxml" type="application/grammar-xml"/>
 		<prompt bargein="true">What's your systolic blood pressure?</prompt>
@@ -262,7 +262,7 @@
     </block>
     <block cond="null==temperature||null==pulse||null==systolic||null==glucose||null==pain">
         <prompt>
-            We don't yet have data for:<break/>
+		No data has yet been entered for:<break/>
         </prompt>
         <prompt cond="null==temperature">
             <emphasis>Temperature,</emphasis><break/>
@@ -282,20 +282,20 @@
     </block>
     <field name="choice">
 	<prompt>
-            <emphasis>Submit</emphasis> the data or <emphasis>add more</emphasis>?
+		Would you like to <emphasis>Submit</emphasis> this data? <break stength="weak"/>or <emphasis>go back</emphasis>?
         </prompt>
 	<grammar type="application/grammar-xml" mode="voice" root="choice_rule">
 		<rule id="choice_rule">
 			<one-of>
 				<item>submit  <tag><![CDATA[  <choice "submit">  ]]>  </tag>   </item>
-				<item>add more<tag><![CDATA[  <choice "add more">  ]]>  </tag>   </item>
+				<item>go back<tag><![CDATA[  <choice "go back">  ]]>  </tag>   </item>
 			</one-of>
 		</rule>
 	</grammar>
 	<filled>
 		<if cond="choice=='submit'">
 			<goto next="#submit"/>
-		<elseif cond="choice=='add more'"/>
+		<elseif cond="choice=='go back'"/>
 			<goto next="#mainMenu"/>
 		<else/>
 			<prompt>Selection is unknown at this point</prompt>
@@ -309,15 +309,19 @@
 <menu id="mainMenu">
     <!-- When all fields are null -->
     <prompt cond="null==temperature &amp;&amp; null==pulse &amp;&amp; null==systolic &amp;&amp; null==glucose &amp;&amp; null==pain">
-        <emphasis level="reduced">Please select a measurement from the following options:</emphasis><break/>
+        <emphasis level="reduced">Please select a measurement from the following</emphasis><break/>
     </prompt>
-    <!-- When at least a field has been filled -->
-    <prompt cond="null!=temperature || null!=pulse || null!=systolic || null!=glucose || null!=pain">
+    <!-- When at least 2 entries are still empty then we say "choose from" -->
+    <prompt cond="((null==temperature &amp;&amp; null==pulse) &amp;&amp; (null!=systolic || null!=glucose || null!=pain)) || ((null==temperature &amp;&amp; null==systolic) &amp;&amp; (null!=pulse || null!=glucose || null!=pain)) || ((null==temperature &amp;&amp; null==glucose) &amp;&amp; (null!=systolic || null!=pulse || null!=pain)) || ((null==temperature &amp;&amp; null==pain) &amp;&amp; (null!=systolic || null!=pulse || null!=glucose)) || ((null==pulse &amp;&amp; null==systolic) &amp;&amp; (null!=temperature || null!=glucose || null!=pain)) || ((null==pulse &amp;&amp; null==glucose) &amp;&amp; (null!=temperature || null!=systolic || null!=pain)) || ((null==pulse &amp;&amp; null==pain) &amp;&amp; (null!=temperature || null!=systolic || null!=glucose)) || ((null==systolic &amp;&amp; null==glucose) &amp;&amp; (null!=temperature || null!=pulse || null!=pain)) || ((null==systolic &amp;&amp; null==pain) &amp;&amp; (null!=temperature || null!=pulse || null!=glucose)) || ((null==glucose &amp;&amp; null==pain) &amp;&amp; (null!=temperature || null!=pulse || null!=systolic))">
         <emphasis level="reduced">Next measurement. Choose from</emphasis><break/>
     </prompt>
+	<prompt cond="((null==temperature) &amp;&amp; (null!=pulse &amp;&amp; null!=systolic &amp;&amp; null!=glucose &amp;&amp; null!=pain)) || ((null==pulse) &amp;&amp; (null!=temperature &amp;&amp; null!=systolic &amp;&amp; null!=glucose &amp;&amp; null!=pain)) || ((null==systolic) &amp;&amp; (null!=temperature &amp;&amp; null!=pulse &amp;&amp; null!=glucose &amp;&amp; null!=pain)) || ((null==glucose) &amp;&amp; (null!=temperature &amp;&amp; null!=pulse &amp;&amp; null!=systolic &amp;&amp; null!=pain)) || ((null==pain) &amp;&amp; (null!=temperature &amp;&amp; null!=pulse &amp;&amp; null!=systolic &amp;&amp; null!=glucose))">
+		<emphasis level="reduced">You are almost done, the only remaining reading is:</emphasis><break/>
+	</prompt>
+
     <!-- When all fields have been filled -->
     <prompt cond="null!=temperature &amp;&amp; null!=pulse &amp;&amp; null!=systolic &amp;&amp; null!=glucose &amp;&amp; null!=pain">
-        Do you want to <emphasis>review</emphasis> your data or <emphasis>submit</emphasis>?
+	    Would you like to <emphasis>review</emphasis> your data<break strength="weak"/> or <emphasis>submit it</emphasis>?
     </prompt>
     <prompt cond="null==temperature">
         <emphasis>temperature</emphasis><break/>
@@ -335,12 +339,12 @@
         <emphasis level="reduced">or</emphasis><break/>
         <emphasis>pain level</emphasis><break/>
     </prompt>
-    <!-- When at least a field has been filled -->
-    <prompt cond="null!=temperature || null!=pulse || null!=systolic || null!=glucose || null!=pain">
-        You can also say <emphasis>review</emphasis>, or <emphasis>submit</emphasis> at any time.<break/>
+    <!-- When some fields have been entered by not all of them -->
+    <prompt cond="(null!=temperature || null!=pulse || null!=systolic || null!=glucose || null!=pain) &amp;&amp; !(null!=temperature &amp;&amp; null!=pulse &amp;&amp; null!=systolic &amp;&amp; null!=glucose &amp;&amp; null!=pain)">
+        You can also say <emphasis>review</emphasis> or <emphasis>submit</emphasis> at any time.<break/>
     </prompt>
     <choice next="#temperature"                  >temperature</choice>
-    <choice next="#pulse"    accept="approximate">heart</choice>
+    <choice next="#pulse"                        >heart rate</choice>
     <choice next="#pulse"    accept="approximate">pulse</choice>
     <choice next="#pressure" accept="approximate">blood pressure</choice>
     <choice next="#glucose"                      >glucose level</choice>
