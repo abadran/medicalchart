@@ -11,11 +11,30 @@
 }
 -->
 </style>
+<script type="text/javascript">
+var current_image = 1
+
+function wrong_letter()
+{
+	if (current_image < 11) {
+		current_image += 1;
+		var image_tag = document.getElementById('state_image');
+		image_tag.src = "images/" + current_image.toString() + ".png";
+	}
+}
+</script>
 </head>
 
 <body>
 <div align="center" class="page_title">Hangman
 </div>
-<p align="center"><img src="hangman_complete_small.png" width="480" height="480"/></p>
+<p align="center"><img src="images/1.png" name="state_image" width="480" height="480" id="state_image"/></p>
+<div align="center">
+<form id="test_form" name="test_form" method="post" action="">
+  <label>
+    <input name="test" type="button" id="test" onclick="wrong_letter()" value="Hang Me!!!" />
+  </label>
+</form>
+</div>
 </body>
 </html>
