@@ -1,0 +1,256 @@
+<html>
+<head>
+<!--  
+	WAMI TicTacToe example
+	http://wami.csail.mit.edu/ 
+	
+	Note that this example makes use both incremental
+	recognition results and the "aggregator", which
+	extracts "semantic" information using tags
+	in the grammar like {[cell=5]}.  This becomes
+	a key/value pair in the "aggregate": kv.cell=5.
+ -->
+
+<title> WAMI TicTacToe </title>
+
+<!-- This script adds WAMI capabilities to your web page.   It must be included.
+   Register for your own developer key at http://wami.csail.mit.edu/ and modify the url below -->
+<script src="http://wami.csail.mit.edu/portal/wami.js?devKey=712afda40564589b0d1b16e3b5a24540"> </script>
+
+<script>
+var myWamiApp; 
+function onLoad() {
+	//div in which to put the audio button, see below
+  	var audioDiv = document.getElementById('AudioContainer'); 
+
+
+var jsgf = 
+	"#JSGF V1.0;\n" +
+	"grammar TicTacToe;\n" +
+	"public <top> = (<command> [and])+ ;\n" +
+	"<command>    = <put> | <erase> ;\n" +
+	"<put>        = put {[command=put]} (<mark>+ (in ([<cellname>] <cell>)+))+ ;\n" +
+	"<erase>      = erase {[command=erase]} ([<cellname>] <cell>)+ ;\n" +
+	"<mark>       = an x {[mark=x]} | an oh {[mark=o]} ;\n" +
+	"<cellname>   = cell | box | square ;\n" +
+	"<cell>       = one	{[cell=1]}\n" +
+	"             | two	  {[cell=2]}\n" +
+	"             | three   {[cell=3]}\n" +
+	"             | four    {[cell=4]}\n" +
+	"             | five    {[cell=5]}\n" +
+	"             | six     {[cell=6]}\n" +
+	"             | seven   {[cell=7]}\n" +
+	"             | eight   {[cell=8]}\n" +
+	"             | nine    {[cell=9]}\n" +
+	"              ;";
+var grammar = {"language" : "en-us", "grammar" : jsgf };
+
+	//Audio options.
+  	//pollForAudio: must be true for speech synthesis to work. 
+  	//If your application doesn't use speech synthesis, set this to false.
+  	var audioOptions = {"pollForAudio" : false};
+
+  	//Configuration options.
+  	//sendIncrementalResults: if true, you'll receive "incremental" recognition results as the user speaks
+  	//sendAggregates: if true, you'll receive a "semantic" interpretation.  Your grammar
+  	//must follow a specific format.
+  	var configOptions = {"sendIncrementalResults" : true, "sendAggregates" : true};
+  
+  	//Handlers are functions which are called for various events:
+  	var handlers = {"onReady" : onWamiReady, //WAMI is loaded and ready
+		  		    "onRecognitionResult" : onWamiRecognitionResult,  //Speech recognition result available
+		  		    "onError" : onWamiError,  //An error occurred
+		  		    "onTimeout" : onWamiTimeout}; //WAMI timed out due to inactivity
+    //Create your WAMI application with the settings and grammar we just created
+  	myWamiApp = new WamiApp(audioDiv, handlers, "json", audioOptions, configOptions, grammar);
+}
+
+function onWamiReady() {
+	//hide the "Loading" message
+	var loadingDiv = document.getElementById("LoadingDiv");
+	loadingDiv.parentNode.removeChild(loadingDiv);
+}
+
+//called when a speech recognition result is received
+//since we set sendIncrementalResults to false, this will only
+//be called after the user finishes speaking.  Otherwise,
+//it will be called many times as the user speaks.
+function onWamiRecognitionResult(result) {
+	if(!result.hyps || result.hyps.length == 0 || !result.hyps[0].aggregate) {
+		return;
+	}
+
+	//key value pairs
+	var aggregate = result.hyps[0].aggregate;
+	var kvs = aggregate.kvs;
+
+	if(aggregate.partial) {
+		if(kvs.command != null && kvs.command == "erase") {
+			highlightMark("eraser");
+		}
+
+		if(kvs.mark != null) {
+			highlightMark(kvs.mark);
+		}
+
+		if(kvs.cell != null && kvs.cell != "here") {
+			highlightCell(kvs.cell);
+		}
+	} else {
+		if(kvs.cell == "here") {
+			kvs.cell = (selectedCell != -1) ? selectedCell : null;
+		}
+
+		//actually put an X or O on the grid
+		if(kvs.command == "put" && kvs.mark != null && kvs.cell != null) {
+			markInCell(kvs.mark, kvs.cell);
+		} else if(kvs.command == "erase" && kvs.cell != null) {
+			eraseCell(kvs.cell);
+		}
+
+		unHighlightCells();
+		unHighlightMark();
+	}
+}
+
+//called when an error occurs
+function onWamiError(type, message) {
+	alert("WAMI error: type  = " + type + ", message = " + message);	
+}
+
+//called when your WAMI session times out due to
+//in activity.
+function onWamiTimeout() {
+	alert("WAMI timed out.  Hit reload to start over");
+}
+
+
+function highlightCell(cellNum) {
+	unHighlightCells();
+	var cellId = "cell_" + cellNum;
+
+	var cellE = document.getElementById(cellId);
+	cellE.setAttribute("class", "GridCellHighlighted");
+}
+
+function unHighlightCells() {
+	for(var i = 1; i <= 9; i++) {
+		var cellId = "cell_" + i;
+		var cellE = document.getElementById(cellId);
+		cellE.setAttribute("class", "GridCell");
+	}
+}
+
+function highlightMark(mark) {
+	unHighlightMark();
+	var img = document.createElement("img");
+	img.src = "images/" + mark + ".png";
+	
+	var markE = document.getElementById("Mark");
+	markE.appendChild(img);
+}
+
+function unHighlightMark() {
+	clearChildren(document.getElementById("Mark"));	
+}
+
+function markInCell(mark, cell) {   
+   var img = document.createElement("img");
+   img.src = "images/" + mark + ".png";
+   
+   var cellId = "cell_" + cell;
+   var cellE = document.getElementById(cellId);
+
+   clearChildren(cellE);
+   cellE.appendChild(img);
+}
+
+function eraseCell(cell) {
+   var cellId = "cell_" + cell;
+   var cellE = document.getElementById(cellId);
+   clearChildren(cellE);
+   cellE.appendChild(document.createTextNode(cell));
+}
+
+//utility function
+function clearChildren(e) {
+  while(e.childNodes && e.childNodes.length > 0) {
+    e.removeChild(e.childNodes[0]);
+  }
+}
+
+</script>
+
+<!--  CSS styles used in the game -->
+<style type="text/css">
+.GridCell {
+	text-align: center;
+	width: 85px;
+	height: 85px;
+	border: solid;	
+	border-color: black;
+}
+
+.GridCellHighlighted {
+	text-align: center;
+	width: 85px;
+	height: 85px;
+	border: solid;	
+	border-color: black;
+	background-color: aqua;
+}
+</style>
+
+</head>
+
+<body onload="onLoad()">
+<!--  This is the numbered tic-tac-toe grid.  It is a 3x3 table, where each 
+     cell starts off with a number in it.  Notice the use of the class "GridCell"
+     for table cell.   -->
+<div id="MainDiv">
+<center>
+	<div id="AudioContainer"></div> <!--  Audio button will be put here -->
+	<table id="Grid">
+		<tr>
+			<td class="GridCell" id="cell_1">1</td>
+			<td class="GridCell" id="cell_2">2</td>
+			<td class="GridCell" id="cell_3">3</td>
+		</tr>
+		<tr>
+			<td class="GridCell" id="cell_4">4</td>
+			<td class="GridCell" id="cell_5">5</td>
+			<td class="GridCell" id="cell_6">6</td>
+		</tr>		
+		<tr>
+			<td class="GridCell" id="cell_7">7</td>
+			<td class="GridCell" id="cell_8">8</td>
+			<td class="GridCell" id="cell_9">9</td>
+		</tr>				
+	</table>
+	
+	<!--   This is the holding area where we show the mark which has
+	     been mentioned in the command "put an x ..." -->
+	<br />
+	<table>
+	<tr><td id="Mark"></td></tr>
+	</table>	
+	
+	<div id="Instructions">
+	Play Tic-Tac-Toe!  Try saying: <br />
+	<b> Put an X in square 5 </b> <br />
+	<b> Put an O in cell 3 </b> <br />
+	<b> Erase square 5 </b>
+	<br /> <br />
+	Powered by the <a href="http://wami.csail.mit.edu/">WAMI Javascript API</a>
+	</div>
+</center>
+
+</div>
+<div id="LoadingDiv" style="position:absolute;left:45%;top:160px;z-index:1;background-color:blue;visibility:visible;width:100px;height:100px" >
+<center>
+<br><br>
+Loading!
+</center>
+</div>
+</body>
+</html>

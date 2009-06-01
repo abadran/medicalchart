@@ -1,0 +1,272 @@
+<html>
+<head>
+
+<title> Hangman </title>
+
+<!-- This script adds WAMI capabilities to your web page.   It includes your developer key -->
+<script src="http://wami.csail.mit.edu/portal/wami.js?devKey=9e0ad087096c535c0714e085f28bf738"> </script>
+
+<script>
+
+    var myWamiApp;
+    var guessChoices = new Array("international","fantastic","saturday","chicken","superlative","infinitesimal");
+    var usedLetters = "";
+    var guessWord;
+    
+    function onLoad() {
+        //div in which to put the audio button, see below
+        var audioDiv = document.getElementById('AudioContainer'); 
+    
+        var jsgf = "#JSGF V1.0;\n" +
+                   "grammar Hangman;\n" +
+                   "public <top> = <letter> | <command>;\n" +
+                   "<letter> = aye {[letter=a]} | bee {[letter=b]} | sea {[letter=c]}\n" +
+                   "         | dee {[letter=d]} | ee {[letter=e]} | eff {[letter=f]}\n" +
+                   "         | gee {[letter=g]} | age {[letter=h]} | jay {[letter=j]}\n" +
+                   "         | kay {[letter=k]} | ell {[letter=l]} | emm {[letter=m]}\n" +
+                   "         | enn {[letter=n]} | oh {[letter=o]} | pee {[letter=p]}\n" +
+                   "         | queue {[letter=q]} | are {[letter=r]} | ess {[letter=s]}\n" +
+                   "         | tea {[letter=t]} | you {[letter=u]} | vee {[letter=v]}\n" +
+                   "         | double you {[letter=w]} | ecks {[letter=x]} | why {[letter=y]}\n" +
+                   "         | zee {[letter=z]} | zed {[letter=z]};\n" +
+                   "<command> = no {[command=back]} | wrong {[command=back]} | back {[command=back]}\n" +
+                   "          | start over {[command=neword]} | new word {[command=neword]}\n" + 
+                   "           ;";
+    
+        var grammar = {"language" : "en-us", "grammar" : jsgf };
+    
+        //Audio options.
+        //pollForAudio: must be true for speech synthesis to work. 
+        //If your application doesn't use speech synthesis, set this to false.
+        var audioOptions = {"pollForAudio" : false};
+    
+        //Configuration options.
+        //sendIncrementalResults: if true, you'll receive "incremental" recognition results as the user speaks
+        //sendAggregates: if true, you'll receive a "semantic" interpretation.  Your grammar
+        //must follow a specific format.
+        var configOptions = {"sendIncrementalResults" : false, "sendAggregates" : true};
+      
+        //Handlers are functions which are called for various events:
+        var handlers = {"onReady" : onWamiReady, //WAMI is loaded and ready
+                        "onRecognitionResult" : onWamiRecognitionResult,  //Speech recognition result available
+                        "onError" : onWamiError,  //An error occurred
+                        "onTimeout" : onWamiTimeout}; //WAMI timed out due to inactivity
+        //Create your WAMI application with the settings and grammar we just created
+        myWamiApp = new WamiApp(audioDiv, handlers, "json", audioOptions, configOptions, grammar);
+    }
+
+    function onWamiReady() {
+        //hide the "Loading" message
+        var loadingDiv = document.getElementById("LoadingDiv");
+        loadingDiv.parentNode.removeChild(loadingDiv);
+        startOver();
+    }
+
+    //called when a speech recognition result is received
+    //since we set sendIncrementalResults to false, this will only
+    //be called after the user finishes speaking.  Otherwise,
+    //it will be called many times as the user speaks.
+    function onWamiRecognitionResult(result) {
+        if(!result.hyps || result.hyps.length == 0 || !result.hyps[0].aggregate) {
+            return;
+        }
+    
+        //key value pairs
+        var aggregate = result.hyps[0].aggregate;
+        var kvs = aggregate.kvs;
+    
+        // process command or letter
+        if (kvs.command != null) {
+            processCommand(kvs.command);
+        } else if (kvs.letter != null) {
+            processLetter(kvs.letter);
+        }
+    }
+
+    //called when an error occurs
+    function onWamiError(type, message) {
+        alert("WAMI error: type  = " + type + ", message = " + message);    
+    }
+    
+    //called when your WAMI session times out due to
+    //in activity.
+    function onWamiTimeout() {
+        alert("WAMI timed out.  Hit reload to start over");
+    }
+    
+    // pick a new word, reset values, start with a clean slate
+    function startOver() {
+        guessWord = guessChoices[Math.round((guessChoices.length - 1)*Math.random())].toLowerCase();
+        usedLetters = "";
+        refreshDisplay();
+    }
+    
+    //called when a new word is picked and after a letter is obtained from the user
+    function refreshDisplay() {
+        var pattern = new Array(guessWord.length);
+        var hangmanWordEl = document.getElementById("HangmanWord");
+        var usedLettersEl = document.getElementById("UsedLetters");
+        var i,c;
+        var charIndex;
+        var guessCount;
+        
+        for (i=0;i<guessWord.length;i++) {
+            pattern[i] = "_";
+        }
+        
+        for (u=0;u<usedLetters.length;u++) {
+            for (g=0;g<guessWord.length;g++) {
+                if (guessWord.charAt(g)==usedLetters.charAt(u)) {
+                    pattern[g] = guessWord.charAt(g);
+                    guessCount++;
+                }
+            }
+        }
+        
+        clearChildren(hangmanWordEl);
+        hangmanWordEl.appendChild(document.createTextNode(pattern.join(' ')));
+        
+        clearChildren(usedLettersEl);
+        usedLettersEl.appendChild(document.createTextNode(usedLetters.split('')));
+
+        if (guessCount == guessWord.length) {
+            winner();
+        }
+    }
+    
+    //called when user issues a command, like "new word" or "back"
+    function processCommand(command) {
+        if ("neword"==command) {
+            startOver();
+        } else if ("back"==command) {
+            clearLastInput();
+        }
+    }
+
+    //called when user enters or says a letter
+    function processLetter(letter) {
+        if (-1 == usedLetters.indexOf(letter)) {
+            usedLetters = usedLetters.concat(letter);
+            if (-1 == guessWord.indexOf(letter)) {
+                wrongLetter();
+            }
+            refreshDisplay();
+        }
+    }
+    
+    //called when user enters a letter
+    function processTypedLetter(e) {
+        var k;
+        var isLetter;
+        var letter;
+        document.all ? k = e.keyCode : k = e.which;
+        isLetter = ((k > 64 && k < 91) || (k > 96 && k < 123) || k == 8);
+        if (isLetter && (letter=document.getElementById("TypedLetter").value).length > 0) {
+            processLetter(letter.toLowerCase());
+        }
+    }
+    
+    //called when user wants to cheat or the voice recognition didn't work
+    function clearLastInput() {
+    }
+    
+    
+    //called when the user did not quess a letter
+    function wrongLetter() {
+    }
+    
+    //called when user guesses all letters in a word
+    function winner() {
+    }
+    
+    //utility function
+    function clearChildren(e) {
+        while(e.childNodes && e.childNodes.length > 0) {
+            e.removeChild(e.childNodes[0]);
+        }
+    }
+    
+
+</script>
+
+<!--  CSS styles used in the game -->
+<style type="text/css">
+
+#HangmanWord {
+    font-size: 4em;
+}
+
+#LoadingDiv {
+    position:absolute;
+    left:45%;
+    top:300px;
+    z-index:1;
+    background-color:blue;
+    visibility:visible;
+    width:100px;
+    height:100px;
+}
+
+#PoweredByWAMI {
+    font-size: x-small;
+}
+
+#TypedLetter {
+    font-size: x-large;
+    height: 30px;
+    width: 30px;
+}
+
+.wrong {
+    color: red;
+    font-weight: bold;
+}
+
+.neword {
+    color: green;
+    font-weight: bold;
+}
+
+
+
+</style>
+</head>
+
+<body onload="onLoad()">
+
+<div id="MainDiv">
+<center>
+    <div id="AudioContainer"></div> <!--  Audio button will be put here -->
+
+    <div id="HangmanImage"></div>
+    
+    <div id="HangmanWord"></div>
+    
+    <div id="Instructions"> 
+    Guess the letters that make up the word above. <br/>
+    If we get the letter wrong, you can say <span class="wrong">wrong</span> or <span class="wrong">back</span>. <br/>
+    To start over, say <span class="neword">start over</span> or <span class="neword">new word</span>.<br/>
+    You may also type a letter below if the voice recognition doesn't work:<br>
+    <input id="TypedLetter" type="text" size="1" maxlength="1" onkeyup="processTypedLetter(event)"></input>
+    </div>
+    
+    <div id="UsedLetters"></div>
+    
+    <br/>
+    
+    <div id="PoweredByWAMI">
+        Powered by the <a href="http://wami.csail.mit.edu/">WAMI Javascript API</a>
+    </div>
+    
+</center>
+</div>
+
+<div id="LoadingDiv">
+    <center>
+    <br><br>
+    Loading!
+    </center>
+</div>
+
+</body>
+</html>
