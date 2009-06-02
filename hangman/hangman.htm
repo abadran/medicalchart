@@ -59,6 +59,8 @@
         //hide the "Loading" message
         var loadingDiv = document.getElementById("LoadingDiv");
         loadingDiv.parentNode.removeChild(loadingDiv);
+	var imageDiv = document.getElementById("ImageDiv");
+	imageDiv.style.visibility = 'visible'
         startOver();
     }
 
@@ -170,9 +172,14 @@
     function clearLastInput() {
     }
     
-    
+    var current_image = 1
     //called when the user did not quess a letter
     function wrongLetter() {
+		if (current_image < 11) {
+			current_image += 1;
+			var image_tag = document.getElementById('state_image');
+			image_tag.src = "images/" + current_image.toString() + ".png";
+		}
     }
     
     //called when user guesses all letters in a word
@@ -227,12 +234,20 @@
     font-weight: bold;
 }
 
-
+.page_title {
+	font-family: Comic Sans MS, cursive;
+	font-size: 48px;
+}
 
 </style>
 </head>
 
 <body onload="onLoad()">
+
+<div align="center" class="page_title">Hangman</div>
+<div id="ImageDiv" style="visibility:hidden">
+<p align="center"><img src="images/1.png" name="state_image" width="480" height="480" id="state_image"/></p>
+</div>
 
 <div id="MainDiv">
 <center>
