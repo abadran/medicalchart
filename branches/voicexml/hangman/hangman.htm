@@ -199,8 +199,17 @@
 <!--  CSS styles used in the game -->
 <style type="text/css">
 
+#PageTitle {
+	font-family: Comic Sans MS, cursive;
+	font-size: 48px;
+}
+
 #HangmanWord {
     font-size: 4em;
+}
+
+#HangmanImage {
+   visibility:hidden;
 }
 
 #LoadingDiv {
@@ -234,54 +243,46 @@
     font-weight: bold;
 }
 
-.page_title {
-	font-family: Comic Sans MS, cursive;
-	font-size: 48px;
-}
-
 </style>
 </head>
 
 <body onload="onLoad()">
 
-<div align="center" class="page_title">Hangman</div>
-<div id="ImageDiv" style="visibility:hidden">
-<p align="center"><img id="state_image" src="images/1.png" name="state_image"/></p>
-</div>
+   <div id="MainDiv">
+      <center>
+          <div id="PageTitle">Hangman</div>
 
-<div id="MainDiv">
-<center>
-    <div id="AudioContainer"></div> <!--  Audio button will be put here -->
+          <div id="HangmanImage"><img id="state_image" src="images/1.png" name="state_image"/></div>
+          
+          <div id="HangmanWord"></div>
+          
+          <div id="AudioContainer"></div> <!--  Audio button will be put here -->
+          
+          <div id="Instructions"> 
+          Guess the letters that make up the word above. <br/>
+          If we get the letter wrong, you can say <span class="wrong">wrong</span> or <span class="wrong">back</span>. <br/>
+          To start over, say <span class="neword">start over</span> or <span class="neword">new word</span>.<br/>
+          You may also type a letter below if the voice recognition doesn't work:<br>
+          <input id="TypedLetter" type="text" size="1" maxlength="1" onkeyup="processTypedLetter(event)"></input>
+          </div>
+          
+          <div id="UsedLetters"></div>
+          
+          <br/>
+          
+          <div id="PoweredByWAMI">
+              Powered by the <a href="http://wami.csail.mit.edu/">WAMI Javascript API</a>
+          </div>
+          
+      </center>
+   </div>
 
-    <div id="HangmanImage"></div>
-    
-    <div id="HangmanWord"></div>
-    
-    <div id="Instructions"> 
-    Guess the letters that make up the word above. <br/>
-    If we get the letter wrong, you can say <span class="wrong">wrong</span> or <span class="wrong">back</span>. <br/>
-    To start over, say <span class="neword">start over</span> or <span class="neword">new word</span>.<br/>
-    You may also type a letter below if the voice recognition doesn't work:<br>
-    <input id="TypedLetter" type="text" size="1" maxlength="1" onkeyup="processTypedLetter(event)"></input>
-    </div>
-    
-    <div id="UsedLetters"></div>
-    
-    <br/>
-    
-    <div id="PoweredByWAMI">
-        Powered by the <a href="http://wami.csail.mit.edu/">WAMI Javascript API</a>
-    </div>
-    
-</center>
-</div>
-
-<div id="LoadingDiv">
-    <center>
-    <br><br>
-    Loading!
-    </center>
-</div>
+   <div id="LoadingDiv">
+       <center>
+       <br><br>
+       Loading! If I don't disappear in a few seconds, you need to install Java!
+       </center>
+   </div>
 
 </body>
 </html>
