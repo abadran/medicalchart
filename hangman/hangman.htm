@@ -147,11 +147,19 @@
 
     //called when user enters or says a letter
     function processLetter(letter) {
+	var button_name = "button_" + letter;
+	var button = document.getElementById(button_name)
         if (-1 == usedLetters.indexOf(letter)) {
             usedLetters = usedLetters.concat(letter);
             if (-1 == guessWord.indexOf(letter)) {
                 wrongLetter();
-            }
+		button.style.backgroundColor = "red"
+		button.style.color = "white"
+	    } else {
+		button.style.backgroundColor = "lawngreen"
+		button.style.color = "black"
+	    }
+	    button.disabled = "disabled"
             refreshDisplay();
         }
     }
@@ -260,6 +268,38 @@
           <p>
           
           <div id="AudioContainer"></div> <!--  Audio button will be put here -->
+	<div id="keyboard">
+		<p>
+			<button id="button_q" type="button" onmousedown="processLetter('q')">Q</button>
+			<button id="button_w" type="button" onmousedown="processLetter('w')">W</button>
+			<button id="button_e" type="button" onmousedown="processLetter('e')">E</button>
+			<button id="button_r" type="button" onmousedown="processLetter('r')">R</button>
+			<button id="button_t" type="button" onmousedown="processLetter('t')">T</button>
+			<button id="button_y" type="button" onmousedown="processLetter('y')">Y</button>
+			<button id="button_u" type="button" onmousedown="processLetter('u')">U</button>
+			<button id="button_i" type="button" onmousedown="processLetter('i')">I</button>
+			<button id="button_o" type="button" onmousedown="processLetter('o')">O</button>
+			<button id="button_p" type="button" onmousedown="processLetter('p')">P</button>
+			<br/>
+			<button id="button_a" type="button" onmousedown="processLetter('a')">A</button>
+			<button id="button_s" type="button" onmousedown="processLetter('s')">S</button>
+			<button id="button_d" type="button" onmousedown="processLetter('d')">D</button>
+			<button id="button_f" type="button" onmousedown="processLetter('f')">F</button>
+			<button id="button_g" type="button" onmousedown="processLetter('g')">G</button>
+			<button id="button_h" type="button" onmousedown="processLetter('h')">H</button>
+			<button id="button_j" type="button" onmousedown="processLetter('j')">J</button>
+			<button id="button_k" type="button" onmousedown="processLetter('k')">K</button>
+			<button id="button_l" type="button" onmousedown="processLetter('l')">L</button>
+			<br/>
+			<button id="button_z" type="button" onmousedown="processLetter('z')">Z</button>
+			<button id="button_x" type="button" onmousedown="processLetter('x')">X</button>
+			<button id="button_c" type="button" onmousedown="processLetter('c')">C</button>
+			<button id="button_v" type="button" onmousedown="processLetter('v')">V</button>
+			<button id="button_b" type="button" onmousedown="processLetter('b')">B</button>
+			<button id="button_n" type="button" onmousedown="processLetter('n')">N</button>
+			<button id="button_m" type="button" onmousedown="processLetter('m')">M</button>
+		</p>
+	</div>
           
           <div id="Instructions"> 
           Guess the letters that make up the word above. <br/>
