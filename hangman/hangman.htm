@@ -112,7 +112,6 @@
         var usedLettersEl = document.getElementById("UsedLetters");
         var i,c;
         var charIndex;
-        var guessCount;
         
         for (i=0;i<guessWord.length;i++) {
             pattern[i] = "_";
@@ -122,7 +121,6 @@
             for (g=0;g<guessWord.length;g++) {
                 if (guessWord.charAt(g)==usedLetters.charAt(u)) {
                     pattern[g] = guessWord.charAt(g);
-                    guessCount++;
                 }
             }
         }
@@ -200,7 +198,6 @@
 
     //called when user guesses all letters in a word
     function winner() {
-            alert("Winner!!!");
 	    var image_tag = document.getElementById('state_image');
 	    image_tag.src = "images/free.png";
     }
