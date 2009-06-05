@@ -12,7 +12,7 @@
     var guessChoices = new Array("international","fantastic","saturday","chicken","superlative","infinitesimal");
     var usedLetters = "";
     var guessWord;
-    var current_image = 1
+    var current_image = 1;
     
     function onLoad() {
         //div in which to put the audio button, see below
@@ -60,10 +60,11 @@
         //hide the "Loading" message
         var loadingDiv = document.getElementById("LoadingDiv");
         loadingDiv.parentNode.removeChild(loadingDiv);
-	     var imageDiv = document.getElementById("HangmanImage");
-	     imageDiv.style.visibility = 'visible'
+	var imageDiv = document.getElementById("HangmanImage");
+	imageDiv.style.visibility = 'visible'
 	myWamiApp.speak("Welcome to the game of Hang man.");
         startOver();
+        setfocus('TypedLetter');
     }
 
     //called when a speech recognition result is received
@@ -71,6 +72,7 @@
     //be called after the user finishes speaking.  Otherwise,
     //it will be called many times as the user speaks.
     function onWamiRecognitionResult(result) {
+        setfocus('TypedLetter');
         if(!result.hyps || result.hyps.length == 0 || !result.hyps[0].aggregate) {
             return;
         }
@@ -131,6 +133,8 @@
         if (pattern.join('')==guessWord) {
             winner();
         }
+
+        setfocus('TypedLetter');
     }
     
     //called when user issues a command, like "new word" or "back"
@@ -165,6 +169,7 @@
         if (isLetter && (letter=document.getElementById("TypedLetter").value).length > 0) {
             processLetter(letter.toLowerCase());
         }
+        document.getElementById("TypedLetter").value = "";
     }
     
     //called when user wants to cheat or the voice recognition didn't work
@@ -202,13 +207,17 @@
 	    image_tag.src = "images/free.png";
     }
     
-    //utility function
+    //utility functions
     function clearChildren(e) {
         while(e.childNodes && e.childNodes.length > 0) {
             e.removeChild(e.childNodes[0]);
         }
     }
-    
+
+    function setfocus(a_field_id) {
+        document.getElementById("TypedLetter").focus();
+    }
+
 
 </script>
 
@@ -241,9 +250,9 @@
 }
 
 #TypedLetter {
-    font-size: x-large;
-    height: 30px;
-    width: 30px;
+    position:absolute; 
+    top:-10em;
+    left:-10em;
 }
 
 .wrong {
@@ -274,42 +283,41 @@
           <div id="AudioContainer"></div> <!--  Audio button will be put here -->
 	<div id="keyboard">
 		<p>
-			<button id="button_q" type="button" onmousedown="processLetter('q')">Q</button>
-			<button id="button_w" type="button" onmousedown="processLetter('w')">W</button>
-			<button id="button_e" type="button" onmousedown="processLetter('e')">E</button>
-			<button id="button_r" type="button" onmousedown="processLetter('r')">R</button>
-			<button id="button_t" type="button" onmousedown="processLetter('t')">T</button>
-			<button id="button_y" type="button" onmousedown="processLetter('y')">Y</button>
-			<button id="button_u" type="button" onmousedown="processLetter('u')">U</button>
-			<button id="button_i" type="button" onmousedown="processLetter('i')">I</button>
-			<button id="button_o" type="button" onmousedown="processLetter('o')">O</button>
-			<button id="button_p" type="button" onmousedown="processLetter('p')">P</button>
+			<button id="button_q" type="button" onmousedown="processLetter('q')"><b>Q</b><br>Quebec</button>
+			<button id="button_w" type="button" onmousedown="processLetter('w')"><b>W</b><br>Whiskey</button>
+			<button id="button_e" type="button" onmousedown="processLetter('e')"><b>E</b><br>Echo</button>
+			<button id="button_r" type="button" onmousedown="processLetter('r')"><b>R</b><br>Romeo</button>
+			<button id="button_t" type="button" onmousedown="processLetter('t')"><b>T</b><br>Tango</button>
+			<button id="button_y" type="button" onmousedown="processLetter('y')"><b>Y</b><br>Yankee</button>
+			<button id="button_u" type="button" onmousedown="processLetter('u')"><b>U</b><br>Uniform</button>
+			<button id="button_i" type="button" onmousedown="processLetter('i')"><b>I</b><br>India</button>
+			<button id="button_o" type="button" onmousedown="processLetter('o')"><b>O</b><br>Oscar</button>
+			<button id="button_p" type="button" onmousedown="processLetter('p')"><b>P</b><br>Papa</button>
 			<br/>
-			<button id="button_a" type="button" onmousedown="processLetter('a')">A</button>
-			<button id="button_s" type="button" onmousedown="processLetter('s')">S</button>
-			<button id="button_d" type="button" onmousedown="processLetter('d')">D</button>
-			<button id="button_f" type="button" onmousedown="processLetter('f')">F</button>
-			<button id="button_g" type="button" onmousedown="processLetter('g')">G</button>
-			<button id="button_h" type="button" onmousedown="processLetter('h')">H</button>
-			<button id="button_j" type="button" onmousedown="processLetter('j')">J</button>
-			<button id="button_k" type="button" onmousedown="processLetter('k')">K</button>
-			<button id="button_l" type="button" onmousedown="processLetter('l')">L</button>
+			<button id="button_a" type="button" onmousedown="processLetter('a')"><b>A</b><br>Alpha</button>
+			<button id="button_s" type="button" onmousedown="processLetter('s')"><b>S</b><br>Sierra</button>
+			<button id="button_d" type="button" onmousedown="processLetter('d')"><b>D</b><br>Delta</button>
+			<button id="button_f" type="button" onmousedown="processLetter('f')"><b>F</b><br>Foxtrot</button>
+			<button id="button_g" type="button" onmousedown="processLetter('g')"><b>G</b><br>Golf</button>
+			<button id="button_h" type="button" onmousedown="processLetter('h')"><b>H</b><br>Hotel</button>
+			<button id="button_j" type="button" onmousedown="processLetter('j')"><b>J</b><br>Juliet</button>
+			<button id="button_k" type="button" onmousedown="processLetter('k')"><b>K</b><br>Kilo</button>
+			<button id="button_l" type="button" onmousedown="processLetter('l')"><b>L</b><br>Lima</button>
 			<br/>
-			<button id="button_z" type="button" onmousedown="processLetter('z')">Z</button>
-			<button id="button_x" type="button" onmousedown="processLetter('x')">X</button>
-			<button id="button_c" type="button" onmousedown="processLetter('c')">C</button>
-			<button id="button_v" type="button" onmousedown="processLetter('v')">V</button>
-			<button id="button_b" type="button" onmousedown="processLetter('b')">B</button>
-			<button id="button_n" type="button" onmousedown="processLetter('n')">N</button>
-			<button id="button_m" type="button" onmousedown="processLetter('m')">M</button>
+			<button id="button_z" type="button" onmousedown="processLetter('z')"><b>Z</b><br>Zulu</button>
+			<button id="button_x" type="button" onmousedown="processLetter('x')"><b>X</b><br>Xray</button>
+			<button id="button_c" type="button" onmousedown="processLetter('c')"><b>C</b><br>Charlie</button>
+			<button id="button_v" type="button" onmousedown="processLetter('v')"><b>V</b><br>Victor</button>
+			<button id="button_b" type="button" onmousedown="processLetter('b')"><b>B</b><br>Bravo</button>
+			<button id="button_n" type="button" onmousedown="processLetter('n')"><b>N</b><br>November</button>
+			<button id="button_m" type="button" onmousedown="processLetter('m')"><b>M</b><br>Mike</button>
 		</p>
 	</div>
           
           <div id="Instructions"> 
-          Guess the letters that make up the word above. <br/>
+          Guess the letters by <b>saying</b>, <b>clicking</b>, or <b>typing</b> them. <br/>
           If we get the letter wrong, you can say <span class="wrong">wrong</span> or <span class="wrong">back</span>. <br/>
           To start over, say <span class="neword">start over</span> or <span class="neword">new word</span>.<br/>
-          You may also type a letter below if the voice recognition doesn't work:<br>
           <input id="TypedLetter" type="text" size="1" maxlength="1" onkeyup="processTypedLetter(event)"></input>
           </div>
           
