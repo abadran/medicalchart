@@ -38,7 +38,7 @@
         //Audio options.
         //pollForAudio: must be true for speech synthesis to work. 
         //If your application doesn't use speech synthesis, set this to false.
-        var audioOptions = {"pollForAudio" : false};
+        var audioOptions = {"width": "200", "height": "50", "pollForAudio" : true};
     
         //Configuration options.
         //sendIncrementalResults: if true, you'll receive "incremental" recognition results as the user speaks
@@ -61,6 +61,7 @@
         loadingDiv.parentNode.removeChild(loadingDiv);
 	     var imageDiv = document.getElementById("HangmanImage");
 	     imageDiv.style.visibility = 'visible'
+	myWamiApp.speak("Welcome to the game of Hang man.");
         startOver();
     }
 
@@ -128,8 +129,8 @@
         clearChildren(hangmanWordEl);
         hangmanWordEl.appendChild(document.createTextNode(pattern.join(' ')));
         
-        clearChildren(usedLettersEl);
-        usedLettersEl.appendChild(document.createTextNode(usedLetters.split('')));
+        //clearChildren(usedLettersEl);
+        //usedLettersEl.appendChild(document.createTextNode(usedLetters.split('')));
 
         if (guessCount == guessWord.length) {
             winner();
@@ -232,10 +233,6 @@
     height:100px;
 }
 
-#PoweredByWAMI {
-    font-size: x-small;
-}
-
 #TypedLetter {
     font-size: x-large;
     height: 30px;
@@ -312,10 +309,6 @@
           <div id="UsedLetters"></div>
           
           <br/>
-          
-          <div id="PoweredByWAMI">
-              Powered by the <a href="http://wami.csail.mit.edu/">WAMI Javascript API</a>
-          </div>
           
       </center>
    </div>
