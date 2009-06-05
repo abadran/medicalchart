@@ -12,6 +12,7 @@
     var guessChoices = new Array("international","fantastic","saturday","chicken","superlative","infinitesimal");
     var usedLetters = "";
     var guessWord;
+    var current_image = 1
     
     function onLoad() {
         //div in which to put the audio button, see below
@@ -129,10 +130,7 @@
         clearChildren(hangmanWordEl);
         hangmanWordEl.appendChild(document.createTextNode(pattern.join(' ')));
         
-        //clearChildren(usedLettersEl);
-        //usedLettersEl.appendChild(document.createTextNode(usedLetters.split('')));
-
-        if (guessCount == guessWord.length) {
+        if (pattern.join('')==guessWord) {
             winner();
         }
     }
@@ -148,19 +146,13 @@
 
     //called when user enters or says a letter
     function processLetter(letter) {
-	var button_name = "button_" + letter;
-	var button = document.getElementById(button_name)
         if (-1 == usedLetters.indexOf(letter)) {
             usedLetters = usedLetters.concat(letter);
             if (-1 == guessWord.indexOf(letter)) {
-                wrongLetter();
-		button.style.backgroundColor = "red"
-		button.style.color = "white"
+                wrongLetter(letter);
 	    } else {
-		button.style.backgroundColor = "lawngreen"
-		button.style.color = "black"
+                rightLetter(letter);
 	    }
-	    button.disabled = "disabled"
             refreshDisplay();
         }
     }
@@ -181,18 +173,34 @@
     function clearLastInput() {
     }
     
-    var current_image = 1
     //called when the user did not quess a letter
-    function wrongLetter() {
-		if (current_image < 11) {
-			current_image += 1;
-			var image_tag = document.getElementById('state_image');
-			image_tag.src = "images/" + current_image.toString() + ".png";
-		}
+    function wrongLetter(letter) {
+        // advance hangman image
+        if (current_image < 11) {
+	    current_image += 1;
+            var image_tag = document.getElementById('state_image');
+	    image_tag.src = "images/" + current_image.toString() + ".png";
+        }
+         
+        // turn off letter button
+	var button_name = "button_" + letter;
+	var button = document.getElementById(button_name);
+	button.style.backgroundColor = "red";
+	button.style.color = "white";
+    }
+
+    //called when user guesses a letter
+    function rightLetter(letter) {
+	var button_name = "button_" + letter;
+	var button = document.getElementById(button_name);
+        button.style.backgroundColor = "lawngreen";
+	button.style.color = "black";
     }
     
+
     //called when user guesses all letters in a word
     function winner() {
+            alert("Winner!!!");
 	    var image_tag = document.getElementById('state_image');
 	    image_tag.src = "images/free.png";
     }
@@ -318,7 +326,7 @@
    <div id="LoadingDiv">
        <center>
        <br><br>
-       Loading! If I don't disappear in a few seconds, you need to install Java!
+       Loading...
        </center>
    </div>
 
