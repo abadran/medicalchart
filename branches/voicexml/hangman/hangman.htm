@@ -85,7 +85,10 @@
         if (kvs.command != null) {
             processCommand(kvs.command);
         } else if (kvs.letter != null) {
-            processLetter(kvs.letter);
+		// when game is over current_image will be equal to 11.
+		if (current_image != 11) {
+			processLetter(kvs.letter);
+		}
         }
     }
 
@@ -104,6 +107,11 @@
     function startOver() {
         guessWord = guessChoices[Math.round((guessChoices.length - 1)*Math.random())].toLowerCase();
         usedLetters = "";
+        //var audio_container = document.getElementById("AudioContainer");
+	//audio_container.style.visibility = "visible";
+        //var keyboard = document.getElementById("keyboard");
+	//keyboard.style.visibility = "visible";
+	enable_all_keys();
         refreshDisplay();
     }
     
@@ -149,14 +157,18 @@
     //called when user enters or says a letter
     function processLetter(letter) {
         if (-1 == usedLetters.indexOf(letter)) {
+	    var button_name = "button_" + letter;
+	    var button = document.getElementById(button_name)
             usedLetters = usedLetters.concat(letter);
             if (-1 == guessWord.indexOf(letter)) {
                 wrongLetter(letter);
 	    } else {
                 rightLetter(letter);
 	    }
+	    button.disabled = "disabled"
             refreshDisplay();
         }
+
     }
     
     //called when user enters a letter
@@ -183,6 +195,9 @@
 	    current_image += 1;
             var image_tag = document.getElementById('state_image');
 	    image_tag.src = "images/" + current_image.toString() + ".png";
+	    if (current_image == 11) {
+		loser();
+	    }
         }
          
         // turn off letter button
@@ -207,6 +222,21 @@
 	    image_tag.src = "images/free.png";
     }
     
+    // called at the end when the user has exhausted all their trials.
+    function loser()
+    {
+	// These don't 'feel' right on the web page, too many changes.
+        //var audio_container = document.getElementById("AudioContainer");
+	//audio_container.style.visibility = "hidden";
+        //var keyboard = document.getElementById("keyboard");
+	//keyboard.style.visibility = "hidden";
+
+
+	//var audio_container = document.getElementById("AudioContainer");
+	//audio_container.style.visibility = "hidden";
+	disable_all_keys();
+	// probably bring up a "New Game" button.
+    }
     //utility functions
     function clearChildren(e) {
         while(e.childNodes && e.childNodes.length > 0) {
@@ -218,6 +248,120 @@
         document.getElementById("TypedLetter").focus();
     }
 
+    // called at startup to enable all the keys.
+    function enable_all_keys()
+    {
+	var button;
+	button = document.getElementById("button_a");
+	button.disabled = "";
+	button = document.getElementById("button_b");
+	button.disabled = "";
+	button = document.getElementById("button_c");
+	button.disabled = "";
+	button = document.getElementById("button_d");
+	button.disabled = "";
+	button = document.getElementById("button_e");
+	button.disabled = "";
+	button = document.getElementById("button_f");
+	button.disabled = "";
+	button = document.getElementById("button_g");
+	button.disabled = "";
+	button = document.getElementById("button_h");
+	button.disabled = "";
+	button = document.getElementById("button_i");
+	button.disabled = "";
+	button = document.getElementById("button_j");
+	button.disabled = "";
+	button = document.getElementById("button_k");
+	button.disabled = "";
+	button = document.getElementById("button_l");
+	button.disabled = "";
+	button = document.getElementById("button_m");
+	button.disabled = "";
+	button = document.getElementById("button_n");
+	button.disabled = "";
+	button = document.getElementById("button_o");
+	button.disabled = "";
+	button = document.getElementById("button_p");
+	button.disabled = "";
+	button = document.getElementById("button_q");
+	button.disabled = "";
+	button = document.getElementById("button_r");
+	button.disabled = "";
+	button = document.getElementById("button_s");
+	button.disabled = "";
+	button = document.getElementById("button_t");
+	button.disabled = "";
+	button = document.getElementById("button_u");
+	button.disabled = "";
+	button = document.getElementById("button_v");
+	button.disabled = "";
+	button = document.getElementById("button_w");
+	button.disabled = "";
+	button = document.getElementById("button_x");
+	button.disabled = "";
+	button = document.getElementById("button_y");
+	button.disabled = "";
+	button = document.getElementById("button_z");
+	button.disabled = "";
+    }
+
+    function disable_all_keys()
+    {
+	var button;
+	button = document.getElementById("button_a");
+	button.disabled = "disabled";
+	button = document.getElementById("button_b");
+	button.disabled = "disabled";
+	button = document.getElementById("button_c");
+	button.disabled = "disabled";
+	button = document.getElementById("button_d");
+	button.disabled = "disabled";
+	button = document.getElementById("button_e");
+	button.disabled = "disabled";
+	button = document.getElementById("button_f");
+	button.disabled = "disabled";
+	button = document.getElementById("button_g");
+	button.disabled = "disabled";
+	button = document.getElementById("button_h");
+	button.disabled = "disabled";
+	button = document.getElementById("button_i");
+	button.disabled = "disabled";
+	button = document.getElementById("button_j");
+	button.disabled = "disabled";
+	button = document.getElementById("button_k");
+	button.disabled = "disabled";
+	button = document.getElementById("button_l");
+	button.disabled = "disabled";
+	button = document.getElementById("button_m");
+	button.disabled = "disabled";
+	button = document.getElementById("button_n");
+	button.disabled = "disabled";
+	button = document.getElementById("button_o");
+	button.disabled = "disabled";
+	button = document.getElementById("button_p");
+	button.disabled = "disabled";
+	button = document.getElementById("button_q");
+	button.disabled = "disabled";
+	button = document.getElementById("button_r");
+	button.disabled = "disabled";
+	button = document.getElementById("button_s");
+	button.disabled = "disabled";
+	button = document.getElementById("button_t");
+	button.disabled = "disabled";
+	button = document.getElementById("button_u");
+	button.disabled = "disabled";
+	button = document.getElementById("button_v");
+	button.disabled = "disabled";
+	button = document.getElementById("button_w");
+	button.disabled = "disabled";
+	button = document.getElementById("button_x");
+	button.disabled = "disabled";
+	button = document.getElementById("button_y");
+	button.disabled = "disabled";
+	button = document.getElementById("button_z");
+	button.disabled = "disabled";
+    }
 
 </script>
 
