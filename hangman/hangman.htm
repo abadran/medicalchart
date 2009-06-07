@@ -220,6 +220,9 @@
     function winner() {
 	    var image_tag = document.getElementById('state_image');
 	    image_tag.src = "images/free.png";
+	    // enagage same character disable logic from the voice.
+	    current_image = 11;
+	    disable_all_keys();
     }
     
     // called at the end when the user has exhausted all their trials.
