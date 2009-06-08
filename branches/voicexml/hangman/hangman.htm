@@ -116,6 +116,9 @@
     function startOver() {
         guessWord = guessChoices[Math.round((guessChoices.length - 1)*Math.random())].toLowerCase();
         usedLetters = "";
+        current_image = 1;
+        var image_tag = document.getElementById('state_image');
+        image_tag.src = "images/" + current_image.toString() + ".png";        
 	    enable_all_keys();
         refreshDisplay();
     }
@@ -305,8 +308,7 @@
 <center>
 <div id="PageTitle">Hangman</div>
 
-<div id="HangmanImage"><img id="state_image" src="images/1.png"
-	name="state_image" /></div>
+<div id="HangmanImage"><img id="state_image" src="images/1.png" name="state_image" /></div>
 
 <div id="HangmanWord"></div>
 
@@ -372,14 +374,10 @@ Mike</button>
 </p>
 </div>
 
-<div id="Instructions">Guess the letters by <b>saying</b>, <b>clicking</b>,
-or <b>typing</b> them. <br />
-If we get the letter wrong, you can say <span class="wrong">wrong</span>
-or <span class="wrong">back</span>. <br />
-To start over, say <span class="neword">start over</span> or <span
-	class="neword">new word</span>.<br />
-<input id="TypedLetter" type="text" size="1" maxlength="1"
-	onkeyup="processTypedLetter(event)"></input></div>
+<div id="Instructions">Guess the letters by <b>saying</b>, <b>clicking</b>, or <b>typing</b> them. <br />
+If we get the letter wrong, you can say <span class="wrong">wrong</span> or <span class="wrong">back</span>. <br />
+To start over, say <span class="neword">start over</span> or <span class="neword">new word</span>.<br />
+<input id="TypedLetter" type="text" size="1" maxlength="1" onkeyup="processTypedLetter(event)"></input></div>
 
 <div id="UsedLetters"></div>
 
