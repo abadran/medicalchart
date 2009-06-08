@@ -1,14 +1,17 @@
 <html>
 <head>
 
-<title> Hangman </title>
+<title>Hangman</title>
 
 <!-- This script adds WAMI capabilities to your web page.   It includes your developer key -->
-<script src="http://wami.csail.mit.edu/portal/wami.js?devKey=9e0ad087096c535c0714e085f28bf738"> </script>
+<script
+	src="http://wami.csail.mit.edu/portal/wami.js?devKey=9e0ad087096c535c0714e085f28bf738"> </script>
 
-<script>
+<script><!--
 
     var myWamiApp;
+    var alphabet = new Array("a","b","c","d","e","f","g","h","i","j","k","l","m",
+    		                 "n","o","p","q","r","s","t","u","v","w","x","y","z");
     var guessChoices = new Array("international","fantastic","saturday","chicken","superlative","infinitesimal");
     var usedLetters = "";
     var guessWord;
@@ -60,9 +63,9 @@
         //hide the "Loading" message
         var loadingDiv = document.getElementById("LoadingDiv");
         loadingDiv.parentNode.removeChild(loadingDiv);
-	var imageDiv = document.getElementById("HangmanImage");
-	imageDiv.style.visibility = 'visible'
-	myWamiApp.speak("Welcome to the game of Hang man.");
+        var imageDiv = document.getElementById("HangmanImage");
+        imageDiv.style.visibility = 'visible'
+        myWamiApp.speak("Welcome to the game of Hang man.");
         startOver();
         setfocus('TypedLetter');
     }
@@ -85,10 +88,7 @@
         if (kvs.command != null) {
             processCommand(kvs.command);
         } else if (kvs.letter != null) {
-		// when game is over current_image will be equal to 11.
-		if (current_image != 11) {
 			processLetter(kvs.letter);
-		}
         }
     }
 
@@ -103,15 +103,20 @@
         alert("WAMI timed out.  Hit reload to start over");
     }
     
+    //called when user issues a command, like "new word" or "back"
+    function processCommand(command) {
+        if ("neword"==command) {
+            startOver();
+        } else if ("back"==command) {
+            clearLastInput();
+        }
+    }
+
     // pick a new word, reset values, start with a clean slate
     function startOver() {
         guessWord = guessChoices[Math.round((guessChoices.length - 1)*Math.random())].toLowerCase();
         usedLetters = "";
-        //var audio_container = document.getElementById("AudioContainer");
-	//audio_container.style.visibility = "visible";
-        //var keyboard = document.getElementById("keyboard");
-	//keyboard.style.visibility = "visible";
-	enable_all_keys();
+	    enable_all_keys();
         refreshDisplay();
     }
     
@@ -145,30 +150,21 @@
         setfocus('TypedLetter');
     }
     
-    //called when user issues a command, like "new word" or "back"
-    function processCommand(command) {
-        if ("neword"==command) {
-            startOver();
-        } else if ("back"==command) {
-            clearLastInput();
-        }
-    }
-
     //called when user enters or says a letter
     function processLetter(letter) {
-        if (-1 == usedLetters.indexOf(letter)) {
-	    var button_name = "button_" + letter;
-	    var button = document.getElementById(button_name)
-            usedLetters = usedLetters.concat(letter);
-            if (-1 == guessWord.indexOf(letter)) {
-                wrongLetter(letter);
-	    } else {
-                rightLetter(letter);
-	    }
-	    button.disabled = "disabled"
-            refreshDisplay();
+        if (-1 == usedLetters.indexOf(letter) && current_image < 11) {
+		    var button_name = "button_" + letter;
+		    var button = document.getElementById(button_name);
+		    button.disabled = "disabled";
+		    
+	        usedLetters = usedLetters.concat(letter);
+	        if (-1 == guessWord.indexOf(letter)) {
+	            wrongLetter(letter);
+	        } else {
+	            rightLetter(letter);
+	        }
+	        refreshDisplay();
         }
-
     }
     
     //called when user enters a letter
@@ -192,27 +188,27 @@
     function wrongLetter(letter) {
         // advance hangman image
         if (current_image < 11) {
-	    current_image += 1;
+        	current_image += 1;
             var image_tag = document.getElementById('state_image');
-	    image_tag.src = "images/" + current_image.toString() + ".png";
-	    if (current_image == 11) {
-		loser();
-	    }
+            image_tag.src = "images/" + current_image.toString() + ".png";
+            if (current_image == 11) {
+                loser();
+            }
         }
          
-        // turn off letter button
-	var button_name = "button_" + letter;
-	var button = document.getElementById(button_name);
-	button.style.backgroundColor = "red";
-	button.style.color = "white";
+       // turn off letter button
+	   var button_name = "button_" + letter;
+	   var button = document.getElementById(button_name);
+	   button.style.backgroundColor = "red";
+	   button.style.color = "white";
     }
 
     //called when user guesses a letter
     function rightLetter(letter) {
-	var button_name = "button_" + letter;
-	var button = document.getElementById(button_name);
+        var button_name = "button_" + letter;
+        var button = document.getElementById(button_name);
         button.style.backgroundColor = "lawngreen";
-	button.style.color = "black";
+        button.style.color = "black";
     }
     
 
@@ -220,26 +216,16 @@
     function winner() {
 	    var image_tag = document.getElementById('state_image');
 	    image_tag.src = "images/free.png";
-	    // enagage same character disable logic from the voice.
 	    current_image = 11;
 	    disable_all_keys();
     }
     
     // called at the end when the user has exhausted all their trials.
-    function loser()
-    {
-	// These don't 'feel' right on the web page, too many changes.
-        //var audio_container = document.getElementById("AudioContainer");
-	//audio_container.style.visibility = "hidden";
-        //var keyboard = document.getElementById("keyboard");
-	//keyboard.style.visibility = "hidden";
-
-
-	//var audio_container = document.getElementById("AudioContainer");
-	//audio_container.style.visibility = "hidden";
-	disable_all_keys();
-	// probably bring up a "New Game" button.
+    function loser() {
+       disable_all_keys();
+       // probably bring up a "New Game" button.
     }
+    
     //utility functions
     function clearChildren(e) {
         while(e.childNodes && e.childNodes.length > 0) {
@@ -252,235 +238,161 @@
     }
 
     // called at startup to enable all the keys.
-    function enable_all_keys()
-    {
-	var button;
-	button = document.getElementById("button_a");
-	button.disabled = "";
-	button = document.getElementById("button_b");
-	button.disabled = "";
-	button = document.getElementById("button_c");
-	button.disabled = "";
-	button = document.getElementById("button_d");
-	button.disabled = "";
-	button = document.getElementById("button_e");
-	button.disabled = "";
-	button = document.getElementById("button_f");
-	button.disabled = "";
-	button = document.getElementById("button_g");
-	button.disabled = "";
-	button = document.getElementById("button_h");
-	button.disabled = "";
-	button = document.getElementById("button_i");
-	button.disabled = "";
-	button = document.getElementById("button_j");
-	button.disabled = "";
-	button = document.getElementById("button_k");
-	button.disabled = "";
-	button = document.getElementById("button_l");
-	button.disabled = "";
-	button = document.getElementById("button_m");
-	button.disabled = "";
-	button = document.getElementById("button_n");
-	button.disabled = "";
-	button = document.getElementById("button_o");
-	button.disabled = "";
-	button = document.getElementById("button_p");
-	button.disabled = "";
-	button = document.getElementById("button_q");
-	button.disabled = "";
-	button = document.getElementById("button_r");
-	button.disabled = "";
-	button = document.getElementById("button_s");
-	button.disabled = "";
-	button = document.getElementById("button_t");
-	button.disabled = "";
-	button = document.getElementById("button_u");
-	button.disabled = "";
-	button = document.getElementById("button_v");
-	button.disabled = "";
-	button = document.getElementById("button_w");
-	button.disabled = "";
-	button = document.getElementById("button_x");
-	button.disabled = "";
-	button = document.getElementById("button_y");
-	button.disabled = "";
-	button = document.getElementById("button_z");
-	button.disabled = "";
+    function enable_all_keys() {
+    	alphabet.forEach(function(item) {
+        	var button = document.getElementById("button_"+item);  
+            button.disabled = "";
+            button.setAttribute("style", "");
+        });
     }
 
-    function disable_all_keys()
-    {
-	var button;
-	button = document.getElementById("button_a");
-	button.disabled = "disabled";
-	button = document.getElementById("button_b");
-	button.disabled = "disabled";
-	button = document.getElementById("button_c");
-	button.disabled = "disabled";
-	button = document.getElementById("button_d");
-	button.disabled = "disabled";
-	button = document.getElementById("button_e");
-	button.disabled = "disabled";
-	button = document.getElementById("button_f");
-	button.disabled = "disabled";
-	button = document.getElementById("button_g");
-	button.disabled = "disabled";
-	button = document.getElementById("button_h");
-	button.disabled = "disabled";
-	button = document.getElementById("button_i");
-	button.disabled = "disabled";
-	button = document.getElementById("button_j");
-	button.disabled = "disabled";
-	button = document.getElementById("button_k");
-	button.disabled = "disabled";
-	button = document.getElementById("button_l");
-	button.disabled = "disabled";
-	button = document.getElementById("button_m");
-	button.disabled = "disabled";
-	button = document.getElementById("button_n");
-	button.disabled = "disabled";
-	button = document.getElementById("button_o");
-	button.disabled = "disabled";
-	button = document.getElementById("button_p");
-	button.disabled = "disabled";
-	button = document.getElementById("button_q");
-	button.disabled = "disabled";
-	button = document.getElementById("button_r");
-	button.disabled = "disabled";
-	button = document.getElementById("button_s");
-	button.disabled = "disabled";
-	button = document.getElementById("button_t");
-	button.disabled = "disabled";
-	button = document.getElementById("button_u");
-	button.disabled = "disabled";
-	button = document.getElementById("button_v");
-	button.disabled = "disabled";
-	button = document.getElementById("button_w");
-	button.disabled = "disabled";
-	button = document.getElementById("button_x");
-	button.disabled = "disabled";
-	button = document.getElementById("button_y");
-	button.disabled = "disabled";
-	button = document.getElementById("button_z");
-	button.disabled = "disabled";
+    function disable_all_keys() {
+        alphabet.forEach(function(item) { 
+            document.getElementById("button_"+item).disabled = "disabled";
+        });
     }
 
-</script>
+--></script>
 
 <!--  CSS styles used in the game -->
 <style type="text/css">
-
 #PageTitle {
 	font-family: Comic Sans MS, cursive;
 	font-size: 48px;
 }
 
 #HangmanWord {
-    font-size: 4em;
-    font-family: monospace;
+	font-size: 4em;
+	font-family: monospace;
 }
 
 #HangmanImage {
-   visibility:hidden;
+	visibility: hidden;
 }
 
 #LoadingDiv {
-    position:absolute;
-    left:45%;
-    top:300px;
-    z-index:1;
-    background-color:blue;
-    visibility:visible;
-    width:100px;
-    height:100px;
+	position: absolute;
+	left: 45%;
+	top: 300px;
+	z-index: 1;
+	background-color: blue;
+	visibility: visible;
+	width: 100px;
+	height: 100px;
 }
 
 #TypedLetter {
-    position:absolute; 
-    top:-10em;
-    left:-10em;
+	position: absolute;
+	top: -10em;
+	left: -10em;
 }
 
 .wrong {
-    color: red;
-    font-weight: bold;
+	color: red;
+	font-weight: bold;
 }
 
 .neword {
-    color: green;
-    font-weight: bold;
+	color: green;
+	font-weight: bold;
 }
-
 </style>
 </head>
 
 <body onload="onLoad()">
 
-   <div id="MainDiv">
-      <center>
-          <div id="PageTitle">Hangman</div>
+<div id="MainDiv">
+<center>
+<div id="PageTitle">Hangman</div>
 
-          <div id="HangmanImage"><img id="state_image" src="images/1.png" name="state_image"/></div>
-          
-          <div id="HangmanWord"></div>
-          
-          <p>
-          
-          <div id="AudioContainer"></div> <!--  Audio button will be put here -->
-	<div id="keyboard">
-		<p>
-			<button id="button_q" type="button" onmousedown="processLetter('q')"><b>Q</b><br>Quebec</button>
-			<button id="button_w" type="button" onmousedown="processLetter('w')"><b>W</b><br>Whiskey</button>
-			<button id="button_e" type="button" onmousedown="processLetter('e')"><b>E</b><br>Echo</button>
-			<button id="button_r" type="button" onmousedown="processLetter('r')"><b>R</b><br>Romeo</button>
-			<button id="button_t" type="button" onmousedown="processLetter('t')"><b>T</b><br>Tango</button>
-			<button id="button_y" type="button" onmousedown="processLetter('y')"><b>Y</b><br>Yankee</button>
-			<button id="button_u" type="button" onmousedown="processLetter('u')"><b>U</b><br>Uniform</button>
-			<button id="button_i" type="button" onmousedown="processLetter('i')"><b>I</b><br>India</button>
-			<button id="button_o" type="button" onmousedown="processLetter('o')"><b>O</b><br>Oscar</button>
-			<button id="button_p" type="button" onmousedown="processLetter('p')"><b>P</b><br>Papa</button>
-			<br/>
-			<button id="button_a" type="button" onmousedown="processLetter('a')"><b>A</b><br>Alpha</button>
-			<button id="button_s" type="button" onmousedown="processLetter('s')"><b>S</b><br>Sierra</button>
-			<button id="button_d" type="button" onmousedown="processLetter('d')"><b>D</b><br>Delta</button>
-			<button id="button_f" type="button" onmousedown="processLetter('f')"><b>F</b><br>Foxtrot</button>
-			<button id="button_g" type="button" onmousedown="processLetter('g')"><b>G</b><br>Golf</button>
-			<button id="button_h" type="button" onmousedown="processLetter('h')"><b>H</b><br>Hotel</button>
-			<button id="button_j" type="button" onmousedown="processLetter('j')"><b>J</b><br>Juliet</button>
-			<button id="button_k" type="button" onmousedown="processLetter('k')"><b>K</b><br>Kilo</button>
-			<button id="button_l" type="button" onmousedown="processLetter('l')"><b>L</b><br>Lima</button>
-			<br/>
-			<button id="button_z" type="button" onmousedown="processLetter('z')"><b>Z</b><br>Zulu</button>
-			<button id="button_x" type="button" onmousedown="processLetter('x')"><b>X</b><br>Xray</button>
-			<button id="button_c" type="button" onmousedown="processLetter('c')"><b>C</b><br>Charlie</button>
-			<button id="button_v" type="button" onmousedown="processLetter('v')"><b>V</b><br>Victor</button>
-			<button id="button_b" type="button" onmousedown="processLetter('b')"><b>B</b><br>Bravo</button>
-			<button id="button_n" type="button" onmousedown="processLetter('n')"><b>N</b><br>November</button>
-			<button id="button_m" type="button" onmousedown="processLetter('m')"><b>M</b><br>Mike</button>
-		</p>
-	</div>
-          
-          <div id="Instructions"> 
-          Guess the letters by <b>saying</b>, <b>clicking</b>, or <b>typing</b> them. <br/>
-          If we get the letter wrong, you can say <span class="wrong">wrong</span> or <span class="wrong">back</span>. <br/>
-          To start over, say <span class="neword">start over</span> or <span class="neword">new word</span>.<br/>
-          <input id="TypedLetter" type="text" size="1" maxlength="1" onkeyup="processTypedLetter(event)"></input>
-          </div>
-          
-          <div id="UsedLetters"></div>
-          
-          <br/>
-          
-      </center>
-   </div>
+<div id="HangmanImage"><img id="state_image" src="images/1.png"
+	name="state_image" /></div>
 
-   <div id="LoadingDiv">
-       <center>
-       <br><br>
-       Loading...
-       </center>
-   </div>
+<div id="HangmanWord"></div>
+
+<p>
+<div id="AudioContainer"></div>
+<!--  Audio button will be put here -->
+<div id="keyboard">
+<p>
+<button id="button_q" type="button" onmousedown="processLetter('q')"><b>Q</b><br>
+Quebec</button>
+<button id="button_w" type="button" onmousedown="processLetter('w')"><b>W</b><br>
+Whiskey</button>
+<button id="button_e" type="button" onmousedown="processLetter('e')"><b>E</b><br>
+Echo</button>
+<button id="button_r" type="button" onmousedown="processLetter('r')"><b>R</b><br>
+Romeo</button>
+<button id="button_t" type="button" onmousedown="processLetter('t')"><b>T</b><br>
+Tango</button>
+<button id="button_y" type="button" onmousedown="processLetter('y')"><b>Y</b><br>
+Yankee</button>
+<button id="button_u" type="button" onmousedown="processLetter('u')"><b>U</b><br>
+Uniform</button>
+<button id="button_i" type="button" onmousedown="processLetter('i')"><b>I</b><br>
+India</button>
+<button id="button_o" type="button" onmousedown="processLetter('o')"><b>O</b><br>
+Oscar</button>
+<button id="button_p" type="button" onmousedown="processLetter('p')"><b>P</b><br>
+Papa</button>
+<br />
+<button id="button_a" type="button" onmousedown="processLetter('a')"><b>A</b><br>
+Alpha</button>
+<button id="button_s" type="button" onmousedown="processLetter('s')"><b>S</b><br>
+Sierra</button>
+<button id="button_d" type="button" onmousedown="processLetter('d')"><b>D</b><br>
+Delta</button>
+<button id="button_f" type="button" onmousedown="processLetter('f')"><b>F</b><br>
+Foxtrot</button>
+<button id="button_g" type="button" onmousedown="processLetter('g')"><b>G</b><br>
+Golf</button>
+<button id="button_h" type="button" onmousedown="processLetter('h')"><b>H</b><br>
+Hotel</button>
+<button id="button_j" type="button" onmousedown="processLetter('j')"><b>J</b><br>
+Juliet</button>
+<button id="button_k" type="button" onmousedown="processLetter('k')"><b>K</b><br>
+Kilo</button>
+<button id="button_l" type="button" onmousedown="processLetter('l')"><b>L</b><br>
+Lima</button>
+<br />
+<button id="button_z" type="button" onmousedown="processLetter('z')"><b>Z</b><br>
+Zulu</button>
+<button id="button_x" type="button" onmousedown="processLetter('x')"><b>X</b><br>
+Xray</button>
+<button id="button_c" type="button" onmousedown="processLetter('c')"><b>C</b><br>
+Charlie</button>
+<button id="button_v" type="button" onmousedown="processLetter('v')"><b>V</b><br>
+Victor</button>
+<button id="button_b" type="button" onmousedown="processLetter('b')"><b>B</b><br>
+Bravo</button>
+<button id="button_n" type="button" onmousedown="processLetter('n')"><b>N</b><br>
+November</button>
+<button id="button_m" type="button" onmousedown="processLetter('m')"><b>M</b><br>
+Mike</button>
+</p>
+</div>
+
+<div id="Instructions">Guess the letters by <b>saying</b>, <b>clicking</b>,
+or <b>typing</b> them. <br />
+If we get the letter wrong, you can say <span class="wrong">wrong</span>
+or <span class="wrong">back</span>. <br />
+To start over, say <span class="neword">start over</span> or <span
+	class="neword">new word</span>.<br />
+<input id="TypedLetter" type="text" size="1" maxlength="1"
+	onkeyup="processTypedLetter(event)"></input></div>
+
+<div id="UsedLetters"></div>
+
+<br />
+
+</center>
+</div>
+
+<div id="LoadingDiv">
+<center><br>
+<br>
+Loading...</center>
+</div>
 
 </body>
 </html>
