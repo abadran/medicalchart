@@ -4,18 +4,33 @@
 <title>Hangman</title>
 
 <!-- This script adds WAMI capabilities to your web page.   It includes your developer key -->
-<script
-	src="http://wami.csail.mit.edu/portal/wami.js?devKey=9e0ad087096c535c0714e085f28bf738"> </script>
+<script src="http://wami.csail.mit.edu/portal/wami.js?devKey=9e0ad087096c535c0714e085f28bf738"> </script>
 
 <script><!--
 
     var myWamiApp;
     var alphabet = new Array("a","b","c","d","e","f","g","h","i","j","k","l","m",
     		                 "n","o","p","q","r","s","t","u","v","w","x","y","z");
-    var guessChoices = new Array("international","fantastic","saturday","chicken","superlative","infinitesimal");
+
+    var guessChoices = new Array("international","fantastic","saturday",
+    	    "chicken","superlative","infinitesimal","finite","dictionary",
+    	    "intense","denture","philistene","strange","furlong","machine",
+    	    "forerunner","mercantile","belligerent","enticing","multimodal",
+    	    "pharmaceutical","acronym","fragmentation","inrinsic","underwriting",
+    	    "shenanigan");
+    
+    var loserMessages = new Array("Wow, that was pretty bad. Try again?",
+    	    "That was a difficult one. Try a new word?",
+    	    "Nobody's perfect! Play again?",
+    	    "You can't win them all. Start over?");
+    var winnerMessages = new Array("Yay! You're good! Want more?",
+            "Great! Try a new word?",
+            "You're doing great! Play again?",
+            "This is awesome, let's try a new word!");
     var usedLetters = "";
     var guessWord;
     var current_image = 1;
+    var lastInputSource;
     
     function onLoad() {
         //div in which to put the audio button, see below
@@ -64,10 +79,10 @@
         var loadingDiv = document.getElementById("LoadingDiv");
         loadingDiv.parentNode.removeChild(loadingDiv);
         var imageDiv = document.getElementById("HangmanImage");
-        imageDiv.style.visibility = 'visible'
+        imageDiv.style.visibility = 'visible';
         myWamiApp.speak("Welcome to the game of Hang man.");
         startOver();
-        setfocus('TypedLetter');
+        setFocus('TypedLetter');
     }
 
     //called when a speech recognition result is received
@@ -75,7 +90,6 @@
     //be called after the user finishes speaking.  Otherwise,
     //it will be called many times as the user speaks.
     function onWamiRecognitionResult(result) {
-        setfocus('TypedLetter');
         if(!result.hyps || result.hyps.length == 0 || !result.hyps[0].aggregate) {
             return;
         }
@@ -88,8 +102,10 @@
         if (kvs.command != null) {
             processCommand(kvs.command);
         } else if (kvs.letter != null) {
+            lastInputSource = "voice";
 			processLetter(kvs.letter);
         }
+        setFocus('TypedLetter');
     }
 
     //called when an error occurs
@@ -120,6 +136,7 @@
         var image_tag = document.getElementById('state_image');
         image_tag.src = "images/" + current_image.toString() + ".png";        
 	    enable_all_keys();
+	    lastInputSource = "";
         refreshDisplay();
     }
     
@@ -150,12 +167,13 @@
             winner();
         }
 
-        setfocus('TypedLetter');
+        setFocus('TypedLetter');
     }
     
     //called when user enters or says a letter
     function processLetter(letter) {
-        if (-1 == usedLetters.indexOf(letter) && current_image < 11) {
+        letter = letter.toLowerCase();
+        if (-1 == usedLetters.indexOf(letter) && current_image < 11 && isInAlphabet(letter)) {
 		    var button_name = "button_" + letter;
 		    var button = document.getElementById(button_name);
 		    button.disabled = "disabled";
@@ -170,6 +188,22 @@
         }
     }
     
+    //called when user wants to cheat or the voice recognition didn't work
+    function clearLastInput() {
+        if ("voice"==lastInputSource && 11!=current_image) {
+            alert("wrong!");
+        	current_image -= 1;
+            lastInputSource = "";
+            var lastLetter = usedLetters.charAt(usedLetters.length-1);
+            var button_name = "button_" + lastLetter;
+            var button = document.getElementById(button_name);
+            button.disabled = "";
+            button.setAttribute("style", "");
+            var image_tag = document.getElementById('state_image');
+            image_tag.src = "images/" + current_image.toString() + ".png";            
+        }
+    }
+
     //called when user enters a letter
     function processTypedLetter(e) {
         var k;
@@ -178,13 +212,15 @@
         document.all ? k = e.keyCode : k = e.which;
         isLetter = ((k > 64 && k < 91) || (k > 96 && k < 123) || k == 8);
         if (isLetter && (letter=document.getElementById("TypedLetter").value).length > 0) {
+            lastInputSource = "keyboard";
             processLetter(letter.toLowerCase());
         }
-        document.getElementById("TypedLetter").value = "";
+        document.getElementById('TypedLetter').value = "";
     }
-    
-    //called when user wants to cheat or the voice recognition didn't work
-    function clearLastInput() {
+
+    function processClickedLetter(letter) {
+        lastInputSource = "mouse";
+        processLetter(letter);
     }
     
     //called when the user did not quess a letter
@@ -221,12 +257,19 @@
 	    image_tag.src = "images/free.png";
 	    current_image = 11;
 	    disable_all_keys();
+        var message = winnerMessages[Math.round((winnerMessages.length - 1)*Math.random())];
+        if (confirm(message)) {
+            startOver();
+        }	    
     }
     
     // called at the end when the user has exhausted all their trials.
     function loser() {
        disable_all_keys();
-       // probably bring up a "New Game" button.
+       var message = loserMessages[Math.round((loserMessages.length - 1)*Math.random())];
+       if (confirm(message)) {
+           startOver();
+       }
     }
     
     //utility functions
@@ -236,8 +279,8 @@
         }
     }
 
-    function setfocus(a_field_id) {
-        document.getElementById("TypedLetter").focus();
+    function setFocus(a_field_id) {
+        document.getElementById(a_field_id).focus();
     }
 
     // called at startup to enable all the keys.
@@ -253,6 +296,16 @@
         alphabet.forEach(function(item) { 
             document.getElementById("button_"+item).disabled = "disabled";
         });
+    }
+
+    function isInAlphabet(character) {
+        var inAlphabet = false;
+    	alphabet.forEach(function(item) { 
+            if (item==character) {
+                inAlphabet = true;
+            }
+        });
+        return inAlphabet;
     }
 
 --></script>
@@ -285,9 +338,11 @@
 }
 
 #TypedLetter {
+/*
 	position: absolute;
 	top: -10em;
 	left: -10em;
+*/
 }
 
 .wrong {
@@ -374,10 +429,14 @@ Mike</button>
 </p>
 </div>
 
-<div id="Instructions">Guess the letters by <b>saying</b>, <b>clicking</b>, or <b>typing</b> them. <br />
+<div id="Instructions">Guess the letters by <b>saying</b>, <b>clicking</b>, or <b>typing</b> them in this box:  
+<form>
+    <input id="TypedLetter" type="text" size="1" maxlength="1" onkeyup="processTypedLetter(event)"></input>
+</form>
+<br />
 If we get the letter wrong, you can say <span class="wrong">wrong</span> or <span class="wrong">back</span>. <br />
 To start over, say <span class="neword">start over</span> or <span class="neword">new word</span>.<br />
-<input id="TypedLetter" type="text" size="1" maxlength="1" onkeyup="processTypedLetter(event)"></input></div>
+</div>
 
 <div id="UsedLetters"></div>
 
