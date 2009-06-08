@@ -225,6 +225,13 @@
     
     //called when the user did not quess a letter
     function wrongLetter(letter) {
+	// turn off letter button before the 'loser' function since it may
+	// re-enable all the buttons as a result of a startOver.
+	var button_name = "button_" + letter;
+	var button = document.getElementById(button_name);
+	button.style.backgroundColor = "red";
+	button.style.color = "white";
+
         // advance hangman image
         if (current_image < 11) {
         	current_image += 1;
@@ -235,11 +242,6 @@
             }
         }
          
-       // turn off letter button
-	   var button_name = "button_" + letter;
-	   var button = document.getElementById(button_name);
-	   button.style.backgroundColor = "red";
-	   button.style.color = "white";
     }
 
     //called when user guesses a letter
